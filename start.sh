@@ -43,8 +43,42 @@ create_directories() {
     print_success "Diretórios criados"
 }
 
+check_nvidia_docker_runtime() {
+    print_status "Verificando NVIDIA Docker Runtime..."
+    
+    # Check if nvidia runtime is available in Docker
+    if docker info 2>/dev/null | grep -q "nvidia"; then
+        print_success "NVIDIA Docker Runtime detectado"
+        return 0
+    else
+        print_warning "NVIDIA Docker Runtime não detectado"
+        print_status "Para usar GPU, instale nvidia-container-toolkit:"
+        echo "  - Ubuntu/Debian: sudo apt-get install -y nvidia-container-toolkit"
+        echo "  - CentOS/RHEL: sudo yum install -y nvidia-container-toolkit"
+        echo "  - Reinicie Docker após instalação"
+        return 1
+    fi
+}
+
+test_gpu_access() {
+    print_status "Testando acesso GPU no Docker..."
+    
+    # Try to run a simple GPU test container
+    if docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi &> /dev/null; then
+        print_success "Docker pode acessar GPU NVIDIA"
+        return 0
+    else
+        print_warning "Docker não pode acessar GPU NVIDIA"
+        return 1
+    fi
+}
+
 check_system_resources() {
     print_status "Verificando recursos do sistema..."
+    
+    HAS_GPU=false
+    GPU_AVAILABLE=false
+    
     if command -v free &> /dev/null; then
         TOTAL_MEM=$(free -g | awk '/^Mem:/{print $2}')
         print_status "Memória total: ${TOTAL_MEM}GB"
@@ -52,6 +86,7 @@ check_system_resources() {
             print_warning "Memória baixa detectada (< 12GB). Considere usar docker-compose.low-resource.yml"
         fi
     fi
+    
     if command -v nproc &> /dev/null; then
         TOTAL_CPU=$(nproc)
         print_status "CPUs disponíveis: ${TOTAL_CPU}"
@@ -59,15 +94,35 @@ check_system_resources() {
             print_warning "CPUs limitados (< 4). Performance pode ser reduzida"
         fi
     fi
+    
+    # GPU Detection
     if command -v nvidia-smi &> /dev/null; then
         GPU_MEMORY=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits | head -1)
         print_status "GPU NVIDIA detectada: ${GPU_MEMORY}MB VRAM"
+        HAS_GPU=true
+        
         if [ "$GPU_MEMORY" -lt 4000 ]; then
-            print_warning "VRAM limitada (< 4GB)."
+            print_warning "VRAM limitada (< 4GB)"
+        fi
+        
+        # Check if Docker can use GPU
+        if check_nvidia_docker_runtime && test_gpu_access; then
+            GPU_AVAILABLE=true
+            print_success "GPU disponível para uso no Docker"
+        else
+            print_warning "GPU detectada mas não disponível no Docker"
+            print_status "Usando modo CPU-only"
+            GPU_AVAILABLE=false
         fi
     else
         print_warning "Nenhuma GPU NVIDIA detectada. Usando CPU-only"
+        HAS_GPU=false
+        GPU_AVAILABLE=false
     fi
+    
+    # Export GPU availability for later use
+    export HAS_GPU
+    export GPU_AVAILABLE
 }
 
 wait_for_service() {
@@ -234,12 +289,45 @@ create_directories
 check_system_resources
 
 COMPOSE_FILE="docker-compose.yml"
+USE_GPU=false
+
+# Ask user about GPU mode if GPU is available
+if [ "$GPU_AVAILABLE" = true ]; then
+    echo ""
+    echo "GPU NVIDIA detectada e disponível no Docker"
+    echo -n "Deseja usar GPU? (S/n): "
+    read -r gpu_response
+    if [[ "$gpu_response" =~ ^[Nn]$ ]]; then
+        print_status "Usando modo CPU-only"
+        USE_GPU=false
+    else
+        print_status "Usando modo GPU"
+        USE_GPU=true
+    fi
+else
+    print_status "Usando modo CPU-only (GPU não disponível)"
+    USE_GPU=false
+fi
+
+# Select compose file based on resources and GPU preference
 if command -v free &> /dev/null; then
     TOTAL_MEM=$(free -g | awk '/^Mem:/{print $2}')
     if [ "$TOTAL_MEM" -lt 12 ]; then
         COMPOSE_FILE="docker-compose.low-resource.yml"
         print_warning "Usando configuração low-resource devido à memória limitada"
     fi
+fi
+
+# Update compose file for CPU-only mode if needed
+if [ "$USE_GPU" = false ] && [ "$COMPOSE_FILE" = "docker-compose.yml" ]; then
+    print_status "Desabilitando suporte GPU no docker-compose.yml"
+    # Remove GPU-specific configurations by using a modified command
+    COMPOSE_CMD="docker-compose -f $COMPOSE_FILE"
+elif [ "$USE_GPU" = true ]; then
+    print_status "Habilitando suporte GPU"
+    COMPOSE_CMD="docker-compose -f $COMPOSE_FILE"
+else
+    COMPOSE_CMD="docker-compose -f $COMPOSE_FILE"
 fi
 
 print_status "Usando: $COMPOSE_FILE"
