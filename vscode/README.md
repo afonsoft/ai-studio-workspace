@@ -65,56 +65,50 @@ vscode/
 ### 💻 C# / .NET Development
 - **C# Dev Kit**: Development completo .NET
 - **Blazor**: Framework web components
-- **Dotnet Interactive**: Notebooks .NET
-- **C# Extensions**: Snippets e utilitários
+- **Dotnet Runtime**: Runtime .NET integrado
+- **Dotnet Core Snippets**: Snippets para .NET
+- **Dotnet Pack**: Pacote de extensões .NET
 - **Test Explorer**: Testes unitários integrados
 
 ### 🌐 Web Development (Angular & Frontend)
 - **Angular Extension**: Templates e snippets Angular
 - **John Papa Angular**: Best practices Angular
-- **TypeScript**: Suporte completo TS/JS
+- **TypeScript Next**: Suporte completo TS/JS
 - **Tailwind CSS**: Framework CSS utility-first
 - **HTML CSS Support**: Formatação e snippets
+- **Jest**: Framework de testes JavaScript
+- **Auto Rename Tag**: Renomear tags HTML em pares
+- **Auto Close Tag**: Fechar tags automaticamente
 
 ### 🐳 Docker & Containers
 - **Docker Extension**: Gerenciamento de containers
-- **Remote Containers**: Development em containers
 
 ### 🔧 Git & Version Control
 - **GitLens**: Superpowers para Git
 - **GitHub Pull Requests**: Integration com GitHub
-- **Git Graph**: Visualização de branches
-- **Git History**: Timeline de commits
+- **GitIgnore**: Gerenciamento de .gitignore
 
 ### 🗄️ Database & Data
 - **SQL Server**: Integration com Microsoft SQL
-- **Redis Client**: Cliente Redis
-- **Cosmos DB**: NoSQL database
 - **REST Client**: Testes de API
 
 ### 🎨 Code Quality & Formatting
 - **Prettier**: Formatação de código
-- **ESLint**: Análise estática JavaScript
 - **EditorConfig**: Configurações consistentes
-- **Spell Checker**: Verificação ortográfica (PT/ES/EN)
 
 ### 📋 Productivity & Utilities
-- **Todo Tree**: Gerenciamento de tarefas
 - **Path Intellisense**: Autocomplete de caminhos
-- **Bookmarks**: Navegação rápida
+- **NPM Intellisense**: Autocomplete de pacotes NPM
 - **Bracket Pair Colorizer**: Cores para pares de colchetes
 
 ## 🎨 Temas & Personalização
 
 ### Temas Recomendados
 - **Material Icon Theme**: Ícones modernos
-- **Material Theme**: Tema escuro moderno
-- **Dracula Theme**: Tema popular escuro
-- **Gruvbox Material**: Tema baseado em Gruvbox
+- **VSCode Icons**: Ícones oficiais VS Code
 
-### Personalizações
-- **Peacock**: Cores diferentes por workspace
-- **Winter is Coming**: Tema Game of Thrones
+### Temas de Editor
+O projeto inclui extensões de ícones para melhor visualização, mas temas de editor são opcionais e podem ser instalados conforme preferência pessoal.
 
 ## 🔧 Atalhos Personalizados (keybindings.json)
 
@@ -256,13 +250,13 @@ vscode/
 
 ## 🎉 Benefícios
 
-✅ **Development completo** C#/.NET + Angular  
+✅ **Development focado** C#/.NET + Angular  
 ✅ **AI integration** com GitHub Copilot  
-✅ **Performance otimizada** para hardware potente  
+✅ **Extensões otimizadas** para desenvolvimento rápido  
 ✅ **Quality tools** para código limpo  
 ✅ **Docker integration** para containerização  
 ✅ **Git avançado** para colaboração  
-✅ **Multi-language** suporte para diversos projetos  
+✅ **Setup enxuto** com apenas extensões essenciais  
 
 ---
 
