@@ -1,6 +1,6 @@
 # Multi-stage optimized build for OpenHands custom sandbox
 # Stage 1: Build stage with all tools
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS builder
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS builder
 
 # Set environment variables
 ENV NODE_VERSION=22
@@ -49,7 +49,7 @@ RUN dotnet --version && \
     npm --version
 
 # Stage 2: Final minimal image
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+FROM mcr.microsoft.com/dotnet/sdk:10.0
 
 # Copy installed tools from builder stage
 COPY --from=builder /usr/bin/python3* /usr/bin/
