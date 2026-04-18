@@ -1,9 +1,0 @@
-Configuração do GIT
-
-git config --global http.sslVerify false
-git config --global https.sslVerify false
-git config --global core.longpaths true
-
-Configuração do NPM
-npm config set strict-ssl false
-export NODE_TLS_REJECT_UNAUTHORIZED=0

@@ -1,10 +1,3 @@
-[core]
-load_timeout = 600
-runtime_extra_deps = """
-pip install numpy pandas
-apt-get update && apt-get install -y ffmpeg
-"""
-
 [sandbox]
 user_id = 0
 timeout = 600
