@@ -10,16 +10,22 @@ This document describes the optimizations implemented in the project to reduce m
 
 #### Key Environment Variables
 ```yaml
-# Gemini 2.5 Flash optimized settings
-OPENHANDS_LLM_PROVIDER: gemini
-OPENHANDS_LLM_MODEL: gemini/gemini-3.1-flash-lite-preview
-OPENHANDS_LLM_TEMPERATURE: 0.3
-OPENHANDS_LLM_TOP_P: 0.95
+# Gemini 3.1 Flash Lite Preview optimized settings (V1 Standard)
+LLM_API_KEY: your-gemini-api-key
+LLM_MODEL: gemini/gemini-3.1-flash-lite-preview
 
-# Memory and processing limits
-OPENHANDS_MEMORY_BUDGET: 2147483648  # 2GB total
-OPENHANDS_MAX_PARALLEL_REQUESTS: 2   # Optimized for Gemini
-OPENHANDS_MAX_ITERATIONS: 20          # Increased
+# Persistence (V1 Standard)
+OH_PERSISTENCE_DIR: /.openhands
+
+# Sandbox Provider (V1 Standard)
+RUNTIME: docker
+
+# Workspace Mounting (V1 Standard)
+SANDBOX_VOLUMES: ./workspace:/workspace:rw
+
+# Agent Server (V1 Standard)
+AGENT_SERVER_IMAGE_REPOSITORY: ghcr.io/openhands/agent-server
+AGENT_SERVER_IMAGE_TAG: 1.15.0-python
 
 # Optimized sandbox
 SANDBOX_MEMORY_LIMIT: "2g"           # 2GB for sandbox
@@ -99,9 +105,9 @@ sudo swapon /swapfile
 ## 🔍 Troubleshooting
 
 ### Error: "Out of Memory"
-- Reduce `OPENHANDS_MAX_PARALLEL_REQUESTS` to 1
 - Use `docker-compose.low-resource.yml`
 - Consider `gemini-3.1-flash-lite-preview` model (optimized)
+- Reduce memory limits in docker-compose file
 
 ### Error: "Container Killed"
 - Check logs: `docker logs openhands-hands-app-low`
@@ -109,9 +115,9 @@ sudo swapon /swapfile
 - Increase timeout for long operations
 
 ### Slow Performance
-- Increase `OPENHANDS_MAX_PARALLEL_REQUESTS` to 2-3
 - Check Gemini API key
 - Use temperature 0.35 for more creativity
+- Increase memory limits in docker-compose file
 
 ## 📚 References
 

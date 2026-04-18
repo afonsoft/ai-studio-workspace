@@ -72,9 +72,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Compatibilidade cross-platform aprimorada
 
 ### Dependências / Versões
-- OpenHands image: `docker.openhands.dev/openhands/openhands:1.5`
+- OpenHands image: `docker.openhands.dev/openhands/openhands:1.6`
  - LLM Provider: **Google Gemini API** (gemini-3.1-flash-lite-preview)
-- Agent Server: `ghcr.io/openhands/agent-server:1.12.0-python`
+- Agent Server: `ghcr.io/openhands/agent-server:1.15.0-python`
 - **Requisito**: API Key Gemini (https://aistudio.google.com/app/apikey)
 
 ## [1.3.0] - 2025-11-11
