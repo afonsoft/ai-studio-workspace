@@ -4,24 +4,30 @@ services:
     container_name: openhands-app
     pull_policy: always
     environment:
-      LOG_ALL_EVENTS: "true"
-      PYTHONUNBUFFERED: "1"
-      PYTHONDONTWRITEBYTECODE: "1"
-      # OpenHands V1 Configuration
-      RUNTIME: "docker"
-      OH_PERSISTENCE_DIR: "/.openhands"
-      # Agent Server (Latest)
-      AGENT_SERVER_IMAGE_REPOSITORY: "ghcr.io/openhands/agent-server"
-      AGENT_SERVER_IMAGE_TAG: "1.15.0-python"
-      # LLM Configuration (V1 Standard)
+      # LLM Configuration (Official V1)
       LLM_API_KEY: "${GEMINI_API_KEY}"
       LLM_MODEL: "gemini/gemini-3.1-flash-lite-preview"
-      # Sandbox Configuration
-      SANDBOX_VOLUMES: "./workspace:/workspace"
+      
+      # Persistence (Official V1)
+      OH_PERSISTENCE_DIR: /.openhands
+      
+      # Sandbox Provider (Official V1)
+      RUNTIME: docker
+      
+      # Workspace Mounting (Official V1)
+      SANDBOX_VOLUMES: ./workspace:/workspace:rw
+      
+      # Agent Server Configuration (Official V1)
+      AGENT_SERVER_IMAGE_REPOSITORY: ghcr.io/openhands/agent-server
+      AGENT_SERVER_IMAGE_TAG: 1.15.0-python
+      
+      # Logging
+      LOG_ALL_EVENTS: true
+      
       # GPU Support
-      CUDA_VISIBLE_DEVICES: "all"
-      NVIDIA_VISIBLE_DEVICES: "all"
-      SANDBOX_DOCKER_RUNTIME: "nvidia"
+      CUDA_VISIBLE_DEVICES: all
+      NVIDIA_VISIBLE_DEVICES: all
+      SANDBOX_DOCKER_RUNTIME: nvidia
     ports:
       - "3000:3000"
     volumes:

@@ -45,7 +45,38 @@ openhands/
 - **Debug**: Facilita troubleshooting com logs detalhados
 - **Backup**: Protege dados importantes do sistema
 
-## 🔧 Configuração Principal
+## 🔧 OpenHands V1 Configuration
+
+### Environment Variables (Official V1 Standard)
+
+```bash
+# LLM Configuration
+LLM_API_KEY="your-gemini-api-key"
+LLM_MODEL="gemini/gemini-3.1-flash-lite-preview"
+
+# Persistence
+OH_PERSISTENCE_DIR="/.openhands"
+
+# Sandbox Provider
+RUNTIME="docker"
+
+# Workspace Mounting
+SANDBOX_VOLUMES="$PWD:/workspace:rw"
+
+# Agent Server
+AGENT_SERVER_IMAGE_REPOSITORY="ghcr.io/openhands/agent-server"
+AGENT_SERVER_IMAGE_TAG="1.15.0-python"
+```
+
+### settings.json (Legacy Format)
+
+```json
+{
+  "llm_model": "gemini/gemini-3.1-flash-lite-preview",
+  "llm_api_key": "YOUR_API_KEY_HERE",
+  "llm_base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent"
+}
+```
 
 ### settings.json
 

@@ -4,10 +4,10 @@ AI development environment optimized for Gemini API, focused on professional C#/
 
 ## 🎯 Main Focus
 - **Gemini API**: Setup optimized for maximum performance with Google API
-- **OpenHands**: Complete environment for complex tasks
+- **OpenHands V1**: Latest web UI with official V1 configuration standards
 - **VS Code + Copilot**: Perfect integration for day-to-day development
 - **GPU Support**: Complete NVIDIA GPU support with optimizations
-- **TOML Configuration**: Support for OpenHands V1 with config.toml
+- **Docker Sandbox**: Official Docker sandbox provider with workspace mounting
 
 ## 📋 Project Description
 
@@ -202,28 +202,48 @@ docker-compose -f docker-compose.low-resource.yml up -d
 http://localhost:3000
 ```
 
-### 🐳 **Opção 3: Docker Direto (Equivalente ao Comando Oficial)**
+### 🐳 **Opção 3: Docker Direto (Comando Oficial V1)**
 ```bash
 docker run -it --rm --pull=always \
   -e AGENT_SERVER_IMAGE_REPOSITORY=ghcr.io/openhands/agent-server \
-  -e AGENT_SERVER_IMAGE_TAG=1.12.0-python \
+  -e AGENT_SERVER_IMAGE_TAG=1.15.0-python \
   -e LOG_ALL_EVENTS=true \
-  -e OPENHANDS_LLM_PROVIDER=gemini \
-  -e OPENHANDS_LLM_MODEL=gemini/gemini-3.1-flash-lite-preview \
-  -e OPENHANDS_LLM_TEMPERATURE=0.35 \
-  -e OPENHANDS_LLM_TOP_P=0.95 \
-  -e OPENHANDS_MAX_ITERATIONS=30 \
-  -e OPENHANDS_ENABLE_AUTO_LINT=true \
+  -e LLM_API_KEY="$GEMINI_API_KEY" \
+  -e LLM_MODEL="gemini/gemini-3.1-flash-lite-preview" \
+  -e RUNTIME=docker \
+  -e OH_PERSISTENCE_DIR=/.openhands \
+  -e SANDBOX_VOLUMES="$PWD:/workspace:rw" \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v ~/.openhands:/.openhands \
+  -v $PWD:/workspace \
+  -p 3000:3000 \
+  --add-host host.docker.internal:host-gateway \
+  --name openhands-app \
+  docker.openhands.dev/openhands/openhands:1.6
+```
+
+**Com GPU (NVIDIA):**
+```bash
+docker run -it --rm --pull=always \
+  -e AGENT_SERVER_IMAGE_REPOSITORY=ghcr.io/openhands/agent-server \
+  -e AGENT_SERVER_IMAGE_TAG=1.15.0-python \
+  -e LOG_ALL_EVENTS=true \
+  -e LLM_API_KEY="$GEMINI_API_KEY" \
+  -e LLM_MODEL="gemini/gemini-3.1-flash-lite-preview" \
+  -e RUNTIME=docker \
+  -e OH_PERSISTENCE_DIR=/.openhands \
+  -e SANDBOX_VOLUMES="$PWD:/workspace:rw" \
   -e CUDA_VISIBLE_DEVICES=all \
   -e NVIDIA_VISIBLE_DEVICES=all \
   -e SANDBOX_DOCKER_RUNTIME=nvidia \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ~/.openhands:/.openhands \
+  -v $PWD:/workspace \
   -p 3000:3000 \
   --add-host host.docker.internal:host-gateway \
   --name openhands-app \
   --runtime nvidia \
-  docker.openhands.dev/openhands/openhands:1.5
+  docker.openhands.dev/openhands/openhands:1.6
 ```
 
 ## 🔧 Configurações Avançadas
@@ -236,21 +256,6 @@ docker-compose up -d
 # Verificar logs
 docker-compose logs openhands
 
-# Verificar status dos containers
-docker-compose ps
-
-# Configurar API key Gemini (automático via start.sh)
-# Ou manualmente em: openhands/settings.json, config.json, config.toml
-```
-
-### **LLM Configuration (Gemini 2.5 Flash API)**
-```bash
-# Obter API Key em: https://aistudio.google.com/app/apikey
-# Configurar variável de ambiente:
-export GEMINI_API_KEY="sua-api-key-aqui"
-
-# Configuração automática nos arquivos:
-# openhands/settings.json, openhands/config.json, openhands/config.toml
 
 # Exemplo de configuração (já aplicada)
 {
