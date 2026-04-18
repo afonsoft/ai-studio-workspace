@@ -11,7 +11,7 @@ AI development environment optimized for Gemini API, focused on professional C#/
 
 ## 📋 Project Description
 
-This project transforms your environment into a powerful AI development station with Gemini API, with specific focus on C# and .NET. Uses Google's Gemini 2.5 Flash, a fast and efficient model that works on any hardware.
+This project transforms your environment into a powerful AI development station with Gemini API, with specific focus on C# and .NET. Uses Google's Gemini 3.1 Flash Lite Preview, a fast and efficient model that works on any hardware.
 
 ### 🎯 Business Vision
 - Maximum productivity with Gemini API (minimum cost)
@@ -21,7 +21,7 @@ This project transforms your environment into a powerful AI development station 
 - Multi-architecture: CPU-only or GPU-accelerated
 
 ### 🔧 Technical Vision
-- **API Optimized**: Gemini 2.5 Flash for maximum performance
+- **API Optimized**: Gemini 3.1 Flash Lite Preview for maximum performance
 - **GPU Acceleration**: NVIDIA support with optimized runtime
 - **Universal**: Works on any hardware (CPU or GPU)
 - **VS Code Integration**: Copilot for native workflow
@@ -148,7 +148,7 @@ volumes:
 
 #### OpenHands Service (Padrão)
 - **Memória otimizada**: 1.5GB limit, 768MB reservation
-- **API otimizada**: Gemini 2.5 Flash integration
+- **API otimizada**: Gemini 3.1 Flash Lite Preview integration
 - **Python otimizado**: `PYTHONUNBUFFERED=1`, `PYTHONDONTWRITEBYTECODE=1`
 - **Logs reduzidos**: `LOG_ALL_EVENTS: false` para menos I/O
 - **Timeouts otimizados**: Sandbox 180s, workspace 300s
@@ -347,7 +347,7 @@ docker-compose restart openhands
 
 ## 🚀 Transforme seu Desenvolvimento com Gemini API!
 
-Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento IA com Gemini API, especializada em C#/.NET. O Gemini 2.5 Flash oferece performance profissional para código, com configuração simplificada e baixo custo.
+Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento IA com Gemini API, especializada em C#/.NET. O Gemini 3.1 Flash Lite Preview oferece performance profissional para código, com configuração simplificada e baixo custo.
 
 **Pronto para revolucionar seu desenvolvimento C#?** 🚀
 
@@ -522,7 +522,7 @@ Use the performance-optimization skill to optimize this code for better performa
 ## 🛠️ Stack Tecnológica
 
 ### IA e Modelo
-- **Modelo Principal**: Gemini 2.5 Flash
+- **Modelo Principal**: Gemini 3.1 Flash Lite Preview
 - **Especialização**: C#/.NET Development
 - **Provider**: Google Gemini API
 - **Custo**: Pay-per-use (baixo consumo)
@@ -536,7 +536,7 @@ Use the performance-optimization skill to optimize this code for better performa
 
 ### OpenHands (Otimizado)
 - **Versão**: 1.5 (com agent integrado)
-- **API**: Gemini 2.5 Flash integration
+- **API**: Gemini 3.1 Flash Lite Preview integration
 - **Temperatura**: 0.35 (performance) / 0.3 (low-resource)
 - **Paralelismo**: 3 (performance) / 2 (low-resource)
 - **Memory**: 2GB (performance) / 768MB (low-resource)
@@ -738,7 +738,7 @@ Este projeto é licenciado sob a MIT License - veja o arquivo LICENSE para detal
 
 ## 🎉 Transforme seu Desenvolvimento com Gemini API!
 
-Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento IA com Gemini API, especializada em C#/.NET. O Gemini 2.5 Flash oferece performance profissional para código, com configuração simplificada e baixo custo.
+Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento IA com Gemini API, especializada em C#/.NET. O Gemini 3.1 Flash Lite Preview oferece performance profissional para código, com configuração simplificada e baixo custo.
 
 **Com os GitHub Copilot Agents, você tem:**
 - 🎯 **9 skills especializadas** para desenvolvimento .NET moderno
