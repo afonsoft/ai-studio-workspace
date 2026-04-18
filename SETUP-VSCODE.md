@@ -3,7 +3,7 @@
 ## 📋 Requisitos
 - VS Code instalado
 - GitHub Copilot ativado
-- OpenHands configurado com Gemini 2.5 Flash
+- OpenHands configurado com Gemini 3.1 Flash Lite Preview
 - Extensões recomendadas para .NET
 
 ## ⚙️ Passo 1: Configurar VS Code + GitHub Copilot
@@ -31,7 +31,7 @@
 }
 ```
 
-## 🤖 Passo 2: Configurar OpenHands com Gemini 2.5 Flash
+## 🤖 Passo 2: Configurar OpenHands com Gemini 3.1 Flash Lite Preview
 
 ### 2.1 Configurar Variáveis de Ambiente
 Defina sua API key do Google Gemini:
@@ -59,7 +59,7 @@ docker-compose -f docker-compose.low-resource.yml up -d openhands
 
 ### 2.3 Configurações Otimizadas
 O OpenHands está configurado com:
-- **Modelo**: Gemini 2.5 Flash
+- **Modelo**: Gemini 3.1 Flash Lite Preview
 - **Temperatura**: 0.35 (performance) / 0.3 (low-resource)
 - **Paralelismo**: 3 (performance) / 2 (low-resource)
 - **Memory Budget**: 4GB (performance) / 2GB (low-resource)
@@ -395,7 +395,7 @@ Após seguir todos os passos, verifique:
 ### ✅ OpenHands com Gemini Configurado
 - [ ] API key do Gemini configurada
 - [ ] OpenHands rodando em localhost:3000
-- [ ] Gemini 2.5 Flash respondendo
+- [ ] Gemini 3.1 Flash Lite Preview respondendo
 - [ ] Configurações de performance aplicadas
 
 ### ✅ Agents Configurados

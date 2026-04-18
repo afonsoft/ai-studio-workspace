@@ -1,10 +1,10 @@
 # 🚀 MCP Quickstart Guide
 
-Quick setup of MCP servers for C#/.NET development with OpenHands and optimized Gemini 2.5 Flash API.
+Quick setup of MCP servers for C#/.NET development with OpenHands and optimized Gemini 3.1 Flash Lite Preview API.
 
 ## 🎯 Objective
 
-Quickly configure essential MCP servers to maximize productivity with OpenHands and optimized Gemini 2.5 Flash API.
+Quickly configure essential MCP servers to maximize productivity with OpenHands and optimized Gemini 3.1 Flash Lite Preview API.
 
 ## ⚡ Quick Setup (5 minutes)
 
@@ -161,8 +161,8 @@ Prompt: "Check git status and create a branch for feature X"
 
 ### Advanced Test
 ```bash
-# Test complete workflow with Gemini 2.5 Flash
-Prompt: "Using MCP servers and Gemini 2.5 Flash:
+# Test complete workflow with Gemini 3.1 Flash Lite Preview
+Prompt: "Using MCP servers and Gemini 3.1 Flash Lite Preview:
 1. Analyze current project (filesystem)
 2. Create unit tests for main classes with xUnit
 3. Commit changes (git)
@@ -178,7 +178,7 @@ Prompt: "Using MCP servers and Gemini 2.5 Flash:
 ✅ **Intelligence** with contextual memory and learning  
 ✅ **Automation** with web scraping and database operations  
 ✅ **Documentation** with access to technical knowledge via deepwiki  
-✅ **Performance** with optimized Gemini 2.5 Flash  
+✅ **Performance** with optimized Gemini 3.1 Flash Lite Preview  
 ✅ **UI Components** with shadcn-ui integration  
 
 ## 🚨 Quick Troubleshooting
@@ -218,6 +218,6 @@ docker-compose restart openhands
 
 ---
 
-**Ready to accelerate your C#/.NET development with MCP and Gemini 2.5 Flash?** 🚀
+**Ready to accelerate your C#/.NET development with MCP and Gemini 3.1 Flash Lite Preview?** 🚀
 
 Complete setup in 5 minutes with optimized performance! ⚡

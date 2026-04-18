@@ -152,9 +152,9 @@ watch -n 2 'docker stats --no-stream && echo "---" && free -h'
 ✅ **200% throughput increase** with parallelism  
 ✅ **Compatibility** with any hardware (no GPU required)  
 ✅ **Stability** on 8GB RAM systems  
-✅ **Performance** optimized with Gemini 2.5 Flash  
+✅ **Performance** optimized with Gemini 3.1 Flash Lite Preview  
 ✅ **Scalability** - flexible configurations  
 
 ---
 
-**Note**: These optimizations have been tested for Gemini 2.5 Flash with Google API and systems with 8-32GB RAM. Works on any hardware without GPU dependency.
+**Note**: These optimizations have been tested for Gemini 3.1 Flash Lite Preview with Google API and systems with 8-32GB RAM. Works on any hardware without GPU dependency.
