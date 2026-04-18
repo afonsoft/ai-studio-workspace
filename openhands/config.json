@@ -1,8 +1,8 @@
 {
   "llm": {
     "provider": "gemini",
-    "base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
-    "model": "gemini/gemini-2.5-flash-lite",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent",
+    "model": "gemini/gemini-3.1-flash-lite-preview",
     "api_key": "YOUR_API_KEY_HERE"
   },
   "editor": {

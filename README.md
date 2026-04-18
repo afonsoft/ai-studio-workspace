@@ -209,7 +209,7 @@ docker run -it --rm --pull=always \
   -e AGENT_SERVER_IMAGE_TAG=1.12.0-python \
   -e LOG_ALL_EVENTS=true \
   -e OPENHANDS_LLM_PROVIDER=gemini \
-  -e OPENHANDS_LLM_MODEL=gemini/gemini-2.5-flash \
+  -e OPENHANDS_LLM_MODEL=gemini/gemini-3.1-flash-lite-preview \
   -e OPENHANDS_LLM_TEMPERATURE=0.35 \
   -e OPENHANDS_LLM_TOP_P=0.95 \
   -e OPENHANDS_MAX_ITERATIONS=30 \
@@ -254,7 +254,7 @@ export GEMINI_API_KEY="sua-api-key-aqui"
 
 # Exemplo de configuração (já aplicada)
 {
-  "llm_model": "gemini/gemini-2.5-flash",
+  "llm_model": "gemini/gemini-3.1-flash-lite-preview",
   "llm_api_key": "${GEMINI_API_KEY}",
   "llm_base_url": "https://generativelanguage.googleapis.com/v1beta"
 }
@@ -262,7 +262,7 @@ export GEMINI_API_KEY="sua-api-key-aqui"
 # Configuração TOML (para OpenHands V1)
 [llm]
 provider = "google"
-model = "gemini-2.5-flash"
+model = "gemini-3.1-flash-lite-preview"
 api_key = "sua-api-key-aqui"
 temperature = 0.35
 max_iterations = 30
@@ -581,17 +581,17 @@ RUNTIME=remote
 # 2. Configure nos arquivos
 # openhands/settings.json
 {
-  "llm_model": "gemini/gemini-2.5-flash",
+  "llm_model": "gemini/gemini-3.1-flash-lite-preview",
   "llm_api_key": "SUA_API_KEY_AQUI",
-  "llm_base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
+  "llm_base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent"
 }
 
 # openhands/config.json
 {
   "llm": {
     "provider": "gemini",
-    "base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
-    "model": "gemini-2.5-flash",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent",
+    "model": "gemini-3.1-flash-lite-preview",
     "api_key": "SUA_API_KEY_AQUI"
   }
 }

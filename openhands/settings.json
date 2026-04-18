@@ -4,9 +4,9 @@
     "max_iterations": null,
     "security_analyzer": "llm",
     "confirmation_mode": false,
-    "llm_model": "gemini/gemini-2.5-flash-lite",
+    "llm_model": "gemini/gemini-3.1-flash-lite-preview",
     "llm_api_key": "YOUR_API_KEY_HERE",
-    "llm_base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+    "llm_base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent",
     "user_version": null,
     "remote_runtime_resource_factor": null,
     "secrets_store": {

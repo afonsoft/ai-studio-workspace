@@ -54,7 +54,7 @@ openhands/
   "llm": {
     "provider": "gemini",
     "base_url": "https://generativelanguage.googleapis.com",
-    "model": "gemini-2.5-flash",
+    "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 4096,
     "context_window": 4096,
@@ -320,17 +320,17 @@ echo "✅ Limpeza concluída"
     "provider": "gemini",
     "models": {
       "coding": {
-        "model": "gemini-2.5-flash",
+        "model": "gemini-3.1-flash-lite-preview",
         "temperature": 0.1,
         "max_tokens": 4096
       },
       "analysis": {
-        "model": "gemini-2.5-flash",
+        "model": "gemini-3.1-flash-lite-preview",
         "temperature": 0.2,
         "max_tokens": 8192
       },
       "creative": {
-        "model": "gemini-2.5-flash",
+        "model": "gemini-3.1-flash-lite-preview",
         "temperature": 0.7,
         "max_tokens": 2048
       }
@@ -443,7 +443,7 @@ module.exports = CSharpAnalyzer;
 2. **Conexão com Gemini API falha**
    ```bash
    # Testar conexão
-  docker exec openhands-hands-app curl -H "Content-Type: application/json" -d '{"contents":[{"parts":[{"text":"Hello"}]}]}' "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=YOUR_API_KEY"
+  docker exec openhands-hands-app curl -H "Content-Type: application/json" -d '{"contents":[{"parts":[{"text":"Hello"}]}]}' "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=YOUR_API_KEY"
    
    # Verificar configuração da API Key
    cat openhands/settings.json | grep api_key
@@ -474,7 +474,7 @@ module.exports = CSharpAnalyzer;
 ### Gemini API
 
 - **Endpoint**: `https://generativelanguage.googleapis.com`
-- **Modelos**: `gemini-2.5-flash` principal
+- **Modelos**: `gemini-3.1-flash-lite-preview` principal
 - **API**: Comunicação via REST API
 - **Autenticação**: API Key configurada em settings.json
 

@@ -10,4 +10,4 @@ user_id = 0
 timeout = 600
 
 [llm]
-model = "gemini/gemini-2.5-flash"
+model = "gemini/gemini-3.1-flash-lite-preview"

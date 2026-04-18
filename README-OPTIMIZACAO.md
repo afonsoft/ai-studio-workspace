@@ -12,7 +12,7 @@ This document describes the optimizations implemented in the project to reduce m
 ```yaml
 # Gemini 2.5 Flash optimized settings
 OPENHANDS_LLM_PROVIDER: gemini
-OPENHANDS_LLM_MODEL: gemini/gemini-2.5-flash
+OPENHANDS_LLM_MODEL: gemini/gemini-3.1-flash-lite-preview
 OPENHANDS_LLM_TEMPERATURE: 0.3
 OPENHANDS_LLM_TOP_P: 0.95
 
@@ -101,7 +101,7 @@ sudo swapon /swapfile
 ### Error: "Out of Memory"
 - Reduce `OPENHANDS_MAX_PARALLEL_REQUESTS` to 1
 - Use `docker-compose.low-resource.yml`
-- Consider `gemini-2.5-flash` model (optimized)
+- Consider `gemini-3.1-flash-lite-preview` model (optimized)
 
 ### Error: "Container Killed"
 - Check logs: `docker logs openhands-hands-app-low`
