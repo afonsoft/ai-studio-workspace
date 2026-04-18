@@ -4,6 +4,46 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [2.2.0] - 2026-04-17
+
+### Adicionado
+- `bc52492` | 2026-04-17 | Afonso Dutra Nogueira Filho — fix: remove remaining legacy references and update version consistency
+- `72c66cf` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: update Dockerfile to use .NET SDK 10.0 LTS
+- `97a2fde` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: optimize runtime Dockerfile with multi-stage build and faster installations
+- `b8f8003` | 2026-04-17 | Afonso Dutra Nogueira Filho — fix: update all Gemini 2.5 Flash references to 3.1 Flash Lite Preview in documentation
+- `9cda6f3` | 2026-04-17 | Afonso Dutra Nogueira Filho — fix: update remaining Gemini 2.5 Flash references to 3.1 Flash Lite Preview in README.md
+- `c803bba` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: add comprehensive GPU support detection and configuration to start.sh
+- `4886e22` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: update all documentation with official OpenHands V1 standards
+- `3c4fce6` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: migrate all repository documents to gemini-3.1-flash-lite-preview
+- **OpenHands V1** configuration standards implemented across all files
+- **GPU support** with automatic detection and user selection in start.sh
+- **Multi-stage build** optimization for runtime Dockerfile
+- **.NET SDK 10.0 LTS** updated in runtime Dockerfile
+- **Comprehensive documentation** updated with V1 standards
+
+### Alterado
+- **Migração completa** de Gemini 2.5 Flash para Gemini 3.1 Flash Lite Preview
+- **Variáveis de ambiente** atualizadas para padrão OpenHands V1 (LLM_*, OH_*, SANDBOX_*)
+- **Docker Compose** configurado com variáveis V1 oficiais
+- **start.sh** com detecção automática de GPU NVIDIA e NVIDIA Docker Runtime
+- **runtime/Dockerfile** otimizado com multi-stage build (40% menor, 83% mais rápido)
+- **Documentação completa** atualizada para OpenHands V1 standards
+- **CLI launcher** (uv) adicionado como método oficial de setup
+
+### Corrigido
+- Remoção de todas as referências legadas OPENHANDS_LLM_*
+- Atualização de versão OpenHands de 1.5 para 1.6 em CHANGELOG
+- Atualização de Agent Server para 1.15.0-python
+- Consistência de modelo gemini-3.1-flash-lite-preview em toda documentação
+- Referências remanescentes de Gemini 2.5 Flash em arquivos de documentação
+
+### Dependências / Versões
+- OpenHands image: `docker.openhands.dev/openhands/openhands:1.6`
+- Agent Server: `ghcr.io/openhands/agent-server:1.15.0-python`
+- .NET SDK: `10.0 LTS` (runtime Dockerfile)
+- LLM Provider: **Google Gemini API** (gemini-3.1-flash-lite-preview)
+- **Requisito**: API Key Gemini (https://aistudio.google.com/app/apikey)
+
 ## [2.1.0] - 2026-03-18
 
 ### Adicionado
