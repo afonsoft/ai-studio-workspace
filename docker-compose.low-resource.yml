@@ -1,47 +1,36 @@
 services:
   openhands:
-    image: docker.openhands.dev/openhands/openhands:1.5
+    image: docker.openhands.dev/openhands/openhands:1.6
     container_name: openhands-app
     pull_policy: always
     environment:
       LOG_ALL_EVENTS: "true"
       PYTHONUNBUFFERED: "1"
       PYTHONDONTWRITEBYTECODE: "1"
-      # OpenHands Agent Server
+      # OpenHands V1 Configuration
+      RUNTIME: "docker"
+      OH_PERSISTENCE_DIR: "/.openhands"
+      # Agent Server (Latest)
       AGENT_SERVER_IMAGE_REPOSITORY: "ghcr.io/openhands/agent-server"
-      AGENT_SERVER_IMAGE_TAG: "1.12.0-python"
-      # Gemini LLM
-      OPENHANDS_LLM_PROVIDER: "gemini"
-      OPENHANDS_LLM_MODEL: "gemini/gemini-2.5-flash"
-      OPENHANDS_LLM_TEMPERATURE: 0.30
-      OPENHANDS_LLM_TOP_P: 0.95
-      OPENHANDS_MAX_ITERATIONS: 20
-      OPENHANDS_ENABLE_AUTO_LINT: true
-      OPENHANDS_LLM_GPU_LAYERS: 0
-      OPENHANDS_LOAD_TIMEOUT: 240
-      OPENHANDS_MAX_PARALLEL_REQUESTS: 2
-      OPENHANDS_MEMORY_BUDGET: 2147483648
-      # Sandbox
-      SANDBOX_TIMEOUT: 160
-      SANDBOX_USER_ID: "0"
-      SANDBOX_MEMORY_LIMIT: "2g"
-      SANDBOX_CPU_LIMIT: "0.5"
-      SANDBOX_DOCKER_RUNTIME: ""
-      SANDBOX_MAX_NUM_SANDBOXES: 3
-      SANDBOX_STARTUP_GRACE_SECONDS: 120
-      WORKSPACE_TIMEOUT: 240
+      AGENT_SERVER_IMAGE_TAG: "1.15.0-python"
+      # LLM Configuration (V1 Standard)
+      LLM_API_KEY: "${GEMINI_API_KEY}"
+      LLM_MODEL: "gemini/gemini-2.5-flash"
+      # Sandbox Configuration
+      SANDBOX_VOLUMES: "./workspace:/workspace"
     ports:
       - "3000:3000"
     volumes:
       - ./openhands:/.openhands
+      - ./workspace:/workspace
       - /var/run/docker.sock:/var/run/docker.sock
     extra_hosts:
       - "host.docker.internal:host-gateway"
     deploy:
       resources:
         limits:
-          memory: "768m"
-          cpus: "0.8"
+          memory: "1g"
+          cpus: "1.0"
         reservations:
           memory: "512m"
           cpus: "0.5"
