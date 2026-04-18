@@ -4,7 +4,26 @@
 
 This document describes the optimizations implemented in the project to reduce memory and resource consumption, based on best practices from the official OpenHands documentation.
 
-## 🔧 Optimized Configurations
+## � Custom Sandbox Image
+
+The project uses a custom sandbox image (`ai-studio-workspace`) that extends the official OpenHands agent-server with .NET SDK 10 support for C# development.
+
+### Custom Image Features
+- **Base**: `nikolaik/python-nodejs:python3.12-nodejs22` (same as official agent-server)
+- **Added**: .NET SDK 10 for C# development
+- **Includes**: Python 3.12, Node.js 22, git, sudo, and common development tools
+- **Location**: `runtime/Dockerfile`
+
+### Build the Custom Image
+```bash
+# Build the custom sandbox image
+docker-compose --profile build build
+
+# Or build manually
+docker build -t ai-studio-workspace ./runtime
+```
+
+## � Optimized Configurations
 
 ### 1. OpenHands - Low Resource Mode (Updated)
 
@@ -24,8 +43,13 @@ RUNTIME: docker
 SANDBOX_VOLUMES: ./workspace:/workspace:rw
 
 # Agent Server (V1 Standard)
-AGENT_SERVER_IMAGE_REPOSITORY: ghcr.io/openhands/agent-server
-AGENT_SERVER_IMAGE_TAG: 1.15.0-python
+# Commented out - using custom sandbox image with .NET SDK 10
+# AGENT_SERVER_IMAGE_REPOSITORY: ghcr.io/openhands/agent-server
+# AGENT_SERVER_IMAGE_TAG: 1.15.0-python
+
+# Custom Sandbox Runtime Container Image
+# Uses locally built image with .NET SDK 10 support for C# development
+SANDBOX_RUNTIME_CONTAINER_IMAGE: ai-studio-workspace
 
 # Optimized sandbox
 SANDBOX_MEMORY_LIMIT: "2g"           # 2GB for sandbox
@@ -128,6 +152,15 @@ sudo swapon /swapfile
 
 ## 🔄 How to Use
 
+### First Time Setup (Build Custom Image):
+```bash
+# Build the custom sandbox image with .NET SDK 10
+docker-compose --profile build build
+
+# Or build manually
+docker build -t ai-studio-workspace ./runtime
+```
+
 ### For Low Memory Systems:
 ```bash
 # Use ultra-lightweight configuration (768MB RAM)
@@ -154,6 +187,7 @@ watch -n 2 'docker stats --no-stream && echo "---" && free -h'
 ✅ **Stability** on 8GB RAM systems  
 ✅ **Performance** optimized with Gemini 3.1 Flash Lite Preview  
 ✅ **Scalability** - flexible configurations  
+✅ **.NET SDK 10 support** for C# development in sandbox  
 
 ---
 

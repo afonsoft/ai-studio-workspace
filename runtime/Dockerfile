@@ -27,8 +27,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     vim \
     nano \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
+
+# Install Python packages for data processing
+RUN pip3 install --no-cache-dir numpy pandas
 
 # Create workspace directory
 RUN mkdir -p /workspace && chmod 777 /workspace

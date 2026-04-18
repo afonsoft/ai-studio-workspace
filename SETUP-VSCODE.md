@@ -46,7 +46,18 @@ $env:GEMINI_API_KEY = "sua-api-key-aqui"
 export GEMINI_API_KEY="sua-api-key-aqui"
 ```
 
-### 2.2 Iniciar OpenHands
+### 2.2 Build Custom Sandbox Image
+Primeiro, construa a imagem customizada do sandbox com .NET SDK 10:
+
+```bash
+# Build the custom sandbox image with .NET SDK 10
+docker-compose --profile build build
+
+# Ou build manual
+docker build -t ai-studio-workspace ./runtime
+```
+
+### 2.3 Iniciar OpenHands
 **Para máxima performance:**
 ```bash
 docker-compose up -d openhands
@@ -57,9 +68,12 @@ docker-compose up -d openhands
 docker-compose -f docker-compose.low-resource.yml up -d openhands
 ```
 
-### 2.3 Configurações Otimizadas
+### 2.4 Configurações Otimizadas
 O OpenHands está configurado com:
 - **Modelo**: Gemini 3.1 Flash Lite Preview
+- **Sandbox Customizado**: Imagem `ai-studio-workspace` com .NET SDK 10
+- **Base do Sandbox**: nikolaik/python-nodejs:python3.12-nodejs22 (mesma do agent-server oficial)
+- **Ferramentas Disponíveis**: Python 3.12, Node.js 22, .NET SDK 10, git, sudo
 - **Temperatura**: 0.35 (performance) / 0.3 (low-resource)
 - **Paralelismo**: 3 (performance) / 2 (low-resource)
 - **Memory Budget**: 4GB (performance) / 2GB (low-resource)
@@ -311,6 +325,12 @@ O projeto inclui configuração MCP com:
 # Verificar se Docker está rodando
 docker ps
 
+# Verificar se a imagem customizada existe
+docker images | grep ai-studio-workspace
+
+# Se não existir, build a imagem
+docker-compose --profile build build
+
 # Verificar logs
 docker-compose logs openhands
 ```
@@ -394,9 +414,11 @@ Após seguir todos os passos, verifique:
 
 ### ✅ OpenHands com Gemini Configurado
 - [ ] API key do Gemini configurada
+- [ ] Imagem customizada `ai-studio-workspace` construída com .NET SDK 10
 - [ ] OpenHands rodando em localhost:3000
 - [ ] Gemini 3.1 Flash Lite Preview respondendo
 - [ ] Configurações de performance aplicadas
+- [ ] Sandbox customizado com .NET SDK 10 funcionando
 
 ### ✅ Agents Configurados
 - [ ] Pasta `agents/` copiada para o projeto
