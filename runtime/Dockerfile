@@ -1,61 +1,78 @@
-# Alternative: Using .NET SDK base image (smaller)
-FROM mcr.microsoft.com/dotnet/sdk:10.0
+# Multi-stage optimized build for OpenHands custom sandbox
+# Stage 1: Build stage with all tools
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS builder
 
-# Set environment variables for OpenHands
+# Set environment variables
 ENV NODE_VERSION=22
-ENV NVM_DIR=/root/.nvm
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Install dependencies for NVM and Python
+# Install essential build dependencies in single layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
     curl \
     wget \
-    ca-certificates \
-    build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    llvm \
-    libncurses5-dev \
-    libncursesw5-dev \
-    xz-utils \
-    tk-dev \
-    libffi-dev \
-    liblzma-dev \
-    python3-openssl \
     git \
     sudo \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
-# Install Python 3.12
-RUN wget https://www.python.org/ftp/python/3.12.7/Python-3.12.7.tgz \
-    && tar xzf Python-3.12.7.tgz \
-    && cd Python-3.12.7 \
-    && ./configure --enable-optimizations \
-    && make -j$(nproc) \
-    && make altinstall \
-    && cd .. \
-    && rm -rf Python-3.12.7 Python-3.12.7.tgz \
-    && update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 1 \
-    && update-alternatives --install /usr/bin/python python /usr/local/bin/python3.12 1 \
-    && update-alternatives --install /usr/bin/pip3 pip3 /usr/local/bin/pip3.12 1
+# Install Python 3.12 from official repository (faster than compiling)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    python3.12 \
+    python3.12-dev \
+    python3.12-venv \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Install uv and OpenHands CLI
-# RUN pip3.12 install --no-cache-dir uv && \
-#     uv tool install openhands --python 3.12
+# Create symlinks for python/pip
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1 && \
+    update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3 1
 
-# Install NVM (Node Version Manager)
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# Install Node.js 22 from official NodeSource repository (faster than NVM)
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
-# Add NVM to PATH and enable it
-ENV PATH="$NVM_DIR/versions/node/v${NODE_VERSION}/bin:$PATH"
+# Verify installations
+RUN dotnet --version && \
+    python3 --version && \
+    pip3 --version && \
+    node --version && \
+    npm --version
 
-# Install Node.js 20 as default
-RUN bash -c '. $NVM_DIR/nvm.sh && nvm install ${NODE_VERSION} && nvm use ${NODE_VERSION} && nvm alias default ${NODE_VERSION}'
+# Stage 2: Final minimal image
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+
+# Copy installed tools from builder stage
+COPY --from=builder /usr/bin/python3* /usr/bin/
+COPY --from=builder /usr/bin/node /usr/bin/
+COPY --from=builder /usr/bin/npm /usr/bin/
+COPY --from=builder /usr/bin/npx /usr/bin/
+COPY --from=builder /usr/local/lib/python3.12 /usr/local/lib/python3.12
+COPY --from=builder /usr/local/bin/pip3 /usr/local/bin/
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install runtime dependencies only
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    wget \
+    git \
+    sudo \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # Create workspace directory
 RUN mkdir -p /workspace && chmod 777 /workspace
@@ -63,16 +80,12 @@ RUN mkdir -p /workspace && chmod 777 /workspace
 # Set working directory
 WORKDIR /workspace
 
-# Verify installations
+# Verify installations in final image
 RUN dotnet --version && \
-    bash -c '. $NVM_DIR/nvm.sh && node --version && npm --version' && \
-    python3.12 --version && \
-    pip3.12 --version 
-
-# Add NVM initialization to bash profile
-RUN echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
-    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc && \
-    echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc
+    python3 --version && \
+    pip3 --version && \
+    node --version && \
+    npm --version
 
 # Default command
 CMD ["/bin/bash"]
