@@ -1,4 +1,12 @@
 services:
+  ai-studio-workspace:
+    build:
+      context: ./runtime
+      dockerfile: Dockerfile
+    image: ai-studio-workspace
+    profiles:
+      - build
+
   openhands:
     image: docker.openhands.dev/openhands/openhands:1.6
     container_name: openhands-app
@@ -7,23 +15,28 @@ services:
       # LLM Configuration (Official V1)
       LLM_API_KEY: "${GEMINI_API_KEY}"
       LLM_MODEL: "gemini/gemini-3.1-flash-lite-preview"
-      
+
       # Persistence (Official V1)
       OH_PERSISTENCE_DIR: /.openhands
-      
+
       # Sandbox Provider (Official V1)
       RUNTIME: docker
-      
+
       # Workspace Mounting (Official V1)
       SANDBOX_VOLUMES: ./workspace:/workspace:rw
-      
+
       # Agent Server Configuration (Official V1)
-      AGENT_SERVER_IMAGE_REPOSITORY: ghcr.io/openhands/agent-server
-      AGENT_SERVER_IMAGE_TAG: 1.15.0-python
-      
+      # Commented out - using SANDBOX_RUNTIME_CONTAINER_IMAGE with custom build instead
+      # AGENT_SERVER_IMAGE_REPOSITORY: ghcr.io/openhands/agent-server
+      # AGENT_SERVER_IMAGE_TAG: 1.15.0-python
+
+      # Custom Sandbox Runtime Container Image
+      # Uses locally built image with .NET SDK 10 support
+      SANDBOX_RUNTIME_CONTAINER_IMAGE: ai-studio-workspace
+
       # Logging
       LOG_ALL_EVENTS: true
-      
+
       # GPU Support
       CUDA_VISIBLE_DEVICES: all
       NVIDIA_VISIBLE_DEVICES: all

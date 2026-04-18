@@ -1,76 +1,32 @@
-# Multi-stage optimized build for OpenHands custom sandbox
-# Stage 1: Build stage with all tools
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS builder
+# Custom sandbox image based on OpenHands agent-server
+# Base image: nikolaik/python-nodejs (same as ghcr.io/openhands/agent-server)
+# Extended with .NET SDK 10 for C# development support
+FROM nikolaik/python-nodejs:python3.12-nodejs22
 
 # Set environment variables
-ENV NODE_VERSION=22
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install essential build dependencies in single layer
+# Install .NET SDK 10
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
-    wget \
-    git \
-    sudo \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
-
-# Install Python 3.12 from official repository (faster than compiling)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    software-properties-common \
-    && add-apt-repository ppa:deadsnakes/ppa \
+    gnupg \
+    && curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/microsoft.list \
     && apt-get update && apt-get install -y --no-install-recommends \
-    python3.12 \
-    python3.12-dev \
-    python3.12-venv \
-    python3-pip \
+    dotnet-sdk-10.0 \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
-# Create symlinks for python/pip
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1 && \
-    update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3 1
-
-# Install Node.js 22 from official NodeSource repository (faster than NVM)
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
-    apt-get install -y --no-install-recommends nodejs && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
-
-# Verify installations
-RUN dotnet --version && \
-    python3 --version && \
-    pip3 --version && \
-    node --version && \
-    npm --version
-
-# Stage 2: Final minimal image
-FROM mcr.microsoft.com/dotnet/sdk:10.0
-
-# Copy installed tools from builder stage
-COPY --from=builder /usr/bin/python3* /usr/bin/
-COPY --from=builder /usr/bin/node /usr/bin/
-COPY --from=builder /usr/bin/npm /usr/bin/
-COPY --from=builder /usr/bin/npx /usr/bin/
-COPY --from=builder /usr/local/lib/python3.12 /usr/local/lib/python3.12
-COPY --from=builder /usr/local/bin/pip3 /usr/local/bin/
-
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install runtime dependencies only
+# Install additional tools commonly used in agent-server
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
-    curl \
-    wget \
     git \
     sudo \
+    wget \
+    vim \
+    nano \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
@@ -80,7 +36,7 @@ RUN mkdir -p /workspace && chmod 777 /workspace
 # Set working directory
 WORKDIR /workspace
 
-# Verify installations in final image
+# Verify installations
 RUN dotnet --version && \
     python3 --version && \
     pip3 --version && \
