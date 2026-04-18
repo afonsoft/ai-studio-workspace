@@ -2,11 +2,11 @@
 
 # ╔═══════════════════════════════════════════════════════════════════════╗
 # ║  VS Code / Windsurf — Install Extensions Script (Cross-Platform)      ║
-# ║  Instala extensões essenciais para C#/.NET + Angular + Gemini API     ║
+# ║  Focado em C#/.NET + Angular Web Development                         ║
 # ╚═══════════════════════════════════════════════════════════════════════╝
 
-echo "🚀 VS Code Extensions Installer - Modern C#/.NET + Angular Development"
-echo "====================================================================="
+echo "🚀 VS Code Extensions Installer - C#/.NET + Angular Development"
+echo "==============================================================="
 
 # Detectar sistema operacional
 detect_os() {
@@ -40,34 +40,24 @@ check_vscode() {
     fi
 }
 
-# Lista de extensões para instalar (baseado no extensions.json atualizado)
+# Lista de extensões para instalar (focado em C# e Angular)
 declare -a EXTENSIONS=(
     # 🚀 AI & Code Completion
     "github.copilot"
     "github.copilot-chat"
-    "ms-vscode.intellicode-api-usage-examples"
     "ms-vscode.intellicode"
-    "visualstudioexptteam.vscodeintellicode"
-    
+
     # 💻 C# / .NET Development
     "ms-dotnettools.csharp"
     "ms-dotnettools.csdevkit"
     "ms-dotnettools.blazor"
-    "ms-dotnettools.dotnet-interactive-vscode"
     "ms-dotnettools.vscode-dotnet-runtime"
-    "ms-vscode.dotnet-runtime"
-    "jchannon.csharpextensions"
     "formulahendry.dotnet-core-snippets"
     "ms-dotnettools.vscode-dotnet-pack"
-    "dotnet-exception-snippets.exception-snippets"
-    "boundarystudio.csharp-extentions-pack"
-    
+
     # 🧪 Testing & Quality
-    "k--kato.docrunner"
     "formulahendry.dotnet-test-explorer"
-    "hbenl.vscode-test-explorer"
-    "ms-vscode.test-adapter-converter"
-    
+
     # 🌐 Web Development (Angular & Frontend)
     "angular.ng-template"
     "johnpapa.angular2"
@@ -77,125 +67,45 @@ declare -a EXTENSIONS=(
     "formulahendry.auto-close-tag"
     "ms-vscode.vscode-typescript-next"
     "ms-vscode.vscode-jest"
-    "xabikos.javascriptsnippets"
-    "richie5um2.scss-class-completion"
-    "syler.sass-indented"
-    "ms-vscode.live-server"
-    "gformat.html-formatter"
-    
+
     # 📝 Languages & Frameworks
     "ms-vscode.vscode-json"
     "redhat.vscode-xml"
     "redhat.vscode-yaml"
-    "ms-vscode.vscode-yaml"
-    
+
     # 🐳 Docker & Containers
     "ms-azuretools.vscode-docker"
-    "ms-vscode-remote.remote-containers"
-    "formulahendry.docker-extension-pack"
-    
+
     # 🔧 Git & Version Control
     "eamodio.gitlens"
     "github.vscode-pull-request-github"
-    "github.vscode-github-actions"
-    "donjayamanne.git-extension-pack"
-    "mhutchie.git-graph"
     "codezombiech.gitignore"
-    "waderyan.gitblame"
-    "donjayamanne.githistory"
-    
+
     # 🗄️ Database & Data
     "ms-mssql.mssql"
-    "ms-vscode.vscode-sql-tools"
-    "cweijan.vscode-redis-client"
-    "ms-azuretools.vscode-cosmosdb"
     "humao.rest-client"
-    
+
     # 🎨 Code Quality & Formatting
     "esbenp.prettier-vscode"
-    "dbaeumer.vscode-eslint"
     "editorconfig.editorconfig"
-    "davidanson.vscode-markdownlint"
-    "streetsidesoftware.code-spell-checker"
-    "streetsidesoftware.code-spell-checker-portuguese"
-    "streetsidesoftware.code-spell-checker-spanish"
-    
+
     # 📋 Productivity & Utilities
-    "gruntfuggly.todo-tree"
     "christian-kohler.path-intellisense"
     "christian-kohler.npm-intellisense"
-    "alefragnani.bookmarks"
     "coenraadf.bracket-pair-colorizer-2"
-    "oderwat.indent-rainbow"
-    "mechatroner.rainbow-csv"
-    
+
     # 🖥️ Terminal & Shell
     "ms-vscode.vscode-powershell"
-    "runemula.vscode-git-bash"
-    "tyriar.shell-launcher"
-    
+
     # 🎨 Themes & Icons
     "pkief.material-icon-theme"
-    "ms-vscode.theme-tomorrow-night-blue"
-    "zhuangtongfa.material-theme"
-    "dracula-theme.theme-dracula"
-    "sainnhe.gruvbox-material"
-    "whizark.workbench-monokai"
-    "akamud.vscode-theme-onedark"
     "vscode-icons-team.vscode-icons"
-    "johnpapa.vscode-peacock"
-    "johnpapa.winteriscoming"
-    
+
     # 📖 Documentation & Markdown
     "yzhang.markdown-all-in-one"
-    "shd101wyy.markdown-preview-enhanced"
-    "mushanshit.vscode-markdown-image"
-    "hugonode.paste-json-as-markdown"
-    "bierner.markdown-mermaid"
-    "bierner.markdown-footnotes"
-    "bierner.markdown-checkbox"
-    "bierner.markdown-yaml-preamble"
-    
+
     # 🔍 Search & Navigation
-    "ms-vscode.hexeditor"
     "redhat.vscode-commons"
-    
-    # 🌐 Remote Development
-    "ms-vscode-remote.remote-ssh"
-    "ms-vscode-remote.remote-wsl"
-    "ms-vscode.remote-explorer"
-    
-    # 🐍 Python (para scripts e automação)
-    "ms-python.python"
-    "ms-python.vscode-pylance"
-    "ms-python.black-formatter"
-    "ms-python.isort"
-    "ms-python.flake8"
-    
-    # 🌟 Other Languages
-    "golang.go"
-    "rust-lang.rust-analyzer"
-    "scala-lang.scala"
-    "redhat.java"
-    "vscjava.vscode-java-pack"
-    "rebornix.ruby"
-    
-    # ⏱️ Time Tracking
-    "wakatime.vscode-wakatime"
-    
-    # 🔧 JavaScript Debugging
-    "ms-vscode.js-debug"
-    "ms-vscode.js-debug-companion"
-    
-    # 🛡️ Security & Analysis
-    "ms-vscode.vscode-codeql"
-    
-    # ☁️ Azure & Cloud
-    "ms-vscode.azure-account"
-    "ms-vscode.azurecli"
-    "ms-azuretools.vscode-azurefunctions"
-    "ms-azuretools.vscode-azureresourcegroups"
-    "ms-azuretools.vscode-azurestorage"
 )
 
 # Instalar extensões
@@ -261,7 +171,7 @@ show_info() {
     echo "• GitLens (Git superpowers)"
     echo "• Material Icon Theme (Modern icons)"
     echo ""
-    echo "🚀 VS Code/Windsurf está pronto para desenvolvimento moderno!"
+    echo "🚀 VS Code/Windsurf está pronto para desenvolvimento C#/.NET + Angular!"
 }
 
 # Função principal
