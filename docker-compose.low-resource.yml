@@ -15,7 +15,7 @@ services:
       AGENT_SERVER_IMAGE_TAG: "1.15.0-python"
       # LLM Configuration (V1 Standard)
       LLM_API_KEY: "${GEMINI_API_KEY}"
-      LLM_MODEL: "gemini/gemini-2.5-flash"
+      LLM_MODEL: "gemini/gemini-3.1-flash-lite-preview"
       # Sandbox Configuration
       SANDBOX_VOLUMES: "./workspace:/workspace"
     ports:
