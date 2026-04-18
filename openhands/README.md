@@ -64,8 +64,33 @@ RUNTIME="docker"
 SANDBOX_VOLUMES="$PWD:/workspace:rw"
 
 # Agent Server
-AGENT_SERVER_IMAGE_REPOSITORY="ghcr.io/openhands/agent-server"
-AGENT_SERVER_IMAGE_TAG="1.15.0-python"
+# Commented out - using custom sandbox image with .NET SDK 10
+# AGENT_SERVER_IMAGE_REPOSITORY="ghcr.io/openhands/agent-server"
+# AGENT_SERVER_IMAGE_TAG="1.15.0-python"
+
+# Custom Sandbox Runtime Container Image
+# Uses locally built image with .NET SDK 10 for C# development
+SANDBOX_RUNTIME_CONTAINER_IMAGE="ai-studio-workspace"
+```
+
+### Custom Sandbox Image
+
+O projeto usa uma imagem customizada do sandbox (`ai-studio-workspace`) que estende o agente-server oficial do OpenHands com suporte a .NET SDK 10 para desenvolvimento C#.
+
+**Características da Imagem Customizada:**
+- **Base**: `nikolaik/python-nodejs:python3.12-nodejs22` (mesma do agent-server oficial)
+- **Adicionado**: .NET SDK 10 para desenvolvimento C#
+- **Pacotes Python**: numpy, pandas para processamento de dados
+- **Ferramentas**: ffmpeg para processamento de mídia, git, sudo, wget, vim, nano
+- **Localização**: `runtime/Dockerfile`
+
+**Construir a Imagem:**
+```bash
+# Usando docker-compose
+docker-compose --profile build build
+
+# Ou manualmente
+docker build -t ai-studio-workspace ./runtime
 ```
 
 ### settings.json (Legacy Format)
