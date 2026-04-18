@@ -22,6 +22,7 @@ services:
       # Sandbox
       SANDBOX_TIMEOUT: 240
       SANDBOX_DOCKER_RUNTIME: nvidia
+      SANDBOX_STARTUP_GRACE_SECONDS: 120
       WORKSPACE_TIMEOUT: 400
     ports:
       - "3000:3000"
