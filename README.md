@@ -613,6 +613,91 @@ RUNTIME=remote
 # - Garante setup correto
 ```
 
+### Configuração da Variável de Ambiente GEMINI_API_KEY
+
+Alternativamente à configuração nos arquivos JSON/TOML, você pode configurar a API Key como variável de ambiente. O docker-compose.yml usa `${GEMINI_API_KEY}` para ler essa variável.
+
+#### Windows (PowerShell/CMD)
+
+**Método 1: Variável de Ambiente do Sistema (Permanente)**
+```powershell
+# Via PowerShell (Administrador)
+[System.Environment]::SetEnvironmentVariable('GEMINI_API_KEY', 'sua-api-key-aqui', 'User')
+
+# Ou via interface gráfica:
+# 1. Pressione Win + R, digite "sysdm.cpl"
+# 2. Vá em "Avançado" > "Variáveis de Ambiente"
+# 3. Em "Variáveis de Usuário", clique em "Nova"
+# 4. Nome da variável: GEMINI_API_KEY
+# 5. Valor da variável: sua-api-key-aqui
+# 6. Clique em OK em todas as janelas
+# 7. Reinicie o terminal para aplicar as mudanças
+```
+
+**Método 2: Variável de Temporária (Sessão atual)**
+```powershell
+# No PowerShell
+$env:GEMINI_API_KEY="sua-api-key-aqui"
+
+# No CMD
+set GEMINI_API_KEY=sua-api-key-aqui
+```
+
+#### Linux/macOS (Bash/Zsh)
+
+**Método 1: ~/.bashrc ou ~/.zshrc (Permanente)**
+```bash
+# Adicionar ao final do arquivo ~/.bashrc (ou ~/.zshrc)
+echo 'export GEMINI_API_KEY="sua-api-key-aqui"' >> ~/.bashrc
+
+# Recarregar o arquivo
+source ~/.bashrc
+
+# Ou para Zsh
+echo 'export GEMINI_API_KEY="sua-api-key-aqui"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+**Método 2: ~/.profile (Universal)**
+```bash
+# Adicionar ao ~/.profile (funciona em todos os shells)
+echo 'export GEMINI_API_KEY="sua-api-key-aqui"' >> ~/.profile
+source ~/.profile
+```
+
+**Método 3: Variável de Temporária (Sessão atual)**
+```bash
+# No terminal atual
+export GEMINI_API_KEY="sua-api-key-aqui"
+```
+
+#### Verificação
+
+**Windows**
+```powershell
+# PowerShell
+echo $env:GEMINI_API_KEY
+
+# CMD
+echo %GEMINI_API_KEY%
+```
+
+**Linux/macOS**
+```bash
+echo $GEMINI_API_KEY
+```
+
+#### Uso com Docker Compose
+
+Após configurar a variável de ambiente, o docker-compose.yml irá ler automaticamente:
+
+```yaml
+environment:
+  LLM_API_KEY: "${GEMINI_API_KEY}"  # Lê da variável de ambiente
+```
+
+Se a variável não estiver configurada, o script `start.sh` tentará ler dos arquivos de configuração (settings.json, config.json, config.toml).
+
 ### Performance Tips
 - Use prompts específicos para melhor performance
 - Configure timeouts adequados para tarefas complexas
