@@ -1,9 +1,16 @@
 services:
-  ai-studio-workspace:
+  openhands-runtime:
     build:
       context: ./runtime
       dockerfile: Dockerfile
     image: openhands-runtime
+    volumes:
+      - ./workspace:/workspace
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    runtime: nvidia
+    networks:
+      - openhands-net
 
   openhands:
     image: docker.openhands.dev/openhands/openhands:1.6
