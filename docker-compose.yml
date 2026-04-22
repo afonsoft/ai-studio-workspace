@@ -3,9 +3,7 @@ services:
     build:
       context: ./runtime
       dockerfile: Dockerfile
-    image: ai-studio-workspace
-    profiles:
-      - build
+    image: openhands-runtime
 
   openhands:
     image: docker.openhands.dev/openhands/openhands:1.6
@@ -32,7 +30,7 @@ services:
 
       # Custom Sandbox Runtime Container Image
       # Uses locally built image with .NET SDK 10 support
-      SANDBOX_RUNTIME_CONTAINER_IMAGE: ai-studio-workspace
+      SANDBOX_RUNTIME_CONTAINER_IMAGE: openhands-runtime
 
       # Logging
       LOG_ALL_EVENTS: true

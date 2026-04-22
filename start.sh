@@ -164,19 +164,29 @@ show_error_logs() {
 
 check_gemini_api_key() {
     print_status "Verificando configuração da API Gemini..."
-    
+
     # Verificar settings.json
     local settings_key=""
     if [ -f "openhands/settings.json" ]; then
-        settings_key=$(grep -o '"llm_api_key":[[:space:]]*"[^"]*"' openhands/settings.json | sed 's/.*"llm_api_key":[[:space:]]*"\([^"]*\)".*/\1/')
+        if command -v jq &> /dev/null; then
+            settings_key=$(jq -r '.llm_api_key // empty' openhands/settings.json)
+        else
+            # Fallback usando sed - regex mais simples
+            settings_key=$(grep '"llm_api_key"' openhands/settings.json | sed 's/.*"llm_api_key"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
+        fi
     fi
-    
+
     # Verificar config.json
     local config_key=""
     if [ -f "openhands/config.json" ]; then
-        config_key=$(grep -o '"api_key":[[:space:]]*"[^"]*"' openhands/config.json | sed 's/.*"api_key":[[:space:]]*"\([^"]*\)".*/\1/')
+        if command -v jq &> /dev/null; then
+            config_key=$(jq -r '.llm.api_key // empty' openhands/config.json 2>/dev/null || jq -r '.api_key // empty' openhands/config.json)
+        else
+            # Fallback usando sed
+            config_key=$(grep '"api_key"' openhands/config.json | sed 's/.*"api_key"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
+        fi
     fi
-    
+
     # Verificar config.toml
     local toml_key=""
     if [ -f "openhands/config.toml" ]; then
@@ -184,9 +194,19 @@ check_gemini_api_key() {
     fi
     
     # Verificar se algum dos arquivos tem a API key configurada
-    if [[ "$settings_key" == "YOUR_API_KEY_HERE" || "$settings_key" == "" || \
-          "$config_key" == "YOUR_API_KEY_HERE" || "$config_key" == "" || \
-          "$toml_key" == "SUA_CHAVE_AQUI" || "$toml_key" == "" ]]; then
+    # Se pelo menos um tiver uma key válida (não vazia e não placeholder), está configurado
+    local has_valid_key=false
+    if [ -n "$settings_key" ] && [ "$settings_key" != "YOUR_API_KEY_HERE" ]; then
+        has_valid_key=true
+    fi
+    if [ -n "$config_key" ] && [ "$config_key" != "YOUR_API_KEY_HERE" ]; then
+        has_valid_key=true
+    fi
+    if [ -n "$toml_key" ] && [ "$toml_key" != "SUA_CHAVE_AQUI" ]; then
+        has_valid_key=true
+    fi
+
+    if [ "$has_valid_key" = false ]; then
         print_error "API Key do Gemini não configurada!"
         echo ""
         echo "Para usar o Dev Tools IA com Gemini API, você precisa:"
@@ -206,6 +226,21 @@ check_gemini_api_key() {
         fi
     else
         print_success "API Key do Gemini configurada corretamente!"
+        
+        # Extrair e exportar a API key para variável de ambiente
+        local api_key=""
+        if [ -n "$settings_key" ] && [ "$settings_key" != "YOUR_API_KEY_HERE" ]; then
+            api_key="$settings_key"
+        elif [ -n "$config_key" ] && [ "$config_key" != "YOUR_API_KEY_HERE" ]; then
+            api_key="$config_key"
+        elif [ -n "$toml_key" ] && [ "$toml_key" != "SUA_CHAVE_AQUI" ]; then
+            api_key="$toml_key"
+        fi
+        
+        if [ -n "$api_key" ]; then
+            export GEMINI_API_KEY="$api_key"
+            print_status "Variável de ambiente GEMINI_API_KEY configurada"
+        fi
     fi
 }
 
@@ -261,6 +296,10 @@ configure_gemini_api_key() {
     fi
     
     print_success "API Key configurada com sucesso em todos os arquivos!"
+    
+    # Exportar a variável de ambiente para uso no docker-compose
+    export GEMINI_API_KEY="$api_key"
+    print_status "Variável de ambiente GEMINI_API_KEY configurada"
 }
 
 # Detecta o sistema operacional
@@ -291,19 +330,10 @@ check_system_resources
 COMPOSE_FILE="docker-compose.yml"
 USE_GPU=false
 
-# Ask user about GPU mode if GPU is available
+# Use GPU automatically if available
 if [ "$GPU_AVAILABLE" = true ]; then
-    echo ""
-    echo "GPU NVIDIA detectada e disponível no Docker"
-    echo -n "Deseja usar GPU? (S/n): "
-    read -r gpu_response
-    if [[ "$gpu_response" =~ ^[Nn]$ ]]; then
-        print_status "Usando modo CPU-only"
-        USE_GPU=false
-    else
-        print_status "Usando modo GPU"
-        USE_GPU=true
-    fi
+    print_success "GPU NVIDIA detectada e disponível no Docker - usando modo GPU"
+    USE_GPU=true
 else
     print_status "Usando modo CPU-only (GPU não disponível)"
     USE_GPU=false
@@ -320,7 +350,8 @@ fi
 
 # Update compose file for CPU-only mode if needed
 if [ "$USE_GPU" = false ] && [ "$COMPOSE_FILE" = "docker-compose.yml" ]; then
-    print_status "Desabilitando suporte GPU no docker-compose.yml"
+    COMPOSE_FILE="docker-compose.low-resource.yml"
+    print_warning "Usando configuração low-resource devido à sem GPU"
     # Remove GPU-specific configurations by using a modified command
     COMPOSE_CMD="docker-compose -f $COMPOSE_FILE"
 elif [ "$USE_GPU" = true ]; then
@@ -331,10 +362,28 @@ else
 fi
 
 print_status "Usando: $COMPOSE_FILE"
+
+# Build the openhands-runtime image first with the build profile
+print_status "Construindo imagem openhands-runtime..."
 if command -v docker-compose &> /dev/null; then
-    docker-compose -f "$COMPOSE_FILE" up --build -d
+    docker-compose -f "$COMPOSE_FILE" --profile build build
 else
-    docker compose -f "$COMPOSE_FILE" up --build -d
+    docker compose -f "$COMPOSE_FILE" --profile build build
+fi
+
+if [ $? -ne 0 ]; then
+    print_error "Falha no build da imagem openhands-runtime"
+    exit 1
+fi
+
+print_success "Imagem openhands-runtime construída com sucesso!"
+
+# Start the services
+print_status "Iniciando serviços..."
+if command -v docker-compose &> /dev/null; then
+    docker-compose -f "$COMPOSE_FILE" up -d
+else
+    docker compose -f "$COMPOSE_FILE" up -d
 fi
 
 if [ $? -ne 0 ]; then
