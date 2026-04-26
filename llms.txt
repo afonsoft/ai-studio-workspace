@@ -1,0 +1,78 @@
+# AI Studio Workspace
+
+> Modern .NET/C# and Angular development environment with GitHub Copilot agents, skills, and OpenHands integration. Optimized for Gemini API (gemini-3.1-flash-lite-preview).
+
+## Overview
+This workspace provides a complete development environment for .NET 8+, .NET 10, and Angular v20+ applications with AI-powered development tools including GitHub Copilot agents, OpenHands autonomous AI, and Model Context Protocol (MCP) integration.
+
+## Quick Start
+```bash
+# Build solution
+dotnet build
+
+# Run tests
+dotnet test
+
+# Start Docker services
+docker-compose up -d
+
+# Start OpenHands
+./start.sh
+```
+
+## Key Documentation
+- [AGENTS.md](AGENTS.md) - Build commands, coding conventions, and agent instructions
+- [DESIGN.md](DESIGN.md) - Architecture principles, design patterns, and project structure
+- [agents/AGENTS.md](agents/AGENTS.md) - Complete skills and rules guide
+- [README.md](README.md) - Full project documentation
+- [README.pt.md](README.pt.md) - Documentação em português
+
+## Technology Stack
+- **Backend**: .NET 8+, .NET 10, C# 12+, Entity Framework Core
+- **Frontend**: Angular v20+, TypeScript, Tailwind CSS
+- **AI/ML**: Gemini API (gemini-3.1-flash-lite-preview), GitHub Copilot, OpenHands
+- **Infrastructure**: Docker, Docker Compose, MCP (Model Context Protocol)
+- **Testing**: xUnit, Vitest/Jasmine, Playwright
+
+## Agent Skills
+33 specialized skills for .NET development, Angular development, testing, architecture, and performance optimization. See [agents/skills/](agents/skills/) for complete list.
+
+## MCP Integration
+Model Context Protocol servers configured for filesystem, git, and database operations. See [mcp-config.json](mcp-config.json) for configuration.
+
+## Directories
+- [src/](src/) - Source code
+- [tests/](tests/) - Unit and integration tests
+- [agents/](agents/) - Skills and rules for AI agents
+- [openhands/](openhands/) - OpenHands configuration and data
+- [vscode/](vscode/) - VS Code/Windsurf settings and extensions
+- [workspace/](workspace/) - Shared work area for Docker containers
+- [runtime/](runtime/) - Docker runtime with .NET SDKs
+
+## Build Commands
+```bash
+dotnet build              # Build solution
+dotnet test               # Run tests
+dotnet run --project src/MyProject  # Run application
+docker-compose up -d      # Start Docker services
+```
+
+## Coding Conventions
+- **C#**: PascalCase for classes/methods, camelCase for locals, _camelCase for private fields
+- **Async**: Always use async/await, avoid .Result or .Wait()
+- **Angular**: Standalone components with signals, OnPush change detection
+- **API**: RESTful with proper HTTP verbs, DTOs for data transfer
+- **EF Core**: NoTracking by default, split queries for navigation collections
+
+## What Agents Must Not Touch
+- Never modify generated files (bin/, obj/, node_modules/)
+- Never change .gitignore or CI/CD configurations without explicit request
+- Never modify secrets.json or .env files
+- Never remove existing tests without replacement
+- Never break backward compatibility without migration path
+
+## References
+- [GitHub Repository](https://github.com/afonsoft/ai-studio-workspace)
+- [Gemini API Documentation](https://ai.google.dev/docs)
+- [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
+- [Model Context Protocol](https://modelcontextprotocol.io)
