@@ -1,6 +1,10 @@
 [sandbox]
 user_id = 0
 timeout = 600
+base_container_image = "openhands-runtime"
 
 [llm]
 model = "gemini/gemini-3.1-flash-lite-preview"
+
+[core]
+platform = "linux/amd64"

@@ -38,6 +38,7 @@ services:
       # Custom Sandbox Runtime Container Image
       # Uses locally built image with .NET SDK 10 support
       SANDBOX_RUNTIME_CONTAINER_IMAGE: openhands-runtime
+      AGENT_SERVER_IMAGE_REPOSITORY: openhands-runtime
 
       # Logging (reduced for performance)
       LOG_ALL_EVENTS: "false"
