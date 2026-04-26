@@ -1,12 +1,12 @@
 # Changelog
-All notable changes to this project will be documented in this file.
+Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
+e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ## [2.2.0] - 2026-04-17
 
-### Added
+### Adicionado
 - `bc52492` | 2026-04-17 | Afonso Dutra Nogueira Filho — fix: remove remaining legacy references and update version consistency
 - `72c66cf` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: update Dockerfile to use .NET SDK 10.0 LTS
 - `97a2fde` | 2026-04-17 | Afonso Dutra Nogueira Filho — feat: optimize runtime Dockerfile with multi-stage build and faster installations
@@ -21,175 +21,175 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **.NET SDK 10.0 LTS** updated in runtime Dockerfile
 - **Comprehensive documentation** updated with V1 standards
 
-### Changed
-- **Complete migration** from Gemini 2.5 Flash to Gemini 3.1 Flash Lite Preview
-- **Environment variables** updated to OpenHands V1 standard (LLM_*, OH_*, SANDBOX_*)
-- **Docker Compose** configured with official V1 variables
-- **start.sh** with automatic NVIDIA GPU and NVIDIA Docker Runtime detection
-- **runtime/Dockerfile** optimized with multi-stage build (40% smaller, 83% faster)
-- **Complete documentation** updated to OpenHands V1 standards
-- **CLI launcher** (uv) added as official setup method
+### Alterado
+- **Migração completa** de Gemini 2.5 Flash para Gemini 3.1 Flash Lite Preview
+- **Variáveis de ambiente** atualizadas para padrão OpenHands V1 (LLM_*, OH_*, SANDBOX_*)
+- **Docker Compose** configurado com variáveis V1 oficiais
+- **start.sh** com detecção automática de GPU NVIDIA e NVIDIA Docker Runtime
+- **runtime/Dockerfile** otimizado com multi-stage build (40% menor, 83% mais rápido)
+- **Documentação completa** atualizada para OpenHands V1 standards
+- **CLI launcher** (uv) adicionado como método oficial de setup
 
-### Fixed
-- Removal of all legacy OPENHANDS_LLM_* references
-- Update of OpenHands version from 1.5 to 1.6 in CHANGELOG
-- Update of Agent Server to 1.15.0-python
-- Consistency of gemini-3.1-flash-lite-preview model across all documentation
-- Remaining Gemini 2.5 Flash references in documentation files
+### Corrigido
+- Remoção de todas as referências legadas OPENHANDS_LLM_*
+- Atualização de versão OpenHands de 1.5 para 1.6 em CHANGELOG
+- Atualização de Agent Server para 1.15.0-python
+- Consistência de modelo gemini-3.1-flash-lite-preview em toda documentação
+- Referências remanescentes de Gemini 2.5 Flash em arquivos de documentação
 
-### Dependencies / Versions
+### Dependências / Versões
 - OpenHands image: `docker.openhands.dev/openhands/openhands:1.6`
 - Agent Server: `ghcr.io/openhands/agent-server:1.15.0-python`
 - .NET SDK: `10.0 LTS` (runtime Dockerfile)
 - LLM Provider: **Google Gemini API** (gemini-3.1-flash-lite-preview)
-- **Requirement**: Gemini API Key (https://aistudio.google.com/app/apikey)
+- **Requisito**: API Key Gemini (https://aistudio.google.com/app/apikey)
 
 ## [2.1.0] - 2026-03-18
 
-### Added
+### Adicionado
 - `3a8b4c6` | 2026-03-18 | Afonso Dutra Nogueira Filho — feat: update README with GitHub Copilot agents configuration guide
-- **GitHub Copilot Agents** with 9 specialized .NET skills
-- **Complete configuration guide** for VS Code and Windsurf
-- **OpenHands integration** with agents in workspace
-- **Practical examples** of use with specialized prompts
-- **Updated documentation** with Ollama references removed
+- **GitHub Copilot Agents** com 9 skills especializadas .NET
+- **Guia completo de configuração** para VS Code e Windsurf
+- **Integração OpenHands** com agents no workspace
+- **Exemplos práticos** de uso com prompts especializados
+- **Documentação atualizada** com referências removidas ao Ollama
 
-### Changed
-- **SETUP-VSCODE.md** migrated from Ollama/Continue to GitHub Copilot
-- **workspace/README.md** removed Ollama references
-- **README-OPTIMIZACAO.md** updated for Gemini API
-- **openhands/README.md** configured for Gemini API
-- **Complete documentation** without Ollama dependencies
-- **Links and references** updated for new architecture
+### Alterado
+- **SETUP-VSCODE.md** migrado de Ollama/Continue para GitHub Copilot
+- **workspace/README.md** removidas referências ao Ollama
+- **README-OPTIMIZACAO.md** atualizado para Gemini API
+- **openhands/README.md** configurado para Gemini API
+- **Documentação completa** sem dependências de Ollama
+- **Links e referências** atualizadas para nova arquitetura
 
-### Removed
-- All references to **Ollama** from documentation
-- **Continue** and Qwen 2.5 Coder configurations
-- **NVIDIA GPU** dependencies in setup guides
-- Broken links to removed services
+### Removido
+- Todas as referências ao **Ollama** da documentação
+- Configurações de **Continue** e Qwen 2.5 Coder
+- Dependências de **GPU NVIDIA** nos guias de setup
+- Links quebrados para serviços removidos
 
-### Fixed
-- Complete removal of `ollama` mentions in all files
-- Update of commands and examples for Gemini API
-- Consistency in documentation without obsolete references
+### Corrigido
+- Remoção completa de menções a `ollama` em todos os arquivos
+- Atualização de comandos e exemplos para Gemini API
+- Consistência na documentação sem referências obsoletas
 
 ## [2.0.0] - 2026-03-17
 
-### Changed (BREAKING CHANGES)
-- **Complete migration from Ollama to Gemini API**
-- Removed NVIDIA GPU dependency (universal setup)
-- Removed Ollama and Open-WebUI services
-- Simplified architecture to only OpenHands
+### Alterado (BREAKING CHANGES)
+- **Migração completa de Ollama para Gemini API**
+- Removida dependência de GPU NVIDIA (setup universal)
+- Removidos serviços Ollama e Open-WebUI
+- Simplificação da arquitetura para apenas OpenHands
 
-### Added
+### Adicionado
 - `a796691` | 2026-03-17 | Afonso Dutra Nogueira Filho — feat: increase memory threshold for low-resource configuration
 - `9d6c232` | 2026-03-17 | Afonso Dutra Nogueira Filho — fix: adjust GPU memory warning threshold to 4GB
 - `54e65ef` | 2026-03-17 | Afonso Dutra Nogueira Filho — fix: resolve line ending issues in start.sh
 - `a67ea62` | 2026-03-17 | Afonso Dutra Nogueira Filho — feat: add Gemini API key validation to start.sh
 - `c1092d9` | 2026-03-17 | Afonso Dutra Nogueira Filho — fix: update config.json to use Gemini API provider
-- **Automatic Gemini API Key validation** in start.sh
-- **docker-compose.low-resource.yml** for systems with limited resources
-- **Simplified configuration** with interactive validation
-- **Universal setup** works on any hardware
+- **Validação automática de API Key Gemini** no start.sh
+- **docker-compose.low-resource.yml** para sistemas com recursos limitados
+- **Configuração simplificada** com validação interativa
+- **Setup universal** funciona em qualquer hardware
 
-### Removed
-- Ollama service (local LLM dependency)
-- Open-WebUI service (web interface)
-- Specific NVIDIA GPU configurations
-- Specialized hardware dependency
+### Removido
+- Serviço Ollama (dependência local de LLM)
+- Serviço Open-WebUI (interface web)
+- Configurações específicas de GPU NVIDIA
+- Dependência de hardware especializado
 
-### Changed
-- **85% reduction** in total memory consumption
-- **docker-compose.yml** optimized for Gemini API
-- **settings.json** configured for Gemini 2.5 Flash
-- **start.sh** with automatic API Key validation
-- **README.md** updated to reflect new architecture
-- **MCP documentation** simplified and focused
+### Alterado
+- **85% de redução** no consumo de memória total
+- **docker-compose.yml** otimizado para Gemini API
+ - **settings.json** configurado para Gemini 2.5 Flash
+- **start.sh** com validação automática de API Key
+- **README.md** atualizado para refletir nova arquitetura
+- **Documentação MCP** simplificada e focada
 
-### Fixed
-- Line ending issues in Windows scripts
-- API Key validation in multiple files
-- Improved cross-platform compatibility
+### Corrigido
+- Problemas de line endings em scripts Windows
+- Validação de API Key em múltiplos arquivos
+- Compatibilidade cross-platform aprimorada
 
-### Dependencies / Versions
+### Dependências / Versões
 - OpenHands image: `docker.openhands.dev/openhands/openhands:1.6`
  - LLM Provider: **Google Gemini API** (gemini-3.1-flash-lite-preview)
 - Agent Server: `ghcr.io/openhands/agent-server:1.15.0-python`
-- **Requirement**: Gemini API Key (https://aistudio.google.com/app/apikey)
+- **Requisito**: API Key Gemini (https://aistudio.google.com/app/apikey)
 
 ## [1.3.0] - 2025-11-11
 
 ## [Unreleased] - 2026-01-01
 
-### Added
+### Adicionado
 - `cbad673` | 2026-01-01 | Afonso Dutra Nogueira Filho — feat: Update openhands version
 
-### Fixed
+### Corrigido
 - `1f12141` | 2025-11-20 | Afonso Dutra Nogueira Filho — fix: update Dockerfile to enhance dependency installation and streamline .NET SDK setup
 
-### Dependencies / Versions
+### Dependências / Versões
 - OpenHands image: `docker.openhands.dev/openhands/openhands:1.1`
 - Runtime base image: `docker.openhands.dev/openhands/runtime:1.1-nikolaik`
-- .NET SDKs installed in runtime: `8` and `10`
-- Ollama: `ollama/ollama:latest` (default model: `devstral:24b`)
+- .NET SDKs instalados no runtime: `8` e `10`
+- Ollama: `ollama/ollama:latest` (modelo padrão: `devstral:24b`)
 
 
-### Added
-- Documentation updates (README and CHANGELOG)
-- Preparation of `feature/update` branch with documentation adjustments
-- Improvements in repository structure organization
+### Adicionado
+- Atualizações na documentação (README e CHANGELOG).
+- Preparação da branch `feature/update` com ajustes de documentação.
+- Melhorias na organização da estrutura do repositório.
 
-### Changed
-- Update of installation instructions and script validation
-- Small corrections of links and formatting in README
+### Alterado
+- Atualização das instruções de instalação e validação dos scripts.
+- Pequenas correções de links e formatação no README.
 
-### Fixed
-- Adjustments in execution instructions for Windows
-- Correction in syntax of some code blocks
+### Corrigido
+- Ajustes nas instruções de execução para Windows.
+- Correção na sintaxe de alguns blocos de código.
 
 ## [1.2.0] - 2025-10-01
 
-### Added
-- OpenHands update to version 0.58
-- Documentation improvements with clearer structure
-- Addition of detailed environment variables section
-- New hierarchical repository structure in README
+### Adicionado
+- Atualização do OpenHands para versão 0.58
+- Melhorias na documentação com estrutura mais clara
+- Adição de seção detalhada de variáveis de ambiente
+- Nova estrutura hierárquica do repositório no README
 
-### Changed
-- Optimization of LLM context configurations (32768 tokens)
-- Update of installation and execution instructions
-- Refinement of technical documentation
-- Improvements in README formatting and organization
+### Alterado
+- Otimização das configurações de contexto do LLM (32768 tokens)
+- Atualização das instruções de instalação e execução
+- Refinamento da documentação técnica
+- Melhorias na formatação e organização do README
 
-### Fixed
-- Adjustments in internal documentation links
-- Correction of documentation inconsistencies
+### Corrigido
+- Ajustes nos links internos da documentação
+- Correção de inconsistências na documentação
 
 ## [1.1.0] - 2025-09-12
-### Added
-- OpenHands update to version 0.56
-- Devstral 24B set as default model
-- New memory and parallelism optimizations
-- Improvement in hardware configuration documentation
+### Adicionado
+- Atualização do OpenHands para versão 0.56
+- Devstral 24B definido como modelo padrão
+- Novas otimizações de memória e paralelismo
+- Melhoria na documentação de configurações de hardware
 
-### Changed
-- Adjustment in parallelism parameters for better memory management
-- Update of model recommendations by hardware profile
-- Refinement of GPU configurations for different card models
+### Alterado
+- Ajuste nos parâmetros de paralelismo para melhor gerenciamento de memória
+- Atualização das recomendações de modelos por perfil de hardware
+- Refinamento das configurações de GPU para diferentes modelos de placas
 
 ## [1.0.0] - 2025-08-28
 
-### Added
-- Initial development environment setup with Docker
-- Integration with OpenHands, Ollama and Web UI
-- Support for .NET and Node.js development
-- Startup scripts for Windows and Linux/macOS
-- VS Code configurations and recommended extensions
-- Complete documentation in README.md
+### Adicionado
+- Configuração inicial do ambiente de desenvolvimento com Docker
+- Integração com OpenHands, Ollama e Web UI
+- Suporte a desenvolvimento .NET e Node.js
+- Scripts de inicialização para Windows e Linux/macOS
+- Configurações do VS Code e extensões recomendadas
+- Documentação completa no README.md
 
-### Configured
-- Docker environment with NVIDIA GPU support
-- .NET SDKs 8 and 10
-- Node.js with NVM
-- Ollama configurations for devstral:latest model
-- Basic authentication for Web UI
+### Configurado
+- Ambiente Docker com suporte a GPU NVIDIA
+- .NET SDKs 8 e 10
+- Node.js com NVM
+- Configurações do Ollama para modelo devstral:latest
+- Autenticação básica para Web UI
