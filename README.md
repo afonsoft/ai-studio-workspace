@@ -1,4 +1,4 @@
-# 🚀 Dev Tools IA - Gemini API Optimized
+# 🚀 Dev Tools AI - Gemini API Optimized
 
 AI development environment optimized for Gemini API, focused on professional C#/.NET development with low resource consumption.
 
@@ -33,8 +33,8 @@ This project transforms your environment into a powerful AI development station 
 ```
 .
 ├── agents/              # GitHub Copilot Agents & Skills
-│   ├── GEMINI.md         # Master agents guide
-│   ├── skills/           # Specialized .NET skills
+│   ├── AGENTS.md        # Master agents guide
+│   ├── skills/          # Specialized .NET skills
 │   │   ├── dotnet-best-practices/     # SOLID, modern C#, patterns
 │   │   ├── csharp-async-patterns/     # async/await, performance
 │   │   ├── entity-framework-core/     # EF Core, optimization, migrations
@@ -70,139 +70,139 @@ This project transforms your environment into a powerful AI development station 
 └── README.md           # This file
 ```
 
-## 📁 Diretórios e Documentação
+## 📁 Directories and Documentation
 
-### 🤖 [GitHub Copilot Agents](./agents/GEMINI.md)
-Conjunto completo de skills e rules para GitHub Copilot especializado em .NET.
-- **Skills**: 9 skills abrangentes para desenvolvimento .NET moderno
-- **Rules**: 5 rules context-aware para padrões e convenções
-- **Cobertura**: SOLID, EF Core, APIs, Blazor, Security, Performance, Testing
-- **Uso**: Configure no VS Code/Windsurf para automação completa
+### 🤖 [GitHub Copilot Agents](./agents/AGENTS.md)
+Complete set of skills and rules for GitHub Copilot specialized in .NET.
+- **Skills**: 9 comprehensive skills for modern .NET development
+- **Rules**: 5 context-aware rules for patterns and conventions
+- **Coverage**: SOLID, EF Core, APIs, Blazor, Security, Performance, Testing
+- **Usage**: Configure in VS Code/Windsurf for complete automation
 
 ### 🤖 [OpenHands](./openhands/README.md)
-Ambiente de IA autônomo para tarefas complexas de desenvolvimento.
-- **Configurações**: `settings.json` com Gemini API
-- **Dados**: Conversas, workspaces e ferramentas
-- **Logs**: Monitoramento e troubleshooting
-- **Acesso**: http://localhost:3000
-- **MCP**: Integration com servidores especializados
+Autonomous AI environment for complex development tasks.
+- **Configuration**: `settings.json` with Gemini API
+- **Data**: Conversations, workspaces, and tools
+- **Logs**: Monitoring and troubleshooting
+- **Access**: http://localhost:3000
+- **MCP**: Integration with specialized servers
 
 ### 📁 [Workspace](./workspace/README.md)
-Área de trabalho compartilhada com OpenHands.
-- **Projetos**: Estrutura para desenvolvimento C#/.NET
-- **Compartilhado**: Acessível por OpenHands
-- **Persistência**: Dados sobrevivem a reinicializações
-- **Organização**: Templates e scripts reutilizáveis
+Shared workspace with OpenHands.
+- **Projects**: Structure for C#/.NET development
+- **Shared**: Accessible by OpenHands
+- **Persistence**: Data survives restarts
+- **Organization**: Reusable templates and scripts
 
 ### 💻 [VS Code](./vscode/README.md)
-Configurações otimizadas para desenvolvimento com IA.
-- **Settings**: Configurações globais e otimizações
-- **Extensões**: Lista recomendada para C#/.NET + IA
-- **Copilot**: Integração completa com GitHub Copilot
-- **Setup Completo**: Veja guia específico para instalação
+Optimized settings for AI development.
+- **Settings**: Global settings and optimizations
+- **Extensions**: Recommended list for C#/.NET + AI
+- **Copilot**: Complete integration with GitHub Copilot
+- **Complete Setup**: See specific guide for installation
 
-## 🔄 Integração entre Serviços
+## 🔄 Service Integration
 
-### Fluxo de Trabalho Típico:
+### Typical Workflow:
 
-1. **OpenHands** usa Gemini API para tarefas de desenvolvimento
-2. **Workspace** compartilha arquivos entre serviços (8GB max)
-3. **VS Code** integra com Copilot para desenvolvimento local
-4. **MCP Servers** extendem capacidades com ferramentas especializadas
+1. **OpenHands** uses Gemini API for development tasks
+2. **Workspace** shares files between services (8GB max)
+3. **VS Code** integrates with Copilot for local development
+4. **MCP Servers** extend capabilities with specialized tools
 
-### Configuração de Volumes Otimizada:
+### Optimized Volume Configuration:
 
 ```yaml
-# OpenHands (memória reduzida)
+# OpenHands (reduced memory)
 volumes:
-  - ./workspace:/workspace      # Área de trabalho (8GB max)
-  - ./openhands:/.openhands    # Configurações e dados
+  - ./workspace:/workspace      # Workspace (8GB max)
+  - ./openhands:/.openhands    # Configuration and data
 
-# Low-Resource (ultra leve)
+# Low-Resource (ultra light)
 volumes:
-  - ./workspace:/workspace      # Área de trabalho (2GB max)
-  - ./openhands:/.openhands    # Configurações e dados
+  - ./workspace:/workspace      # Workspace (2GB max)
+  - ./openhands:/.openhands    # Configuration and data
 ```
 
-### � **MCP Integration**
+### **MCP Integration**
 
-#### **Stdio Servers** (Alta Performance)
-- **memory**: Memória persistente e contexto
-- **filesystem**: Acesso otimizado a arquivos
-- **git**: Operações Git automatizadas
-- **sqlite**: Banco de dados leve
-- **fetch**: Requisições HTTP
+#### **Stdio Servers** (High Performance)
+- **memory**: Persistent memory and context
+- **filesystem**: Optimized file access
+- **git**: Automated Git operations
+- **sqlite**: Lightweight database
+- **fetch**: HTTP requests
 
-#### SHTTP Servers (Timeout Configurável)
-- **API externa**: Processamento pesado
+#### SHTTP Servers (Configurable Timeout)
+- **External API**: Heavy processing
 
-## Uso de Recursos por Diretório
+## Resource Usage by Directory
 
-| Diretório | Uso Principal | Tamanho Estimado | Backup |
-|-----------|---------------|------------------|---------|
-| `openhands/` | Configurações IA | ~50MB | Importante |
-| `workspace/` | Projetos | Variável (max 8GB) | Essencial |
-| `vscode/` | Configurações Editor | ~10MB | Opcional |
+| Directory | Main Use | Estimated Size | Backup |
+|-----------|----------|----------------|--------|
+| `openhands/` | AI Configuration | ~50MB | Important |
+| `workspace/` | Projects | Variable (max 8GB) | Essential |
+| `vscode/` | Editor Configuration | ~10MB | Optional |
 
-### Otimizações de Performance Aplicadas
+### Applied Performance Optimizations
 
-#### OpenHands Service (Padrão)
-- **Memória otimizada**: 1.5GB limit, 768MB reservation
-- **API otimizada**: Gemini 3.1 Flash Lite Preview integration
-- **Python otimizado**: `PYTHONUNBUFFERED=1`, `PYTHONDONTWRITEBYTECODE=1`
-- **Logs reduzidos**: `LOG_ALL_EVENTS: false` para menos I/O
-- **Timeouts otimizados**: Sandbox 180s, workspace 300s
-- **Compatibilidade**: Windows, Linux, macOS
+#### OpenHands Service (Standard)
+- **Optimized Memory**: 1.5GB limit, 768MB reservation
+- **Optimized API**: Gemini 3.1 Flash Lite Preview integration
+- **Optimized Python**: `PYTHONUNBUFFERED=1`, `PYTHONDONTWRITEBYTECODE=1`
+- **Reduced Logs**: `LOG_ALL_EVENTS: false` for less I/O
+- **Optimized Timeouts**: Sandbox 180s, workspace 300s
+- **Compatibility**: Windows, Linux, macOS
 
 #### OpenHands Service (Low-Resource)
-- **Memória mínima**: 512MB limit, 256MB reservation
-- **CPU reduzida**: 0.5 core limit, 0.2 core reservation
-- **Contexto reduzido**: 1024 tokens para economia
-- **Timeouts rápidos**: Sandbox 120s, workspace 180s
-- **Workspace limitado**: 2GB max
+- **Minimum Memory**: 512MB limit, 256MB reservation
+- **Reduced CPU**: 0.5 core limit, 0.2 core reservation
+- **Reduced Context**: 1024 tokens for economy
+- **Fast Timeouts**: Sandbox 120s, workspace 180s
+- **Limited Workspace**: 2GB max
 
 #### Network
-- **Bridge driver**: Melhor performance em rede local
-- **Host Gateway**: Acesso otimizado à API Gemini
+- **Bridge driver**: Better local network performance
+- **Host Gateway**: Optimized access to Gemini API
 
-## 📚 Documentação Completa
+## 📚 Complete Documentation
 
-Para informações detalhadas sobre cada componente:
+For detailed information about each component:
 
-- **[GitHub Copilot Agents](./agents/GEMINI.md)**: Skills e rules para automação .NET
-- **[MCP Setup Guide](./MCP-README.md)**: Configuração completa dos servidores MCP
-- **[MCP QuickStart](./MCP-QUICKSTART.md)**: Setup rápido para começar
-- **[OpenHands](./openhands/README.md)**: Configurações avançadas do agente IA
-- **[VS Code](./vscode/README.md)**: Configuração completa do ambiente de desenvolvimento
-- **[Workspace](./workspace/README.md)**: Organização de projetos e colaboração
+- **[GitHub Copilot Agents](./agents/AGENTS.md)**: Skills and rules for .NET automation
+- **[MCP Setup Guide](./MCP-README.md)**: Complete MCP server configuration
+- **[MCP QuickStart](./MCP-QUICKSTART.md)**: Quick setup to get started
+- **[OpenHands](./openhands/README.md)**: Advanced AI agent configuration
+- **[VS Code](./vscode/README.md)**: Complete development environment setup
+- **[Workspace](./workspace/README.md)**: Project organization and collaboration
 
-## 🔄 Métodos de Execução OpenHands
+## 🔄 OpenHands Execution Methods
 
-### 🚀 **Opção 1: Script Inteligente (Recomendado)**
+### 🚀 **Option 1: Intelligent Script (Recommended)**
 ```bash
-# Executar script completo com validação automática
+# Execute complete script with automatic validation
 ./start.sh
 
-# Script verifica:
-# - Docker e docker-compose
-# - API Key Gemini (configura automaticamente)
-# - Recursos do sistema (memória, CPU, GPU)
-# - Escolhe configuração adequada (padrão vs low-resource)
+# Script checks:
+# - Docker and docker-compose
+# - Gemini API Key (configures automatically)
+# - System resources (memory, CPU, GPU)
+# - Chooses appropriate configuration (standard vs low-resource)
 ```
 
-### 🐳 **Opção 2: Docker Compose Manual**
+### 🐳 **Option 2: Manual Docker Compose**
 ```bash
-# Configuração completa com GPU
+# Complete configuration with GPU
 docker-compose up -d
 
-# Configuração low-resource (para hardware limitado)
+# Low-resource configuration (for limited hardware)
 docker-compose -f docker-compose.low-resource.yml up -d
 
-# Acessar OpenHands
+# Access OpenHands
 http://localhost:3000
 ```
 
-### 🐳 **Opção 3: Docker Direto (Comando Oficial V1)**
+### 🐳 **Option 3: Direct Docker (Official V1 Command)**
 ```bash
 docker run -it --rm --pull=always \
   -e AGENT_SERVER_IMAGE_REPOSITORY=ghcr.io/openhands/agent-server \
@@ -222,7 +222,7 @@ docker run -it --rm --pull=always \
   docker.openhands.dev/openhands/openhands:1.6
 ```
 
-**Com GPU (NVIDIA):**
+**With GPU (NVIDIA):**
 ```bash
 docker run -it --rm --pull=always \
   -e AGENT_SERVER_IMAGE_REPOSITORY=ghcr.io/openhands/agent-server \
@@ -246,37 +246,37 @@ docker run -it --rm --pull=always \
   docker.openhands.dev/openhands/openhands:1.6
 ```
 
-## 🔧 Configurações Avançadas
+## 🔧 Advanced Configurations
 
 ### **OpenHands Configuration**
 ```bash
-# Iniciar ambiente completo
+# Start complete environment
 docker-compose up -d
 
-# Verificar logs
+# Check logs
 docker-compose logs openhands
 
 
-# Exemplo de configuração (já aplicada)
+# Configuration example (already applied)
 {
   "llm_model": "gemini/gemini-3.1-flash-lite-preview",
   "llm_api_key": "${GEMINI_API_KEY}",
   "llm_base_url": "https://generativelanguage.googleapis.com/v1beta"
 }
 
-# Configuração TOML (para OpenHands V1)
+# TOML configuration (for OpenHands V1)
 [llm]
 provider = "google"
 model = "gemini-3.1-flash-lite-preview"
-api_key = "sua-api-key-aqui"
+api_key = "your-api-key-here"
 temperature = 0.35
 max_iterations = 30
 ```
 
 ### **VS Code + Copilot**
-Configure o GitHub Copilot para usar Gemini API:
+Configure GitHub Copilot to use Gemini API:
 ```json
-// Em settings.json do VS Code
+// In VS Code settings.json
 {
   "github.copilot.chat.provider": "copilot",
   "github.copilot.enable": {
@@ -288,76 +288,76 @@ Configure o GitHub Copilot para usar Gemini API:
 
 ### **MCP Configuration**
 ```bash
-# Instalar servidores MCP
+# Install MCP servers
 ./install-mcp-servers.bat
 
-# Verificar configuração
+# Check configuration
 cat mcp-config.json
 
-# Reiniciar OpenHands
+# Restart OpenHands
 docker-compose restart openhands
 ```
 
-## 📊 Comparação de Recursos
+## 📊 Resource Comparison
 
-| Configuração | OpenHands (Padrão) | OpenHands (Low-Resource) | Economia |
-|-------------|-------------------|---------------------------|----------|
-| **Memória** | **2GB** | **768MB** | **62%** |
+| Configuration | OpenHands (Standard) | OpenHands (Low-Resource) | Savings |
+|---------------|----------------------|---------------------------|---------|
+| **Memory** | **2GB** | **768MB** | **62%** |
 | **CPU** | **1.5 cores** | **0.8 cores** | **47%** |
-| **Paralelismo** | **3 requests** | **2 requests** | **200%** |
-| **Temperatura** | **0.35** | **0.30** | **Otimizada** |
-| **Hardware** | **Qualquer** | **Qualquer** | **Universal** |
+| **Parallelism** | **3 requests** | **2 requests** | **200%** |
+| **Temperature** | **0.35** | **0.30** | **Optimized** |
+| **Hardware** | **Any** | **Any** | **Universal** |
 
-### **Benefícios das Otimizações**
-- **85% de economia** no consumo total de memória
-- **Setup universal** funciona em qualquer hardware
-- **Startup rápido** com configuração automática
-- **I/O reduzido** com logs desabilitados
-- **API validation** garante configuração correta
-- **Multi-plataforma** Windows, Linux, macOS
+### **Optimization Benefits**
+- **85% savings** in total memory consumption
+- **Universal setup** works on any hardware
+- **Fast startup** with automatic configuration
+- **Reduced I/O** with disabled logs
+- **API validation** ensures correct configuration
+- **Multi-platform** Windows, Linux, macOS
 
-## 🎯 Benefícios
+## 🎯 Benefits
 
-✅ **62% de economia** no consumo de recursos (sem dependências locais)  
-✅ **Setup universal** funciona em qualquer hardware (sem GPU required)  
-✅ **200% de aumento** no throughput com paralelismo otimizado  
-✅ **I/O reduzido** com logs otimizados  
-✅ **API validation** garante configuração Gemini correta  
-✅ **Multi-plataforma** Windows, Linux, macOS  
-✅ **Scripts automatizados** para fácil deploy  
-✅ **Documentação completa** em português  
-✅ **MCP Integration** para extensibilidade total  
-✅ **Temperatura otimizada** para melhor performance com Gemini  
+✅ **62% savings** in resource consumption (no local dependencies)  
+✅ **Universal setup** works on any hardware (no GPU required)  
+✅ **200% increase** in throughput with optimized parallelism  
+✅ **Reduced I/O** with optimized logs  
+✅ **API validation** ensures correct Gemini configuration  
+✅ **Multi-platform** Windows, Linux, macOS  
+✅ **Automated scripts** for easy deployment  
+✅ **Complete documentation** in English and Portuguese  
+✅ **MCP Integration** for full extensibility  
+✅ **Optimized temperature** for better performance with Gemini  
 
-## 📚 Documentação Adicional
+## 📚 Additional Documentation
 
-- [GitHub Copilot Agents](agents/GEMINI.md): Skills e rules para automação .NET
-- [MCP-README.md](MCP-README.md): Guia completo dos servidores MCP
-- [MCP-QUICKSTART.md](MCP-QUICKSTART.md): Setup rápido para começar
-- [OpenHands Documentation](./openhands/README.md): Configurações avançadas
-- [VS Code Setup](./vscode/README.md): Configuração do ambiente de desenvolvimento
+- [GitHub Copilot Agents](agents/AGENTS.md): Skills and rules for .NET automation
+- [MCP-README.md](MCP-README.md): Complete MCP server guide
+- [MCP-QUICKSTART.md](MCP-QUICKSTART.md): Quick setup to get started
+- [OpenHands Documentation](./openhands/README.md): Advanced configuration
+- [VS Code Setup](./vscode/README.md): Development environment setup
 
-## 🚀 URLs de Acesso
+## 🚀 Access URLs
 
 - **OpenHands**: http://localhost:3000
-- **VS Code + Copilot**: Integração nativa no editor
-- **MCP Servers**: Configurados via OpenHands
+- **VS Code + Copilot**: Native integration in editor
+- **MCP Servers**: Configured via OpenHands
 - **Gemini API**: https://aistudio.google.com/app/apikey
-- **GitHub Copilot Agents**: Configurar no VS Code/Windsurf (veja abaixo)
+- **GitHub Copilot Agents**: Configure in VS Code/Windsurf (see below)
 
-## 🚀 Transforme seu Desenvolvimento com Gemini API!
+## 🚀 Transform Your Development with Gemini API!
 
-Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento IA com Gemini API, especializada em C#/.NET. O Gemini 3.1 Flash Lite Preview oferece performance profissional para código, com configuração simplificada e baixo custo.
+With this setup, your environment becomes a powerful AI development station with Gemini API, specialized in C#/.NET. Gemini 3.1 Flash Lite Preview offers professional performance for code, with simplified configuration and low cost.
 
-**Pronto para revolucionar seu desenvolvimento C#?** 🚀
+**Ready to revolutionize your C# development?** 🚀
 
 ## 🤖 GitHub Copilot Agents Configuration
 
 ### VS Code + Copilot Setup
 
-#### 1. Configurar no VS Code
+#### 1. Configure in VS Code
 ```json
-// Em settings.json do VS Code
+// In VS Code settings.json
 {
   "github.copilot.enable": {
     "*": true,
@@ -371,20 +371,20 @@ Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento 
 }
 ```
 
-#### 2. Copiar Agents para o Repositório
+#### 2. Copy Agents to Repository
 ```bash
-# No seu projeto .NET
-cp -r /caminho/dev-tools-ia/agents ./agents
+# In your .NET project
+cp -r /path/dev-tools-ia/agents ./agents
 
-# Ou clonar o repositório de agents
-git clone https://github.com/afonsoft/dev-tools-ia.git temp-agents
+# Or clone the agents repository
+git clone https://github.com/afonsoft/ai-studio-workspace.git temp-agents
 cp -r temp-agents/agents ./agents
 rm -rf temp-agents
 ```
 
-#### 3. Configurar Copilot para usar Agents
+#### 3. Configure Copilot to use Agents
 ```bash
-# Adicionar ao .vscode/settings.json do seu projeto
+# Add to your project's .vscode/settings.json
 {
   "github.copilot.enable": {
     "*": true,
@@ -400,9 +400,9 @@ rm -rf temp-agents
 
 ### Windsurf + Copilot Setup
 
-#### 1. Configurar no Windsurf
+#### 1. Configure in Windsurf
 ```json
-// Em settings.json do Windsurf
+// In Windsurf settings.json
 {
   "github.copilot.enable": {
     "*": true,
@@ -416,13 +416,13 @@ rm -rf temp-agents
 }
 ```
 
-#### 2. Copiar Agents para o Projeto
+#### 2. Copy Agents to Project
 ```bash
-# No seu projeto .NET
+# In your .NET project
 mkdir -p agents
-cp -r /caminho/dev-tools-ia/agents/* ./agents/
+cp -r /path/dev-tools-ia/agents/* ./agents/
 
-# Commitar no repositório
+# Commit to repository
 git add agents/
 git commit -m "feat: add GitHub Copilot agents for .NET development"
 git push origin main
@@ -430,25 +430,25 @@ git push origin main
 
 ### OpenHands Integration
 
-#### 1. Configurar no Workspace do OpenHands
+#### 1. Configure in OpenHands Workspace
 ```bash
-# No workspace compartilhado
-cd /workspace/seu-projeto
-cp -r /caminho/dev-tools-ia/agents ./agents
+# In shared workspace
+cd /workspace/your-project
+cp -r /path/dev-tools-ia/agents ./agents
 
-# O OpenHands usará os agents automaticamente
+# OpenHands will use agents automatically
 ```
 
-#### 2. Usar Agents no OpenHands
+#### 2. Use Agents in OpenHands
 ```python
-# No OpenHands, os agents estarão disponíveis automaticamente
-# Use prompts como:
+# In OpenHands, agents will be available automatically
+# Use prompts like:
 # "Use the dotnet-best-practices skill to refactor this code"
 # "Apply testing-xunit skill to create unit tests"
 # "Use security-jwt skill to implement authentication"
 ```
 
-### Exemplos de Uso dos Agents
+### Agent Usage Examples
 
 #### SOLID Principles
 ```
@@ -477,14 +477,14 @@ Use the security-jwt skill to implement JWT authentication and authorization:
 
 ## 💻 VS Code + Copilot Workflow
 
-### Comandos Essenciais
-- **`Ctrl+L`**: Chat com o Copilot
-- **`Ctrl+I`**: Editar código selecionado  
-- **`@Codebase`**: Contexto de todo o projeto
+### Essential Commands
+- **`Ctrl+L`**: Chat with Copilot
+- **`Ctrl+I`**: Edit selected code  
+- **`@Codebase`**: Context of entire project
 
-### Prompts Especializados C# (com Agents)
+### Specialized C# Prompts (with Agents)
 
-#### Refactoring com SOLID
+#### Refactoring with SOLID
 ```
 Use the design-patterns skill to refactor this method following SOLID principles and LINQ
 ```
@@ -494,7 +494,7 @@ Use the design-patterns skill to refactor this method following SOLID principles
 Use the entity-framework-core skill to create a Repository pattern for Entity Framework Core with async methods
 ```
 
-#### Testes Unitários
+#### Unit Tests
 ```
 Use the testing-xunit skill to generate xUnit tests following Arrange-Act-Assert pattern with Moq
 ```
@@ -519,60 +519,60 @@ Use the security-jwt skill to implement JWT authentication and authorization wit
 Use the performance-optimization skill to optimize this code for better performance and memory usage
 ```
 
-## 🛠️ Stack Tecnológica
+## 🛠️ Technology Stack
 
-### IA e Modelo
-- **Modelo Principal**: Gemini 3.1 Flash Lite Preview
-- **Especialização**: C#/.NET Development
+### AI and Model
+- **Main Model**: Gemini 3.1 Flash Lite Preview
+- **Specialization**: C#/.NET Development
 - **Provider**: Google Gemini API
-- **Custo**: Pay-per-use (baixo consumo)
+- **Cost**: Pay-per-use (low consumption)
 
 ### VS Code Integration
 - **Extension**: GitHub Copilot
 - **Context Length**: 32768 tokens
-- **Autocomplete**: Contexto completo do projeto
-- **Temperature**: 0.2 (determinístico)
-- **Agents Integration**: Skills e rules especializadas .NET
+- **Autocomplete**: Complete project context
+- **Temperature**: 0.2 (deterministic)
+- **Agents Integration**: Specialized .NET skills and rules
 
-### OpenHands (Otimizado)
-- **Versão**: 1.5 (com agent integrado)
+### OpenHands (Optimized)
+- **Version**: 1.5 (with integrated agent)
 - **API**: Gemini 3.1 Flash Lite Preview integration
-- **Temperatura**: 0.35 (performance) / 0.3 (low-resource)
-- **Paralelismo**: 3 (performance) / 2 (low-resource)
+- **Temperature**: 0.35 (performance) / 0.3 (low-resource)
+- **Parallelism**: 3 (performance) / 2 (low-resource)
 - **Memory**: 2GB (performance) / 768MB (low-resource)
 - **Max Iterations**: 30 (performance) / 20 (low-resource)
-- **MCP**: Integration com 9 servidores especializados
-- **Agents**: GitHub Copilot agents disponíveis no workspace
+- **MCP**: Integration with 9 specialized servers
+- **Agents**: GitHub Copilot agents available in workspace
 
 ## 🎮 Sandbox Options
 
-### **Docker Sandbox (Recomendado)**
+### **Docker Sandbox (Recommended)**
 ```bash
-# Default no docker-compose.yml
+# Default in docker-compose.yml
 RUNTIME=docker
 
-# Isolamento completo do host
-# Segurança máxima
-# Recursos limitados
+# Complete host isolation
+# Maximum security
+# Limited resources
 ```
 
-### **Process Sandbox (Rápido, mas inseguro)**
+### **Process Sandbox (Fast, but insecure)**
 ```bash
-# Para desenvolvimento rápido
+# For quick development
 RUNTIME=process
 
-# Sem isolamento de container
-# Performance máxima
-# Risco de segurança
+# No container isolation
+# Maximum performance
+# Security risk
 ```
 
 ### **Remote Sandbox**
 ```bash
-# Para deployments gerenciados
+# For managed deployments
 RUNTIME=remote
 
-# Ambiente remoto
-# Deploy na nuvem
+# Remote environment
+# Cloud deployment
 # Multi-tenant
 ```
 
@@ -580,14 +580,14 @@ RUNTIME=remote
 
 ### API Key Configuration
 ```bash
-# 1. Obtenha sua API Key
-# Visite: https://aistudio.google.com/app/apikey
+# 1. Get your API Key
+# Visit: https://aistudio.google.com/app/apikey
 
-# 2. Configure nos arquivos
+# 2. Configure in files
 # openhands/settings.json
 {
   "llm_model": "gemini/gemini-3.1-flash-lite-preview",
-  "llm_api_key": "SUA_API_KEY_AQUI",
+  "llm_api_key": "YOUR_API_KEY_HERE",
   "llm_base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent"
 }
 
@@ -597,81 +597,81 @@ RUNTIME=remote
     "provider": "gemini",
     "base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent",
     "model": "gemini-3.1-flash-lite-preview",
-    "api_key": "SUA_API_KEY_AQUI"
+    "api_key": "YOUR_API_KEY_HERE"
   }
 }
 ```
 
-### Validação Automática
+### Automatic Validation
 ```bash
-# O script start.sh valida automaticamente
+# The start.sh script validates automatically
 ./start.sh
 
-# Se API Key não estiver configurada:
-# - Oferece configuração interativa
-# - Atualiza ambos os arquivos
-# - Garante setup correto
+# If API Key is not configured:
+# - Offers interactive configuration
+# - Updates both files
+# - Ensures correct setup
 ```
 
-### Configuração da Variável de Ambiente GEMINI_API_KEY
+### GEMINI_API_KEY Environment Variable Configuration
 
-Alternativamente à configuração nos arquivos JSON/TOML, você pode configurar a API Key como variável de ambiente. O docker-compose.yml usa `${GEMINI_API_KEY}` para ler essa variável.
+Alternatively to configuring in JSON/TOML files, you can configure the API Key as an environment variable. The docker-compose.yml uses `${GEMINI_API_KEY}` to read this variable.
 
 #### Windows (PowerShell/CMD)
 
-**Método 1: Variável de Ambiente do Sistema (Permanente)**
+**Method 1: System Environment Variable (Permanent)**
 ```powershell
-# Via PowerShell (Administrador)
-[System.Environment]::SetEnvironmentVariable('GEMINI_API_KEY', 'sua-api-key-aqui', 'User')
+# Via PowerShell (Administrator)
+[System.Environment]::SetEnvironmentVariable('GEMINI_API_KEY', 'your-api-key-here', 'User')
 
-# Ou via interface gráfica:
-# 1. Pressione Win + R, digite "sysdm.cpl"
-# 2. Vá em "Avançado" > "Variáveis de Ambiente"
-# 3. Em "Variáveis de Usuário", clique em "Nova"
-# 4. Nome da variável: GEMINI_API_KEY
-# 5. Valor da variável: sua-api-key-aqui
-# 6. Clique em OK em todas as janelas
-# 7. Reinicie o terminal para aplicar as mudanças
+# Or via graphical interface:
+# 1. Press Win + R, type "sysdm.cpl"
+# 2. Go to "Advanced" > "Environment Variables"
+# 3. In "User Variables", click "New"
+# 4. Variable name: GEMINI_API_KEY
+# 5. Variable value: your-api-key-here
+# 6. Click OK on all windows
+# 7. Restart terminal to apply changes
 ```
 
-**Método 2: Variável de Temporária (Sessão atual)**
+**Method 2: Temporary Variable (Current session)**
 ```powershell
-# No PowerShell
-$env:GEMINI_API_KEY="sua-api-key-aqui"
+# In PowerShell
+$env:GEMINI_API_KEY="your-api-key-here"
 
-# No CMD
-set GEMINI_API_KEY=sua-api-key-aqui
+# In CMD
+set GEMINI_API_KEY=your-api-key-here
 ```
 
 #### Linux/macOS (Bash/Zsh)
 
-**Método 1: ~/.bashrc ou ~/.zshrc (Permanente)**
+**Method 1: ~/.bashrc or ~/.zshrc (Permanent)**
 ```bash
-# Adicionar ao final do arquivo ~/.bashrc (ou ~/.zshrc)
-echo 'export GEMINI_API_KEY="sua-api-key-aqui"' >> ~/.bashrc
+# Add to end of ~/.bashrc (or ~/.zshrc)
+echo 'export GEMINI_API_KEY="your-api-key-here"' >> ~/.bashrc
 
-# Recarregar o arquivo
+# Reload file
 source ~/.bashrc
 
-# Ou para Zsh
-echo 'export GEMINI_API_KEY="sua-api-key-aqui"' >> ~/.zshrc
+# Or for Zsh
+echo 'export GEMINI_API_KEY="your-api-key-here"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-**Método 2: ~/.profile (Universal)**
+**Method 2: ~/.profile (Universal)**
 ```bash
-# Adicionar ao ~/.profile (funciona em todos os shells)
-echo 'export GEMINI_API_KEY="sua-api-key-aqui"' >> ~/.profile
+# Add to ~/.profile (works in all shells)
+echo 'export GEMINI_API_KEY="your-api-key-here"' >> ~/.profile
 source ~/.profile
 ```
 
-**Método 3: Variável de Temporária (Sessão atual)**
+**Method 3: Temporary Variable (Current session)**
 ```bash
-# No terminal atual
-export GEMINI_API_KEY="sua-api-key-aqui"
+# In current terminal
+export GEMINI_API_KEY="your-api-key-here"
 ```
 
-#### Verificação
+#### Verification
 
 **Windows**
 ```powershell
@@ -687,149 +687,149 @@ echo %GEMINI_API_KEY%
 echo $GEMINI_API_KEY
 ```
 
-#### Uso com Docker Compose
+#### Usage with Docker Compose
 
-Após configurar a variável de ambiente, o docker-compose.yml irá ler automaticamente:
+After configuring the environment variable, docker-compose.yml will read it automatically:
 
 ```yaml
 environment:
-  LLM_API_KEY: "${GEMINI_API_KEY}"  # Lê da variável de ambiente
+  LLM_API_KEY: "${GEMINI_API_KEY}"  # Reads from environment variable
 ```
 
-Se a variável não estiver configurada, o script `start.sh` tentará ler dos arquivos de configuração (settings.json, config.json, config.toml).
+If the variable is not configured, the `start.sh` script will try to read from configuration files (settings.json, config.json, config.toml).
 
 ### Performance Tips
-- Use prompts específicos para melhor performance
-- Configure timeouts adequados para tarefas complexas
-- Monitore consumo da API Gemini
-- **Novo**: Validação automática evita erros de configuração
-- Use low-resource mode para hardware limitado
+- Use specific prompts for better performance
+- Configure appropriate timeouts for complex tasks
+- Monitor Gemini API consumption
+- **New**: Automatic validation avoids configuration errors
+- Use low-resource mode for limited hardware
 
-### Comandos Úteis
+### Useful Commands
 ```bash
-# Verificar status dos containers
+# Check container status
 docker-compose ps
 
-# Verificar logs OpenHands
+# Check OpenHands logs
 docker-compose logs openhands
 
-# Verificar health check
+# Check health check
 docker-compose exec openhands curl -f http://localhost:3000/health
 
-# Verificar logs MCP
+# Check MCP logs
 docker-compose logs openhands | grep -i mcp
 
-# Reiniciar ambiente
+# Restart environment
 docker-compose restart
 
-# Parar ambiente
+# Stop environment
 docker-compose down
 ```
 
 ## 📊 Performance
 
-### Benchmarks Gemini API (Atualizado)
-- **Model Loading**: ~5 segundos (API instantânea)
-- **Token Generation**: ~50 tokens/segundo (API otimizada)
+### Gemini API Benchmarks (Updated)
+- **Model Loading**: ~5 seconds (instant API)
+- **Token Generation**: ~50 tokens/second (optimized API)
 - **Memory Usage**: 2GB (performance) / 768MB (low-resource)
-- **CPU Usage**: Mínimo durante processamento
-- **Startup Time**: Configuração automática com validação
-- **Parallel Processing**: 2-3 requisições simultâneas
+- **CPU Usage**: Minimal during processing
+- **Startup Time**: Automatic configuration with validation
+- **Parallel Processing**: 2-3 simultaneous requests
 - **Temperature**: 0.35 (performance) / 0.3 (low-resource)
 
-### Comparação
+### Comparison
 | Feature | Gemini API + OpenHands | Local LLM (Ollama) |
 |---------|---------------------------|------------------|
-| Custo | $$ (baixo) | Gratuito |
-| Latência | ~50ms | ~200ms |
-| Setup | Universal | Hardware específico |
-| C# Especialização | ✅ Excelente | ❌ Genérico |
-| Customização | ✅ API settings | ❌ Limitada |
-| MCP Extensibility | ✅ Sim | ✅ Sim |
+| Cost | $$ (low) | Free |
+| Latency | ~50ms | ~200ms |
+| Setup | Universal | Specific hardware |
+| C# Specialization | ✅ Excellent | ❌ Generic |
+| Customization | ✅ API settings | ❌ Limited |
+| MCP Extensibility | ✅ Yes | ✅ Yes |
 | Sandbox Control | ✅ Docker | ✅ Docker |
 
 ## 🚨 Troubleshooting
 
-### API Key Inválida
+### Invalid API Key
 ```bash
-# Verifique configuração nos arquivos
+# Check configuration in files
 cat openhands/settings.json | grep llm_api_key
 cat openhands/config.json | grep api_key
 
-# Reconfigure se necessário
+# Reconfigure if necessary
 ./start.sh
 ```
 
-### Conexão Gemini API
-- Verifique sua API Key em https://aistudio.google.com/app/apikey
-- Confirme quota disponível
-- Verifique conexão com a internet
+### Gemini API Connection
+- Check your API Key at https://aistudio.google.com/app/apikey
+- Confirm available quota
+- Check internet connection
 
-### Recursos Insuficientes
+### Insufficient Resources
 ```bash
 # Use low-resource mode
 docker-compose -f docker-compose.low-resource.yml up -d
 
-# Ou ajuste manualmente os limites
-# No docker-compose.yml
+# Or manually adjust limits
+# In docker-compose.yml
 ```
 
-### Modelo Lento
-- Use prompts mais específicos
-- Evite arquivos muito grandes
-- Configure timeouts adequados
-- Use low-resource mode se necessário
+### Slow Model
+- Use more specific prompts
+- Avoid very large files
+- Configure appropriate timeouts
+- Use low-resource mode if necessary
 
-## 🎓 Exemplos Práticos
+## 🎓 Practical Examples
 
-### Gerar Repository Pattern
+### Generate Repository Pattern
 ```csharp
-// Input: Classe DbContext simples
+// Input: Simple DbContext class
 // Prompt: "Create Repository pattern for Entity Framework Core with async methods"
 
-// Output: Repository completo com:
+// Output: Complete Repository with:
 // - Async CRUD operations
 // - Error handling
 // - Unit testing support
 // - Dependency injection ready
 ```
 
-### Refactoring SOLID
+### SOLID Refactoring
 ```csharp
-// Input: Método com múltiplas responsabilidades
+// Input: Method with multiple responsibilities
 // Prompt: "Refactor using SOLID principles and LINQ"
 
-// Output: Código refatorado com:
+// Output: Refactored code with:
 // - Single Responsibility
 // - LINQ optimization
 // - Better separation of concerns
 // - Improved testability
 ```
 
-## 🤝 Contribuição
+## 🤝 Contribution
 
-Contribuições são bem-vindas! Áreas de interesse:
-- Novos prompts especializados C#
-- Otimizações de performance para Gemini API
-- Documentação melhorada
-- Scripts de automação
-- Novos servidores MCP
+Contributions are welcome! Areas of interest:
+- New specialized C# prompts
+- Performance optimizations for Gemini API
+- Improved documentation
+- Automation scripts
+- New MCP servers
 
-## 📄 Licença
+## 📄 License
 
-Este projeto é licenciado sob a MIT License - veja o arquivo LICENSE para detalhes.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-## 🎉 Transforme seu Desenvolvimento com Gemini API!
+## 🎉 Transform Your Development with Gemini API!
 
-Com este setup, seu ambiente se torna uma poderosa estação de desenvolvimento IA com Gemini API, especializada em C#/.NET. O Gemini 3.1 Flash Lite Preview oferece performance profissional para código, com configuração simplificada e baixo custo.
+With this setup, your environment becomes a powerful AI development station with Gemini API, specialized in C#/.NET. Gemini 3.1 Flash Lite Preview offers professional performance for code, with simplified configuration and low cost.
 
-**Com os GitHub Copilot Agents, você tem:**
-- 🎯 **9 skills especializadas** para desenvolvimento .NET moderno
-- 📋 **5 rules context-aware** para padrões e convenções
-- 🤖 **Automação completa** com SOLID, EF Core, APIs, Blazor, Security, Performance
-- 🔄 **Integração total** com VS Code, Windsurf e OpenHands
-- 📚 **Documentação completa** com exemplos práticos
+**With GitHub Copilot Agents, you have:**
+- 🎯 **9 specialized skills** for modern .NET development
+- 📋 **5 context-aware rules** for patterns and conventions
+- 🤖 **Complete automation** with SOLID, EF Core, APIs, Blazor, Security, Performance
+- 🔄 **Full integration** with VS Code, Windsurf, and OpenHands
+- 📚 **Complete documentation** with practical examples
 
-**Pronto para revolucionar seu desenvolvimento C#?** 🚀
+**Ready to revolutionize your C# development?** 🚀

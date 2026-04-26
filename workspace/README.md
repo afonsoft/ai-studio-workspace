@@ -413,7 +413,7 @@ cd workspace/projects/novo-projeto
 - [Guia do OpenHands](../README.md)
 - [WebUI Interface](../openhands/README.md)
 - [Docker Compose](../docker-compose.yml)
-- [GitHub Copilot Agents](../agents/GEMINI.md)
+- [GitHub Copilot Agents](../agents/AGENTS.md)
 
 ---
 

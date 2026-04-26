@@ -1,22 +1,22 @@
-# 🚀 Setup VS Code + GitHub Copilot + OpenHands para Desenvolvimento .NET
+# 🚀 Setup VS Code + GitHub Copilot + OpenHands for .NET Development
 
-## 📋 Requisitos
-- VS Code instalado
-- GitHub Copilot ativado
-- OpenHands configurado com Gemini 3.1 Flash Lite Preview
-- Extensões recomendadas para .NET
+## 📋 Requirements
+- VS Code installed
+- GitHub Copilot activated
+- OpenHands configured with Gemini 3.1 Flash Lite Preview
+- Recommended extensions for .NET
 
-## ⚙️ Passo 1: Configurar VS Code + GitHub Copilot
+## ⚙️ Step 1: Configure VS Code + GitHub Copilot
 
-### 1.1 Instalar Extensão GitHub Copilot
-1. No VS Code: `Ctrl+Shift+X` (Extensions)
-2. Pesquise: `GitHub Copilot`
-3. Instale a extensão oficial
-4. Faça login com sua conta GitHub
+### 1.1 Install GitHub Copilot Extension
+1. In VS Code: `Ctrl+Shift+X` (Extensions)
+2. Search: `GitHub Copilot`
+3. Install the official extension
+4. Login with your GitHub account
 
-### 1.2 Configurar Copilot para .NET
-1. Abra Settings: `Ctrl+,`
-2. Configure para desenvolvimento .NET:
+### 1.2 Configure Copilot for .NET
+1. Open Settings: `Ctrl+,`
+2. Configure for .NET development:
 ```json
 {
   "github.copilot.enable": {
@@ -31,23 +31,23 @@
 }
 ```
 
-## 🤖 Passo 2: Configurar OpenHands com Gemini 3.1 Flash Lite Preview
+## 🤖 Step 2: Configure OpenHands with Gemini 3.1 Flash Lite Preview
 
-### 2.1 Configurar Variáveis de Ambiente
-Defina sua API key do Google Gemini:
+### 2.1 Configure Environment Variables
+Set your Google Gemini API key:
 
 **Windows (PowerShell):**
 ```powershell
-$env:GEMINI_API_KEY = "sua-api-key-aqui"
+$env:GEMINI_API_KEY = "your-api-key-here"
 ```
 
 **Linux/macOS:**
 ```bash
-export GEMINI_API_KEY="sua-api-key-aqui"
+export GEMINI_API_KEY="your-api-key-here"
 ```
 
 ### 2.2 Build Custom Sandbox Image
-Primeiro, construa a imagem customizada do sandbox com .NET SDK 10:
+First, build the custom sandbox image with .NET SDK 10:
 
 ```bash
 # Build the custom sandbox image with .NET SDK 10
@@ -57,115 +57,115 @@ docker-compose --profile build build
 docker build -t ai-studio-workspace ./runtime
 ```
 
-### 2.3 Iniciar OpenHands
-**Para máxima performance:**
+### 2.3 Start OpenHands
+**For maximum performance:**
 ```bash
 docker-compose up -d openhands
 ```
 
-**Para recursos limitados:**
+**For limited resources:**
 ```bash
 docker-compose -f docker-compose.low-resource.yml up -d openhands
 ```
 
-### 2.4 Configurações Otimizadas
-O OpenHands está configurado com:
-- **Modelo**: Gemini 3.1 Flash Lite Preview
-- **Sandbox Customizado**: Imagem `ai-studio-workspace` com .NET SDK 10
-- **Base do Sandbox**: nikolaik/python-nodejs:python3.12-nodejs22 (mesma do agent-server oficial)
-- **Ferramentas Disponíveis**: Python 3.12, Node.js 22, .NET SDK 10, git, sudo
-- **Temperatura**: 0.35 (performance) / 0.3 (low-resource)
-- **Paralelismo**: 3 (performance) / 2 (low-resource)
+### 2.4 Optimized Settings
+OpenHands is configured with:
+- **Model**: Gemini 3.1 Flash Lite Preview
+- **Custom Sandbox**: Image `ai-studio-workspace` with .NET SDK 10
+- **Sandbox Base**: nikolaik/python-nodejs:python3.12-nodejs22 (same as official agent-server)
+- **Available Tools**: Python 3.12, Node.js 22, .NET SDK 10, git, sudo
+- **Temperature**: 0.35 (performance) / 0.3 (low-resource)
+- **Parallelism**: 3 (performance) / 2 (low-resource)
 - **Memory Budget**: 4GB (performance) / 2GB (low-resource)
-- **Timeouts**: Otimizados para respostas rápidas
+- **Timeouts**: Optimized for fast responses
 
-### 1.3 Copiar Arquivos de Configuração
-Copie os arquivos da pasta `vscode/` deste repositório:
+### 1.3 Copy Configuration Files
+Copy files from the `vscode/` folder of this repository:
 
 #### 📁 Windows (PowerShell/CMD)
 ```powershell
-# Copiar configurações do VS Code
+# Copy VS Code settings
 copy vscode\settings.json "%APPDATA%\Code\User\settings.json"
 
-# Copiar atalhos personalizados
+# Copy custom shortcuts
 copy vscode\keybindings.json "%APPDATA%\Code\User\keybindings.json"
 
-# Copiar extensões recomendadas
+# Copy recommended extensions
 copy vscode\extensions.json "%APPDATA%\Code\User\extensions.json"
 ```
 
 #### 🐧 Linux/macOS (Bash/Zsh)
 ```bash
-# Copiar configurações do VS Code
+# Copy VS Code settings
 cp vscode/settings.json ~/.config/Code/User/settings.json
 
-# Copiar atalhos personalizados
+# Copy custom shortcuts
 cp vscode/keybindings.json ~/.config/Code/User/keybindings.json
 
-# Copiar extensões recomendadas
+# Copy recommended extensions
 cp vscode/extensions.json ~/.config/Code/User/extensions.json
 ```
 
-#### 📂 Estrutura de Arquivos na Pasta VSCode
+#### 📂 VSCode Folder File Structure
 ```
 vscode/
-├── settings.json              # Configurações otimizadas para .NET
-├── keybindings.json          # Atalhos personalizados para C#/.NET
-├── extensions.json           # Extensões recomendadas
-├── install-extensions.sh     # Script de instalação Linux/macOS
-├── install-extensions.bat    # Script de instalação Windows
-└── README.md                 # Documentação completa
+├── settings.json              # Optimized settings for .NET
+├── keybindings.json          # Custom shortcuts for C#/.NET
+├── extensions.json           # Recommended extensions
+├── install-extensions.sh     # Installation script Linux/macOS
+├── install-extensions.bat    # Installation script Windows
+└── README.md                 # Complete documentation
 ```
 
-#### ⚡ Comandos Personalizados Disponíveis
-- `/refactor` - Refatorar código seguindo SOLID principles
-- `/test` - Gerar testes xUnit com Moq
-- `/document` - Gerar documentação XML
-- `/optimize` - Otimizar performance
-- `/repository` - Criar Repository pattern
-- `/api` - Criar endpoints Web API
-- `/linq` - Converter para LINQ
-- `/async` - Converter para async/await
-- `/validate` - Adicionar validação
-- `/security` - Adicionar medidas de segurança
+#### ⚡ Available Custom Commands
+- `/refactor` - Refactor code following SOLID principles
+- `/test` - Generate xUnit tests with Moq
+- `/document` - Generate XML documentation
+- `/optimize` - Optimize performance
+- `/repository` - Create Repository pattern
+- `/api` - Create Web API endpoints
+- `/linq` - Convert to LINQ
+- `/async` - Convert to async/await
+- `/validate` - Add validation
+- `/security` - Add security measures
 
 #### 🎨 Context Providers
-- `@codebase` - Contexto completo do projeto
-- `@file` - Arquivo atual
-- `@directory` - Diretório atual
+- `@codebase` - Complete project context
+- `@file` - Current file
+- `@directory` - Current directory
 
-### 1.4 Verificar Instalação
-Após copiar os arquivos:
+### 1.4 Verify Installation
+After copying files:
 
-1. **Reinicie VS Code** para carregar as novas configurações
-2. **Verifique Copilot**: Clique no ícone Copilot na barra lateral
-3. **Teste modelo**: `Ctrl+L` e digite "Hello, are you working?"
-4. **Verifique atalhos**: `Ctrl+Shift+P` > "Preferences: Open Keyboard Shortcuts (JSON)"
+1. **Restart VS Code** to load new settings
+2. **Check Copilot**: Click Copilot icon in sidebar
+3. **Test model**: `Ctrl+L` and type "Hello, are you working?"
+4. **Check shortcuts**: `Ctrl+Shift+P` > "Preferences: Open Keyboard Shortcuts (JSON)"
 
-### 1.5 Instalar Extensões Recomendadas
+### 1.5 Install Recommended Extensions
 
-#### Opção 1: Script Automático (Recomendado)
-Use o script apropriado para seu sistema operacional:
+#### Option 1: Automatic Script (Recommended)
+Use the appropriate script for your operating system:
 
 **Windows:**
 ```cmd
-# No PowerShell ou CMD
+# In PowerShell or CMD
 vscode\install-extensions.bat
 ```
 
 **Linux/macOS:**
 ```bash
-# No terminal
+# In terminal
 chmod +x vscode/install-extensions.sh
 ./vscode/install-extensions.sh
 ```
 
-#### Opção 2: Manual via VS Code
-VS Code perguntará se deseja instalar as extensões recomendadas. Clique em "Install All".
+#### Option 2: Manual via VS Code
+VS Code will ask if you want to install recommended extensions. Click "Install All".
 
-#### Opção 3: Terminal VS Code
+#### Option 3: VS Code Terminal
 ```bash
-# No VS Code Terminal
+# In VS Code Terminal
 code --install-extension ms-dotnettools.csharp
 code --install-extension ms-dotnettools.csdevkit
 code --install-extension eamodio.gitlens
@@ -173,23 +173,23 @@ code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-vscode.vscode-json
 ```
 
-## 🎯 Passo 3: Configurar GitHub Copilot Agents
+## 🎯 Step 3: Configure GitHub Copilot Agents
 
-### 2.1 Copiar Agents para o Projeto
+### 2.1 Copy Agents to Project
 ```bash
-# No seu projeto .NET
+# In your .NET project
 mkdir -p agents
-cp -r /caminho/dev-tools-ia/agents/* ./agents/
+cp -r /path/dev-tools-ia/agents/* ./agents/
 
-# Commitar no repositório
+# Commit to repository
 git add agents/
 git commit -m "feat: add GitHub Copilot agents for .NET development"
 git push origin main
 ```
 
-### 2.2 Configurar Copilot para usar Agents
+### 2.2 Configure Copilot to use Agents
 ```json
-// Adicionar ao .vscode/settings.json do seu projeto
+// Add to your project's .vscode/settings.json
 {
   "github.copilot.enable": {
     "*": true,
@@ -203,10 +203,10 @@ git push origin main
 }
 ```
 
-## 💻 Passo 4: Workflow C#/.NET com Agents + OpenHands
+## 💻 Step 4: C#/.NET Workflow with Agents + OpenHands
 
-### 4.1 Chat Básico (`Ctrl+L`)
-Selecione código e use prompts especializados com agents:
+### 4.1 Basic Chat (`Ctrl+L`)
+Select code and use specialized prompts with agents:
 
 ```
 Use design-patterns skill to refactor this method following SOLID principles and LINQ
@@ -220,26 +220,26 @@ Use entity-framework-core skill to create a Repository pattern for this DbContex
 Use testing-xunit skill to add comprehensive unit tests for this class
 ```
 
-### 4.2 Usando OpenHands com Gemini
-Para tarefas complexas, use OpenHands em `http://localhost:3000`:
+### 4.2 Using OpenHands with Gemini
+For complex tasks, use OpenHands at `http://localhost:3000`:
 
-**Para debugging e análise:**
+**For debugging and analysis:**
 ```
-Analise este código .NET e identifique possíveis problemas de performance e segurança
-```
-
-**Para refatoração complexa:**
-```
-Refatore este código aplicando padrões de projeto SOLID e melhores práticas .NET
+Analyze this .NET code and identify potential performance and security issues
 ```
 
-**Para criação de APIs:**
+**For complex refactoring:**
 ```
-Crie uma Web API RESTful completa com Entity Framework, validação e Swagger
+Refactor this code applying SOLID design patterns and .NET best practices
 ```
 
-### 4.3 Edit Direto (`Ctrl+I`)
-Escreva comentários e deixe a IA gerar:
+**For API creation:**
+```
+Create a complete RESTful Web API with Entity Framework, validation, and Swagger
+```
+
+### 4.3 Inline Edit (`Ctrl+I`)
+Write comments and let AI generate:
 
 ```csharp
 // TODO: Use security-jwt skill to implement JWT authentication
@@ -247,133 +247,133 @@ Escreva comentários e deixe a IA gerar:
 // TODO: Use performance-optimization skill for async handling
 ```
 
-### 4.4 Contexto Local (`@Codebase`)
-Use `@Codebase` no chat para referenciar todo o projeto:
+### 4.4 Local Context (`@Codebase`)
+Use `@Codebase` in chat to reference entire project:
 
 ```
 @Codebase Use dotnet-best-practices skill to create a service layer following Dependency Injection principles
 ```
 
-### 4.5 Prompts Especializados C# com Agents
+### 4.5 Specialized C# Prompts with Agents
 
-#### Para Entity Framework Core:
+#### For Entity Framework Core:
 ```
 Use entity-framework-core skill to generate a Repository pattern implementation for this DbContext with async methods, proper error handling, and unit testing support.
 ```
 
-#### Para Web API:
+#### For Web API:
 ```
 Use aspnet-core-api skill to create RESTful API endpoints with proper HTTP verbs, status codes, validation, and Swagger documentation.
 ```
 
-#### Para Testes Unitários:
+#### For Unit Tests:
 ```
 Use testing-xunit skill to generate comprehensive xUnit tests for this class using Arrange-Act-Assert pattern, mocking dependencies with Moq.
 ```
 
-#### Para Blazor:
+#### For Blazor:
 ```
 Use blazor-components skill to create reusable Blazor components with proper state management and accessibility features.
 ```
 
-#### Para Performance:
+#### For Performance:
 ```
 Use performance-optimization skill to optimize this code for better performance and memory usage.
 ```
 
-## 🔍 Passo 5: Comandos Úteis
+## 🔍 Step 5: Useful Commands
 
-### 5.1 Atalhos VS Code + Copilot
-- `Ctrl+L`: Abrir chat Copilot
-- `Ctrl+I`: Editar código selecionado
-- `Ctrl+Shift+\`: Focar input Copilot
-- `Ctrl+Shift+/`: Comandos slash Copilot
-- `Ctrl+Shift+P`: "Copilot: " para comandos especiais
+### 5.1 VS Code + Copilot Shortcuts
+- `Ctrl+L`: Open Copilot chat
+- `Ctrl+I`: Edit selected code
+- `Ctrl+Shift+\`: Focus Copilot input
+- `Ctrl+Shift+/`: Copilot slash commands
+- `Ctrl+Shift+P`: "Copilot: " for special commands
 
-### 5.2 Atalhos Personalizados C#/.NET
-- `Ctrl+Shift+C`: Gerar código async
-- `Ctrl+Shift+T`: Rodar testes no contexto
-- `Ctrl+Shift+R`: Refatorar código
-- `Ctrl+Shift+M`: Adicionar usings faltantes
-- `Ctrl+Shift+U`: Remover usings não utilizados
+### 5.2 Custom C#/.NET Shortcuts
+- `Ctrl+Shift+C`: Generate async code
+- `Ctrl+Shift+T`: Run tests in context
+- `Ctrl+Shift+R`: Refactor code
+- `Ctrl+Shift+M`: Add missing usings
+- `Ctrl+Shift+U`: Remove unused usings
 
-## 🚨 Dicas Profissionais
+## 🚨 Professional Tips
 
-### Performance com Agents + OpenHands
-1. **Context menor = Mais rápido**: Use skills específicas
-2. **Evite arquivos >1000 linhas**: Divida em classes menores
-3. **Use prompts diretos**: Seja específico na skill desejada
-4. **OpenHands para tarefas complexas**: Use para debugging e refatoração pesada
-5. **Copilot para tarefas rápidas**: Autocomplete e pequenas edições
+### Performance with Agents + OpenHands
+1. **Smaller context = Faster**: Use specific skills
+2. **Avoid files >1000 lines**: Split into smaller classes
+3. **Use direct prompts**: Be specific about desired skill
+4. **OpenHands for complex tasks**: Use for debugging and heavy refactoring
+5. **Copilot for quick tasks**: Autocomplete and small edits
 
-### Configuração MCP Servers
-O projeto inclui configuração MCP com:
-- **Memory**: Armazenamento persistente (1GB)
-- **Sequential Thinking**: Raciocínio estruturado
-- **Fetch**: Acesso à web
-- **Filesystem**: Operações de arquivo
-- **Git**: Controle de versão
-- **SQLite**: Banco de dados local
-- **Puppeteer**: Automação web
-- **Shadcn UI**: Componentes UI
-- **DeepWiki**: Documentação GitHub
+### MCP Servers Configuration
+The project includes MCP configuration with:
+- **Memory**: Persistent storage (1GB)
+- **Sequential Thinking**: Structured reasoning
+- **Fetch**: Web access
+- **Filesystem**: File operations
+- **Git**: Version control
+- **SQLite**: Local database
+- **Puppeteer**: Web automation
+- **Shadcn UI**: UI components
+- **DeepWiki**: GitHub documentation
 
 ### Troubleshooting
 
-**OpenHands não inicia:**
+**OpenHands not starting:**
 ```bash
-# Verificar se Docker está rodando
+# Check if Docker is running
 docker ps
 
-# Verificar se a imagem customizada existe
+# Check if custom image exists
 docker images | grep ai-studio-workspace
 
-# Se não existir, build a imagem
+# If not exists, build image
 docker-compose --profile build build
 
-# Verificar logs
+# Check logs
 docker-compose logs openhands
 ```
 
-**Gemini API key não funciona:**
-1. Verifique se a API key está correta
-2. Confirme se a API Gemini está ativada
-3. Verifique variável de ambiente
+**Gemini API key not working:**
+1. Check if API key is correct
+2. Confirm if Gemini API is enabled
+3. Check environment variable
 
-**Arquivos não encontrados:**
+**Files not found:**
 ```bash
-# Windows - Verificar caminhos
+# Windows - Check paths
 echo %APPDATA%
 dir "%APPDATA%\Code\User"
 
-# Linux/macOS - Verificar caminhos  
+# Linux/macOS - Check paths  
 echo ~/.config/Code/User
 ls -la ~/.config/Code/User
 ```
 
-**Copilot não reconhece configuração:**
-1. Verifique se o caminho está correto:
+**Copilot not recognizing configuration:**
+1. Check if path is correct:
    - Windows: `%APPDATA%\Code\User\settings.json`
    - Linux/macOS: `~/.config/Code/User/settings.json`
-2. Reinicie VS Code completamente
-3. Verifique se a extensão Copilot está instalada
+2. Restart VS Code completely
+3. Check if Copilot extension is installed
 
-**Atalhos não funcionam:**
-1. Abra `Ctrl+Shift+P` > "Preferences: Open Keyboard Shortcuts (JSON)"
-2. Verifique se o arquivo `keybindings.json` foi copiado corretamente
-3. Reinicie VS Code
+**Shortcuts not working:**
+1. Open `Ctrl+Shift+P` > "Preferences: Open Keyboard Shortcuts (JSON)"
+2. Check if `keybindings.json` was copied correctly
+3. Restart VS Code
 
-**Agents não funcionando:**
-1. Verifique se a pasta `agents/` existe no projeto
-2. Confirme o `agentsPath` no settings.json
-3. Reinicie VS Code para carregar os agents
+**Agents not working:**
+1. Check if `agents/` folder exists in project
+2. Confirm `agentsPath` in settings.json
+3. Restart VS Code to load agents
 
-## 🎉 Exemplo Completo: Gerar Testes xUnit com Agents + OpenHands
+## 🎉 Complete Example: Generate xUnit Tests with Agents + OpenHands
 
-### Usando GitHub Copilot:
-1. Selecione uma classe C#
-2. `Ctrl+L` para abrir chat
-3. Prompt com agent:
+### Using GitHub Copilot:
+1. Select a C# class
+2. `Ctrl+L` to open chat
+3. Prompt with agent:
 ```
 @Codebase Use testing-xunit skill to generate comprehensive xUnit tests for this repository class following these requirements:
 - Use Arrange-Act-Assert pattern
@@ -384,52 +384,52 @@ ls -la ~/.config/Code/User
 - Add Theory tests for parameter validation
 ```
 
-### Usando OpenHands para análise complexa:
-1. Abra `http://localhost:3000`
-2. Cole o código completo
+### Using OpenHands for complex analysis:
+1. Open `http://localhost:3000`
+2. Paste complete code
 3. Prompt:
 ```
-Analise esta classe .NET e gere:
-1. Testes unitários completos com xUnit e Moq
-2. Análise de coverage de código
-3. Sugestões de refatoração para melhorar testabilidade
-4. Identificação de code smells e anti-padrões
+Analyze this .NET class and generate:
+1. Complete unit tests with xUnit and Moq
+2. Code coverage analysis
+3. Refactoring suggestions to improve testability
+4. Identification of code smells and anti-patterns
 ```
 
-## ✅ Verificação Final
+## ✅ Final Verification
 
-Após seguir todos os passos, verifique:
+After following all steps, verify:
 
-### ✅ VS Code Configurado
-- [ ] Extensão GitHub Copilot instalada
-- [ ] Configurações copiadas para pasta correta
-- [ ] Atalhos personalizados funcionando
-- [ ] Extensões recomendadas instaladas
+### ✅ VS Code Configured
+- [ ] GitHub Copilot extension installed
+- [ ] Settings copied to correct folder
+- [ ] Custom shortcuts working
+- [ ] Recommended extensions installed
 
-### ✅ GitHub Copilot Funcionando
-- [ ] Login efetuado no GitHub Copilot
-- [ ] Copilot respondendo ao "Hello"
-- [ ] Autocomplete funcionando
-- [ ] Comandos slash disponíveis
+### ✅ GitHub Copilot Working
+- [ ] Login to GitHub Copilot completed
+- [ ] Copilot responding to "Hello"
+- [ ] Autocomplete working
+- [ ] Slash commands available
 
-### ✅ OpenHands com Gemini Configurado
-- [ ] API key do Gemini configurada
-- [ ] Imagem customizada `ai-studio-workspace` construída com .NET SDK 10
-- [ ] OpenHands rodando em localhost:3000
-- [ ] Gemini 3.1 Flash Lite Preview respondendo
-- [ ] Configurações de performance aplicadas
-- [ ] Sandbox customizado com .NET SDK 10 funcionando
+### ✅ OpenHands with Gemini Configured
+- [ ] Gemini API key configured
+- [ ] Custom image `ai-studio-workspace` built with .NET SDK 10
+- [ ] OpenHands running on localhost:3000
+- [ ] Gemini 3.1 Flash Lite Preview responding
+- [ ] Performance settings applied
+- [ ] Custom sandbox with .NET SDK 10 working
 
-### ✅ Agents Configurados
-- [ ] Pasta `agents/` copiada para o projeto
-- [ ] Skills disponíveis no chat
-- [ ] Contexto `@Codebase` funcionando com agents
-- [ ] Prompts especializados respondendo
+### ✅ Agents Configured
+- [ ] `agents/` folder copied to project
+- [ ] Skills available in chat
+- [ ] `@Codebase` context working with agents
+- [ ] Specialized prompts responding
 
-### ✅ MCP Servers Funcionando
-- [ ] Servidores MCP configurados
-- [ ] Memory server ativo
-- [ ] Fetch e filesystem funcionando
-- [ ] Integração com OpenHands operacional
+### ✅ MCP Servers Working
+- [ ] MCP servers configured
+- [ ] Memory server active
+- [ ] Fetch and filesystem working
+- [ ] Integration with OpenHands operational
 
-Agora você tem um ambiente completo com GitHub Copilot para desenvolvimento rápido e OpenHands com Gemini para tarefas complexas! 🚀
+Now you have a complete environment with GitHub Copilot for quick development and OpenHands with Gemini for complex tasks! 🚀
