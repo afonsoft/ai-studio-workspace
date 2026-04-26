@@ -1,21 +1,31 @@
-# AGENTS.md - .NET Development with GitHub Copilot
+# AGENTS.md - Single Source of Truth
 
-## Project Overview
-Modern .NET/C# and Angular development environment with GitHub Copilot agents, skills, and OpenHands integration. Optimized for Gemini API (gemini-3.1-flash-lite-preview).
+## Mission
+Modern .NET/C# and Angular development environment optimized for AI agents with GitHub Copilot, OpenHands, and MCP integration.
 
-## Build Commands
-```bash
-# Build solution
-dotnet build
+## Technology Stack
+- **Backend**: .NET 8+, .NET 10, C# 12+, Entity Framework Core
+- **Frontend**: Angular v20+, TypeScript, Tailwind CSS
+- **AI/ML**: Gemini API (gemini-3.1-flash-lite-preview), GitHub Copilot, OpenHands
+- **Infrastructure**: Docker, Docker Compose, Model Context Protocol (MCP)
+- **Testing**: xUnit, Vitest/Jasmine, Playwright
 
-# Run tests
-dotnet test
+## Code Patterns (SOLID + Clean Architecture)
+- **S**: Single Responsibility - Each class has one reason to change
+- **O**: Open/Closed - Open for extension, closed for modification
+- **L**: Liskov Substitution - Subtypes must be substitutable
+- **I**: Interface Segregation - Clients shouldn't depend on unused interfaces
+- **D**: Dependency Inversion - Depend on abstractions, not concretions
 
-# Run application
-dotnet run --project src/MyProject
-
-# Docker
-docker-compose up -d
+## Project Structure
+```
+src/              # Source code
+├── Domain/       # Business logic, entities, interfaces
+├── Application/  # Use cases, DTOs, application services
+├── Infrastructure/ # EF Core, external services, repositories
+└── Presentation/  # Controllers, APIs, UI components
+tests/            # Unit and integration tests
+agents/           # AI skills, rules, and memory
 ```
 
 ## Coding Conventions
@@ -25,32 +35,31 @@ docker-compose up -d
 - **API**: RESTful with proper HTTP verbs, DTOs for data transfer
 - **EF Core**: NoTracking by default, split queries for navigation collections
 
-## Project Structure
-```
-src/              # Source code
-├── Controllers/  # API endpoints
-├── Models/       # Entities and DTOs
-├── Services/     # Business logic
-├── Data/         # EF Core DbContext
-tests/            # Unit and integration tests
-agents/           # Skills and rules
+## Build Commands
+```bash
+dotnet build              # Build solution
+dotnet test               # Run tests
+dotnet run --project src/MyProject  # Run application
+docker-compose up -d      # Start Docker services
 ```
 
-## What Agents Must Not Touch
-- Never modify generated files (bin/, obj/, node_modules/)
-- Never change .gitignore or CI/CD configurations without explicit request
-- Never modify secrets.json or .env files
-- Never remove existing tests without replacement
-- Never break backward compatibility without migration path
+## Agent Engagement Rules
+- **DO**: Follow SOLID principles and Clean Architecture
+- **DO**: Use async/await for I/O operations
+- **DO**: Write unit tests for business logic
+- **DO**: Use proper error handling and logging
+- **DO**: Follow RESTful API design principles
 
-## Skills & Rules
-See `agents/AGENTS.md` for detailed skill packages and coding rules.
+## Agent Restrictions
+- **NEVER**: Modify generated files (bin/, obj/, node_modules/)
+- **NEVER**: Change .gitignore or CI/CD without explicit request
+- **NEVER**: Modify secrets.json or .env files
+- **NEVER**: Remove existing tests without replacement
+- **NEVER**: Break backward compatibility without migration path
 
-## MCP Integration
-Model Context Protocol servers configured in `mcp-config.json` for filesystem, git, and database operations.
-
-## References
-- [agents/AGENTS.md](agents/AGENTS.md) - Complete skills and rules guide
-- [agents/rules/](agents/rules/) - Coding standards and conventions
-- [agents/skills/](agents/skills/) - Reusable skill packages
+## Documentation References
+- [agents/README.md](agents/README.md) - Agent infrastructure
+- [agents/MEMORY.md](agents/MEMORY.md) - Technical decisions log
+- [agents/skills/](agents/skills/) - Modular skill packages
 - [DESIGN.md](DESIGN.md) - Architecture and design patterns
+- [llms.txt](llms.txt) - Web/LLM discoverability

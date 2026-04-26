@@ -1,0 +1,112 @@
+# AI Ignore - Files and folders to exclude from AI agent access
+
+# Build outputs
+bin/
+obj/
+out/
+dist/
+build/
+
+# Dependencies
+node_modules/
+packages/
+vendor/
+
+# IDE and Editor files
+.vscode/
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Generated files
+*.generated.cs
+*.g.cs
+*.designer.cs
+*.resx
+*.Designer.cs
+
+# Sensitive configuration
+secrets.json
+.env
+.env.local
+.env.*.local
+appsettings.Development.json
+appsettings.Production.json
+*.pfx
+*.pem
+*.key
+*.cert
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+
+# Cache
+.cache/
+.nuget/
+.npm/
+.yarn/
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Large binaries
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Documentation auto-generated
+docs/api/
+docs/generated/
+
+# MCP data
+openhands/data/
+openhands/logs/
+openhands/cache/
+
+# Workspace temporary files
+workspace/temp/
+workspace/logs/
+workspace/cache/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/workflows/
+.azure-pipelines/
+.gitlab-ci.yml
+travis.yml
+circleci/
+
+# Backup files
+*.bak
+*.backup
+*.old
