@@ -1,49 +1,49 @@
-# 🤖 OpenHands - Ambiente de IA Autônomo
+# 🤖 OpenHands - Autonomous AI Environment
 
-## 📋 Visão Geral
+## 📋 Overview
 
-Este diretório contém as configurações e dados do OpenHands, o ambiente de IA autônomo que permite execução de tarefas complexas com acesso a ferramentas e capacidades de programação.
+This directory contains OpenHands configurations and data, the autonomous AI environment that enables execution of complex tasks with access to tools and programming capabilities.
 
-## 📁 Estrutura do Diretório
+## 📁 Directory Structure
 
 ```
 openhands/
-├── README.md                    # Este arquivo
-├── settings.json                # Configurações principais do OpenHands
-├── config.json                  # Configurações adicionais
-├── data/                        # Dados persistentes
-│   ├── conversations/           # Histórico de conversas
-│   ├── workspaces/              # Workspaces de usuários
-│   ├── tools/                   # Configurações de ferramentas
-│   └── cache/                   # Cache de respostas
-├── logs/                        # Logs do sistema
-│   ├── app.log                  # Logs da aplicação
-│   ├── agent.log                # Logs do agente
-│   └── error.log                # Logs de erros
-├── plugins/                     # Plugins personalizados
-│   ├── custom-tools/            # Ferramentas customizadas
-│   └── extensions/              # Extensões do sistema
-└── backups/                     # Backups automáticos
+├── README.md                    # This file
+├── settings.json                # Main OpenHands settings
+├── config.json                  # Additional settings
+├── data/                        # Persistent data
+│   ├── conversations/           # Conversation history
+│   ├── workspaces/              # User workspaces
+│   ├── tools/                   # Tool configurations
+│   └── cache/                   # Response cache
+├── logs/                        # System logs
+│   ├── app.log                  # Application logs
+│   ├── agent.log                # Agent logs
+│   └── error.log                # Error logs
+├── plugins/                     # Custom plugins
+│   ├── custom-tools/            # Custom tools
+│   └── extensions/              # System extensions
+└── backups/                     # Automatic backups
     ├── settings-20240307.json
     └── conversations-20240307.tar.gz
 ```
 
-## 🎯 Propósito
+## 🎯 Purpose
 
-### O que é armazenado aqui:
+### What is stored here:
 
-1. **Configurações**: Parâmetros do LLM, timeouts, limites
-2. **Conversas**: Histórico completo de interações
-3. **Workspaces**: Ambientes de trabalho por usuário/sessão
-4. **Ferramentas**: Configurações de ferramentas disponíveis
-5. **Logs**: Registros detalhados de operações
+1. **Settings**: LLM parameters, timeouts, limits
+2. **Conversations**: Complete interaction history
+3. **Workspaces**: Work environments per user/session
+4. **Tools**: Available tool configurations
+5. **Logs**: Detailed operation records
 
-### Por que este diretório é importante:
+### Why this directory is important:
 
-- **Persistência**: Mantém estado entre reinicializações
-- **Personalização**: Permite configurações específicas por usuário
-- **Debug**: Facilita troubleshooting com logs detalhados
-- **Backup**: Protege dados importantes do sistema
+- **Persistence**: Maintains state between restarts
+- **Customization**: Allows user-specific settings
+- **Debug**: Facilitates troubleshooting with detailed logs
+- **Backup**: Protects important system data
 
 ## 🔧 OpenHands V1 Configuration
 
@@ -75,21 +75,21 @@ SANDBOX_RUNTIME_CONTAINER_IMAGE="ai-studio-workspace"
 
 ### Custom Sandbox Image
 
-O projeto usa uma imagem customizada do sandbox (`ai-studio-workspace`) que estende o agente-server oficial do OpenHands com suporte a .NET SDK 10 para desenvolvimento C#.
+The project uses a custom sandbox image (`ai-studio-workspace`) that extends the official OpenHands agent-server with .NET SDK 10 support for C# development.
 
-**Características da Imagem Customizada:**
-- **Base**: `nikolaik/python-nodejs:python3.12-nodejs22` (mesma do agent-server oficial)
-- **Adicionado**: .NET SDK 10 para desenvolvimento C#
-- **Pacotes Python**: numpy, pandas para processamento de dados
-- **Ferramentas**: ffmpeg para processamento de mídia, git, sudo, wget, vim, nano
-- **Localização**: `runtime/Dockerfile`
+**Custom Image Features:**
+- **Base**: `nikolaik/python-nodejs:python3.12-nodejs22` (same as official agent-server)
+- **Added**: .NET SDK 10 for C# development
+- **Python Packages**: numpy, pandas for data processing
+- **Tools**: ffmpeg for media processing, git, sudo, wget, vim, nano
+- **Location**: `runtime/Dockerfile`
 
-**Construir a Imagem:**
+**Build the Image:**
 ```bash
-# Usando docker-compose
+# Using docker-compose
 docker-compose --profile build build
 
-# Ou manualmente
+# Or manually
 docker build -t ai-studio-workspace ./runtime
 ```
 
@@ -143,7 +143,7 @@ docker build -t ai-studio-workspace ./runtime
 }
 ```
 
-### config.json (Configurações Adicionais)
+### config.json (Additional Settings)
 
 ```json
 {
@@ -189,44 +189,44 @@ docker build -t ai-studio-workspace ./runtime
 }
 ```
 
-## 🤖 Funcionalidades Principais
+## 🤖 Main Features
 
-### 1. Agente Autônomo
+### 1. Autonomous Agent
 
-OpenHands funciona como um agente autônomo capaz de:
+OpenHands works as an autonomous agent capable of:
 
-- **Executar código** em múltiplas linguagens
-- **Manipular arquivos** e sistema de arquivos
-- **Usar ferramentas** externas via API
-- **Acessar internet** para pesquisa
-- **Aprender** com o contexto da conversa
+- **Execute code** in multiple languages
+- **Manipulate files** and file system
+- **Use external tools** via API
+- **Access internet** for research
+- **Learn** from conversation context
 
-### 2. Sandbox Seguro
+### 2. Secure Sandbox
 
-O ambiente sandbox garante:
+The sandbox environment ensures:
 
-- **Isolamento**: Operações confinadas ao workspace
-- **Segurança**: Acesso controlado ao sistema
-- **Recursos**: Limites de CPU e memória
-- **Persistência**: Estado mantido entre sessões
+- **Isolation**: Operations confined to workspace
+- **Security**: Controlled system access
+- **Resources**: CPU and memory limits
+- **Persistence**: State maintained between sessions
 
-### 3. Interface Web
+### 3. Web Interface
 
-Acessível via http://localhost:3000 com:
+Accessible via http://localhost:3000 with:
 
-- **Chat Interface**: Interação natural com o agente
-- **Code Editor**: Editor de código com syntax highlighting
-- **File Explorer**: Navegação e gerenciamento de arquivos
-- **Terminal**: Acesso direto ao sandbox
-- **Settings**: Configurações personalizáveis
+- **Chat Interface**: Natural interaction with agent
+- **Code Editor**: Code editor with syntax highlighting
+- **File Explorer**: File navigation and management
+- **Terminal**: Direct access to sandbox
+- **Settings**: Customizable settings
 
-## 🚀 Casos de Uso
+## 🚀 Use Cases
 
-### 1. Desenvolvimento C#/.NET
+### 1. C#/.NET Development
 
 ```bash
-# Acesse http://localhost:3000
-# Use prompts como:
+# Access http://localhost:3000
+# Use prompts like:
 
 "Create a new Web API project with Entity Framework Core"
 "Implement a repository pattern for this DbContext"
@@ -235,76 +235,76 @@ Acessível via http://localhost:3000 com:
 "Add authentication to this API endpoint"
 ```
 
-### 2. Análise de Código
+### 2. Code Analysis
 
 ```bash
-# Analisar projeto existente
+# Analyze existing project
 "Analyze this C# project and suggest improvements"
 "Check for security vulnerabilities in this code"
 "Generate documentation for this API"
 "Create architecture diagrams for this system"
 ```
 
-### 3. Automação
+### 3. Automation
 
 ```bash
-# Criar scripts e automações
+# Create scripts and automations
 "Create a PowerShell script to deploy this application"
 "Generate a Dockerfile for this .NET project"
 "Create CI/CD pipeline configuration for GitHub Actions"
 "Set up automated testing for this project"
 ```
 
-## 📊 Monitoramento e Logs
+## 📊 Monitoring and Logs
 
-### Estrutura de Logs
+### Log Structure
 
 ```
 logs/
-├── app.log              # Logs gerais da aplicação
-├── agent.log            # Logs específicos do agente
-├── error.log            # Logs de erros e exceções
-├── access.log           # Logs de acesso à API
-├── performance.log      # Logs de performance
-└── security.log         # Logs de eventos de segurança
+├── app.log              # General application logs
+├── agent.log            # Specific agent logs
+├── error.log            # Error and exception logs
+├── access.log           # API access logs
+├── performance.log      # Performance logs
+└── security.log         # Security event logs
 ```
 
-### Scripts de Monitoramento
+### Monitoring Scripts
 
 ```bash
 #!/bin/bash
 # monitor-openhands.sh
 
-echo "🤖 Monitoramento do OpenHands"
+echo "🤖 OpenHands Monitoring"
 
-# Verificar se está rodando
+# Check if running
 if docker ps | grep -q openhands-hands-app; then
-    echo "✅ Container rodando"
+    echo "✅ Container running"
 else
-    echo "❌ Container parado"
+    echo "❌ Container stopped"
     exit 1
 fi
 
-# Verificar uso de recursos
-echo "📈 Recursos:"
+# Check resource usage
+echo "📈 Resources:"
 docker stats --no-stream openhands-hands-app
 
-# Verificar logs recentes
-echo "📋 Logs recentes:"
+# Check recent logs
+echo "📋 Recent logs:"
 docker logs --tail=10 openhands-hands-app
 
-# Verificar erros
-echo "🚨 Erros recentes:"
+# Check errors
+echo "🚨 Recent errors:"
 docker logs openhands-hands-app 2>&1 | grep -i error | tail -5
 
-# Verificar conversas ativas
-echo "💬 Conversas ativas:"
+# Check active conversations
+echo "💬 Active conversations:"
 docker exec openhands-hands-app ls /openhands/data/conversations/ 2>/dev/null | wc -l
 ```
 
-## 🔧 Administração e Manutenção
+## 🔧 Administration and Maintenance
 
-### Backup Automático
+### Automatic Backup
 
 ```bash
 #!/bin/bash
@@ -313,62 +313,62 @@ docker exec openhands-hands-app ls /openhands/data/conversations/ 2>/dev/null | 
 BACKUP_DIR="backups/openhands"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
-echo "🗄️ Backup do OpenHands"
+echo "🗄️ OpenHands Backup"
 
-# Criar diretório de backup
+# Create backup directory
 mkdir -p $BACKUP_DIR
 
-# Backup das configurações
+# Backup settings
 cp openhands/settings.json $BACKUP_DIR/settings-$TIMESTAMP.json
 cp openhands/config.json $BACKUP_DIR/config-$TIMESTAMP.json
 
-# Backup das conversas
+# Backup conversations
 if [ -d "openhands/data/conversations" ]; then
     tar -czf $BACKUP_DIR/conversations-$TIMESTAMP.tar.gz openhands/data/conversations/
 fi
 
-# Backup dos workspaces
+# Backup workspaces
 if [ -d "openhands/data/workspaces" ]; then
     tar -czf $BACKUP_DIR/workspaces-$TIMESTAMP.tar.gz openhands/data/workspaces/
 fi
 
-# Limpar backups antigos (manter últimos 7)
+# Clean old backups (keep last 7)
 ls -t $BACKUP_DIR/settings-*.json | tail -n +8 | xargs rm -f
 ls -t $BACKUP_DIR/conversations-*.tar.gz | tail -n +8 | xargs rm -f
 ls -t $BACKUP_DIR/workspaces-*.tar.gz | tail -n +8 | xargs rm -f
 
-echo "✅ Backup concluído"
+echo "✅ Backup completed"
 ```
 
-### Limpeza e Manutenção
+### Cleanup and Maintenance
 
 ```bash
 #!/bin/bash
 # cleanup-openhands.sh
 
-echo "🧹 Limpeza do OpenHands"
+echo "🧹 OpenHands Cleanup"
 
-# Limpar logs antigos
+# Clean old logs
 find openhands/logs -name "*.log" -mtime +7 -delete
 
-# Limpar cache antigo
+# Clean old cache
 find openhands/data/cache -name "*" -mtime +1 -delete
 
-# Limpar conversas muito antigas (30 dias)
+# Clean very old conversations (30 days)
 find openhands/data/conversations -name "*" -mtime +30 -delete
 
-# Limpar workspaces inativos (7 dias)
+# Clean inactive workspaces (7 days)
 find openhands/data/workspaces -name "*" -mtime +7 -delete
 
-# Compactar logs grandes
+# Compress large logs
 find openhands/logs -name "*.log" -size +10M -exec gzip {} \;
 
-echo "✅ Limpeza concluída"
+echo "✅ Cleanup completed"
 ```
 
-## 🔧 Configuração Avançada
+## 🔧 Advanced Configuration
 
-### Personalização de Modelos
+### Model Customization
 
 ```json
 {
@@ -395,7 +395,7 @@ echo "✅ Limpeza concluída"
 }
 ```
 
-### Plugins Personalizados
+### Custom Plugins
 
 ```javascript
 // openhands/plugins/custom-tools/csharp-analyzer.js
@@ -418,9 +418,9 @@ class CSharpAnalyzer {
 module.exports = CSharpAnalyzer;
 ```
 
-## 🔐 Segurança
+## 🔐 Security
 
-### Configurações de Segurança
+### Security Settings
 
 ```json
 {
@@ -447,24 +447,24 @@ module.exports = CSharpAnalyzer;
 }
 ```
 
-### Boas Práticas de Segurança
+### Security Best Practices
 
-1. **Isolamento de Rede**: Limitar acesso a domínios específicos
-2. **Validação de Upload**: Escanear arquivos enviados
-3. **Rate Limiting**: Limitar requisições por usuário
-4. **Audit Logging**: Registrar todas as ações importantes
-5. **Regular Updates**: Manter imagem atualizada
+1. **Network Isolation**: Limit access to specific domains
+2. **Upload Validation**: Scan uploaded files
+3. **Rate Limiting**: Limit requests per user
+4. **Audit Logging**: Log all important actions
+5. **Regular Updates**: Keep image updated
 
-## 📈 Performance e Otimização
+## 📈 Performance and Optimization
 
-### Métricas Importantes
+### Important Metrics
 
-- **Tempo de Resposta**: < 2 segundos para prompts simples
-- **Throughput**: > 10 requests por minuto
-- **Uso de Memória**: < 4GB para operações normais
-- **Taxa de Erros**: < 1% para operações padrão
+- **Response Time**: < 2 seconds for simple prompts
+- **Throughput**: > 10 requests per minute
+- **Memory Usage**: < 4GB for normal operations
+- **Error Rate**: < 1% for standard operations
 
-### Otimizações
+### Optimizations
 
 ```json
 {
@@ -482,97 +482,97 @@ module.exports = CSharpAnalyzer;
 
 ## 🛠️ Troubleshooting
 
-### Problemas Comuns
+### Common Problems
 
-1. **Container não inicia**
+1. **Container not starting**
    ```bash
-   # Verificar logs
+   # Check logs
    docker logs openhands-hands-app
    
-   # Verificar configurações
+   # Check settings
    cat openhands/settings.json
    
-   # Reiniciar container
+   # Restart container
    docker restart openhands-hands-app
    ```
 
-2. **Conexão com Gemini API falha**
+2. **Gemini API connection fails**
    ```bash
-   # Testar conexão
+   # Test connection
   docker exec openhands-hands-app curl -H "Content-Type: application/json" -d '{"contents":[{"parts":[{"text":"Hello"}]}]}' "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=YOUR_API_KEY"
    
-   # Verificar configuração da API Key
+   # Check API Key configuration
    cat openhands/settings.json | grep api_key
    ```
 
-3. **Performance lenta**
+3. **Slow performance**
    ```bash
-   # Verificar recursos
+   # Check resources
    docker stats openhands-hands-app
    
-   # Ajustar configurações
-   # Reduzir max_tokens ou context_window
-   # Desabilitar features não essenciais
+   # Adjust settings
+   # Reduce max_tokens or context_window
+   # Disable non-essential features
    ```
 
-4. **Erros de permissão**
+4. **Permission errors**
    ```bash
-   # Verificar permissões do workspace
+   # Check workspace permissions
    ls -la workspace/
    
-   # Corrigir permissões
+   # Fix permissions
    sudo chown -R $USER:$USER workspace/
    chmod -R 755 workspace/
    ```
 
-## 📚 Integração com Outros Serviços
+## 📚 Integration with Other Services
 
 ### Gemini API
 
 - **Endpoint**: `https://generativelanguage.googleapis.com`
-- **Modelos**: `gemini-3.1-flash-lite-preview` principal
-- **API**: Comunicação via REST API
-- **Autenticação**: API Key configurada em settings.json
+- **Models**: `gemini-3.1-flash-lite-preview` main
+- **API**: Communication via REST API
+- **Authentication**: API Key configured in settings.json
 
 ### Workspace
 
-- **Montagem**: `/workspace` montado do host
-- **Persistência**: Arquivos mantidos entre sessões
-- **Acesso**: Acesso completo ao sistema de arquivos
+- **Mount**: `/workspace` mounted from host
+- **Persistence**: Files maintained between sessions
+- **Access**: Complete file system access
 
 ### GitHub Copilot
 
-- **Integração**: Agents disponíveis no workspace
-- **Configuração**: Skills e rules para .NET development
-- **Uso**: Copilot para desenvolvimento rápido, OpenHands para tarefas complexas
+- **Integration**: Agents available in workspace
+- **Configuration**: Skills and rules for .NET development
+- **Usage**: Copilot for quick development, OpenHands for complex tasks
 
 ## 🔄 Roadmap
 
-### v1.5.0 (Planejado)
-- Multi-modelo simultâneo
-- Melhorias de performance
-- Mais ferramentas integradas
-- Interface melhorada
+### v1.5.0 (Planned)
+- Simultaneous multi-model
+- Performance improvements
+- More integrated tools
+- Improved interface
 
-### v2.0.0 (Planejado)
-- Suporte a multi-usuário
-- Sistema de plugins avançado
-- Integração com mais serviços
+### v2.0.0 (Planned)
+- Multi-user support
+- Advanced plugin system
+- Integration with more services
 - Analytics dashboard
 
-## 📝 Notas de Versão
+## 📝 Release Notes
 
-### v1.4.0 (Atual)
-- Configuração otimizada para Gemini API
-- Suporte a GitHub Copilot Agents
-- Melhorias de memória e performance
-- Interface em português
+### v1.4.0 (Current)
+- Configuration optimized for Gemini API
+- GitHub Copilot Agents support
+- Memory and performance improvements
+- Portuguese interface
 
 ### v1.3.0
-- Integração com Gemini API
-- Sandbox melhorado
-- Mais ferramentas disponíveis
+- Gemini API integration
+- Improved sandbox
+- More available tools
 
 ---
 
-**Importante**: OpenHands é uma ferramenta poderosa. Use com responsabilidade e implemente as configurações de segurança adequadas para seu ambiente.
+**Important**: OpenHands is a powerful tool. Use responsibly and implement appropriate security settings for your environment.

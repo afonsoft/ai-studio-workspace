@@ -1,54 +1,54 @@
-# 📁 Workspace - Área de Trabalho Compartilhada
+# 📁 Workspace - Shared Work Area
 
-## 📋 Visão Geral
+## 📋 Overview
 
-Este diretório serve como área de trabalho compartilhada entre os containers Docker, permitindo troca de arquivos e colaboração entre diferentes serviços do projeto DevTools IA.
+This directory serves as a shared work area between Docker containers, allowing file exchange and collaboration between different services of the DevTools IA project.
 
-## 📁 Estrutura do Diretório
+## 📁 Directory Structure
 
 ```
 workspace/
-├── README.md                    # Este arquivo
-├── projects/                    # Projetos de desenvolvimento
-│   ├── sample-csharp/          # Projeto C# de exemplo
-│   │   ├── src/                # Código fonte
-│   │   ├── tests/              # Testes unitários
-│   │   └── README.md           # Documentação do projeto
-│   ├── documentation/          # Documentação técnica
-│   └── templates/             # Templates de projeto
-├── shared/                     # Arquivos compartilhados
-│   ├── configs/               # Configurações compartilhadas
-│   ├── scripts/               # Scripts utilitários
-│   └── resources/             # Recursos reutilizáveis
-├── temp/                       # Arquivos temporários
-│   ├── uploads/               # Uploads temporários
-│   ├── downloads/             # Downloads temporários
-│   └── cache/                 # Cache compartilhado
-└── logs/                       # Logs compartilhados
-    ├── openhands/             # Logs do OpenHands
-    └── webui/                 # Logs do WebUI
+├── README.md                    # This file
+├── projects/                    # Development projects
+│   ├── sample-csharp/          # Sample C# project
+│   │   ├── src/                # Source code
+│   │   ├── tests/              # Unit tests
+│   │   └── README.md           # Project documentation
+│   ├── documentation/          # Technical documentation
+│   └── templates/             # Project templates
+├── shared/                     # Shared files
+│   ├── configs/               # Shared configurations
+│   ├── scripts/               # Utility scripts
+│   └── resources/             # Reusable resources
+├── temp/                       # Temporary files
+│   ├── uploads/               # Temporary uploads
+│   ├── downloads/             # Temporary downloads
+│   └── cache/                 # Shared cache
+└── logs/                       # Shared logs
+    ├── openhands/             # OpenHands logs
+    └── webui/                 # WebUI logs
 ```
 
-## 🎯 Propósito
+## 🎯 Purpose
 
-### O que é armazenado aqui:
+### What is stored here:
 
-1. **Projetos de Desenvolvimento**: Código fonte e arquivos de projetos
-2. **Arquivos Compartilhados**: Configurações e recursos comuns
-3. **Dados Temporários**: Uploads, downloads e cache
-4. **Logs Consolidados**: Logs de diferentes serviços em um local
-5. **Templates**: Modelos reutilizáveis para novos projetos
+1. **Development Projects**: Source code and project files
+2. **Shared Files**: Common configurations and resources
+3. **Temporary Data**: Uploads, downloads, and cache
+4. **Consolidated Logs**: Logs from different services in one location
+5. **Templates**: Reusable models for new projects
 
-### Por que este diretório é importante:
+### Why this directory is important:
 
-- **Colaboração**: Permite que diferentes serviços acessem os mesmos arquivos
-- **Persistência**: Dados sobrevivem a reinicializações de containers
-- **Flexibilidade**: Área de trabalho para experimentação e desenvolvimento
-- **Organização**: Centraliza arquivos que seriam espalhados por vários lugares
+- **Collaboration**: Allows different services to access the same files
+- **Persistence**: Data survives container restarts
+- **Flexibility**: Work area for experimentation and development
+- **Organization**: Centralizes files that would be scattered across multiple places
 
-## 🔧 Configuração no Docker Compose
+## 🔧 Configuration in Docker Compose
 
-No arquivo `docker-compose.yml`, este diretório é montado como volume em múltiplos serviços:
+In the `docker-compose.yml` file, this directory is mounted as a volume in multiple services:
 
 ```yaml
 services:
@@ -61,151 +61,151 @@ services:
       - ./workspace:/workspace
 ```
 
-Isso garante que:
-- OpenHands possa acessar e modificar arquivos de projeto
-- WebUI possa exibir e gerenciar arquivos compartilhados
-- Todos os serviços vejam a mesma estrutura de arquivos
+This ensures that:
+- OpenHands can access and modify project files
+- WebUI can display and manage shared files
+- All services see the same file structure
 
-## 🚀 Casos de Uso
+## 🚀 Use Cases
 
-### 1. Desenvolvimento C#/.NET
+### 1. C#/.NET Development
 
 ```bash
-# Criar novo projeto
-mkdir workspace/projects/meu-projeto
-cd workspace/projects/meu-projeto
+# Create new project
+mkdir workspace/projects/my-project
+cd workspace/projects/my-project
 
-# Inicializar projeto .NET
-dotnet new webapi -n MeuProjeto
-dotnet new sln -n MeuProjeto
-dotnet sln add src/MeuProjeto
+# Initialize .NET project
+dotnet new webapi -n MyProject
+dotnet new sln -n MyProject
+dotnet sln add src/MyProject
 
-# Usar OpenHands para desenvolver
-# Acesse http://localhost:3000 e use o workspace
+# Use OpenHands to develop
+# Access http://localhost:3000 and use the workspace
 ```
 
-### 2. Análise de Código com OpenHands
+### 2. Code Analysis with OpenHands
 
 ```bash
-# Colocar código para análise
+# Place code for analysis
 cp /path/to/your/code.cs workspace/projects/analysis/
 
-# Usar OpenHands para análise
-# Acesse http://localhost:3000 e peça para analisar o código em /workspace/projects/analysis/
+# Use OpenHands for analysis
+# Access http://localhost:3000 and ask to analyze the code in /workspace/projects/analysis/
 ```
 
-### 3. Documentação
+### 3. Documentation
 
 ```bash
-# Criar documentação
+# Create documentation
 mkdir workspace/projects/documentation
-echo "# Meu Projeto" > workspace/projects/documentation/README.md
+echo "# My Project" > workspace/projects/documentation/README.md
 
-# Usar WebUI para editar documentação
-# Acesse http://localhost:8080 e use o editor de arquivos
+# Use WebUI to edit documentation
+# Access http://localhost:8080 and use the file editor
 ```
 
-## 📊 Gerenciamento de Arquivos
+## 📊 File Management
 
-### Estrutura Recomendada para Projetos:
+### Recommended Structure for Projects:
 
 ```
-workspace/projects/nome-do-projeto/
-├── src/                    # Código fonte
+workspace/projects/project-name/
+├── src/                    # Source code
 │   ├── Controllers/        # Controllers (API)
-│   ├── Models/            # Models e DTOs
-│   ├── Services/          # Lógica de negócio
-│   ├── Data/              # Acesso a dados
-│   └── Configuration/     # Configurações
-├── tests/                  # Testes
-│   ├── Unit/              # Testes unitários
-│   ├── Integration/       # Testes de integração
-│   └── E2E/               # Testes E2E
-├── docs/                   # Documentação
-├── scripts/                # Scripts de build/deploy
-├── docker/                 # Arquivos Docker
-└── README.md              # Documentação do projeto
+│   ├── Models/            # Models and DTOs
+│   ├── Services/          # Business logic
+│   ├── Data/              # Data access
+│   └── Configuration/     # Configurations
+├── tests/                  # Tests
+│   ├── Unit/              # Unit tests
+│   ├── Integration/       # Integration tests
+│   └── E2E/               # E2E tests
+├── docs/                   # Documentation
+├── scripts/                # Build/deploy scripts
+├── docker/                 # Docker files
+└── README.md              # Project documentation
 ```
 
-### Scripts de Organização:
+### Organization Scripts:
 
 ```bash
 #!/bin/bash
 # organize-workspace.sh
 
-echo "🗂️ Organizando workspace..."
+echo "🗂️ Organizing workspace..."
 
-# Criar estrutura básica
+# Create basic structure
 mkdir -p workspace/{projects,shared,temp,logs}
 mkdir -p workspace/projects/{sample-csharp,documentation,templates}
 mkdir -p workspace/shared/{configs,scripts,resources}
 mkdir -p workspace/temp/{uploads,downloads,cache}
 mkdir -p workspace/logs/{openhands,webui}
 
-# Criar projeto exemplo
+# Create sample project
 if [ ! -d "workspace/projects/sample-csharp" ]; then
     mkdir -p workspace/projects/sample-csharp/{src,tests,docs}
-    echo "# Projeto C# de Exemplo" > workspace/projects/sample-csharp/README.md
-    echo "Este é um projeto exemplo para demonstrar o uso do workspace." >> workspace/projects/sample-csharp/README.md
+    echo "# Sample C# Project" > workspace/projects/sample-csharp/README.md
+    echo "This is a sample project to demonstrate workspace usage." >> workspace/projects/sample-csharp/README.md
 fi
 
-# Criar scripts compartilhados
+# Create shared scripts
 cat > workspace/shared/scripts/clean-workspace.sh << 'EOF'
 #!/bin/bash
-echo "🧹 Limpando workspace..."
+echo "🧹 Cleaning workspace..."
 
-# Remover arquivos temporários antigos
+# Remove old temporary files
 find workspace/temp -name "*" -mtime +7 -delete
 
-# Limpar logs antigos
+# Clean old logs
 find workspace/logs -name "*.log" -mtime +30 -delete
 
-echo "✅ Workspace limpo"
+echo "✅ Workspace cleaned"
 EOF
 
 chmod +x workspace/shared/scripts/clean-workspace.sh
 
-echo "✅ Workspace organizado"
+echo "✅ Workspace organized"
 ```
 
-## 🔍 Monitoramento e Manutenção
+## 🔍 Monitoring and Maintenance
 
-### Script de Monitoramento:
+### Monitoring Script:
 
 ```bash
 #!/bin/bash
 # monitor-workspace.sh
 
-echo "📊 Monitoramento do Workspace"
+echo "📊 Workspace Monitoring"
 
-# Verificar uso de espaço
-echo "💾 Uso de espaço:"
+# Check space usage
+echo "💾 Space usage:"
 du -sh workspace/*
 echo ""
 
-# Verificar arquivos grandes
-echo "📦 Arquivos grandes (>100MB):"
+# Check large files
+echo "📦 Large files (>100MB):"
 find workspace -type f -size +100M -exec ls -lh {} \; 2>/dev/null
 echo ""
 
-# Verificar estrutura
-echo "📁 Estrutura dos projetos:"
+# Check structure
+echo "📁 Project structure:"
 find workspace/projects -maxdepth 2 -type d | sort
 echo ""
 
-# Verificar permissões
-echo "🔐 Verificando permissões:"
+# Check permissions
+echo "🔐 Checking permissions:"
 find workspace -type f -not -perm -u=w -exec ls -la {} \; 2>/dev/null
 echo ""
 
-# Limpeza sugerida
-echo "🧹 Sugestão de limpeza:"
-echo "  - Arquivos em temp/ com mais de 7 dias: $(find workspace/temp -mtime +7 | wc -l)"
-echo "  - Logs com mais de 30 dias: $(find workspace/logs -mtime +30 | wc -l)"
-echo "  - Espaço total usado: $(du -sh workspace | cut -f1)"
+# Cleanup suggestion
+echo "🧹 Cleanup suggestion:"
+echo "  - Files in temp/ older than 7 days: $(find workspace/temp -mtime +7 | wc -l)"
+echo "  - Logs older than 30 days: $(find workspace/logs -mtime +30 | wc -l)"
+echo "  - Total space used: $(du -sh workspace | cut -f1)"
 ```
 
-### Backup Automático:
+### Automatic Backup:
 
 ```bash
 #!/bin/bash
@@ -215,56 +215,56 @@ BACKUP_DIR="backups/workspace"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_FILE="$BACKUP_DIR/workspace-backup-$TIMESTAMP.tar.gz"
 
-echo "🗄️ Criando backup do workspace"
+echo "🗄️ Creating workspace backup"
 
-# Criar diretório de backup
+# Create backup directory
 mkdir -p $BACKUP_DIR
 
-# Excluir arquivos temporários do backup
+# Exclude temporary files from backup
 tar --exclude='workspace/temp/*' \
     --exclude='workspace/logs/*' \
     --exclude='workspace/projects/*/bin/*' \
     --exclude='workspace/projects/*/obj/*' \
     -czf $BACKUP_FILE workspace/
 
-echo "✅ Backup criado: $BACKUP_FILE"
+echo "✅ Backup created: $BACKUP_FILE"
 
-# Limpar backups antigos (manter últimos 5)
+# Clean old backups (keep last 5)
 ls -t $BACKUP_DIR/workspace-backup-*.tar.gz | tail -n +6 | xargs rm -f
 ```
 
-## 🛠️ Integração com Serviços
+## 🛠️ Service Integration
 
 ### OpenHands:
 
-OpenHands usa o workspace como diretório de trabalho padrão:
+OpenHands uses the workspace as the default work directory:
 
 ```python
-# Configuração no OpenHands
+# Configuration in OpenHands
 WORKSPACE_BASE = "/workspace"
 WORKSPACE_MOUNT_PATH = "/workspace"
 ```
 
-Isso permite que o OpenHands:
-- Crie e modifique arquivos de projeto
-- Execute comandos no contexto do projeto
-- Tenha acesso a todo o código fonte
-- Mantenha o estado entre sessões
+This allows OpenHands to:
+- Create and modify project files
+- Execute commands in the project context
+- Have access to all source code
+- Maintain state between sessions
 
 ### WebUI:
 
-WebUI pode:
-- Exibir e editar arquivos do workspace
-- Fazer upload de novos arquivos
-- Organizar projetos
-- Visualizar estrutura de diretórios
+WebUI can:
+- Display and edit workspace files
+- Upload new files
+- Organize projects
+- Visualize directory structure
 
-## 📚 Templates e Recursos
+## 📚 Templates and Resources
 
-### Template de Projeto C#:
+### C# Project Template:
 
 ```bash
-# Criar template
+# Create template
 mkdir -p workspace/templates/csharp-webapi
 
 cat > workspace/templates/csharp-webapi/.template.config/template.json << 'EOF'
@@ -285,37 +285,37 @@ cat > workspace/templates/csharp-webapi/.template.config/template.json << 'EOF'
 EOF
 ```
 
-### Scripts Compartilhados:
+### Shared Scripts:
 
 ```bash
-# Script de build
+# Build script
 cat > workspace/shared/scripts/build.sh << 'EOF'
 #!/bin/bash
-echo "🔨 Build do projeto..."
+echo "🔨 Building project..."
 
 cd /workspace/projects/$1
 
 if [ -f "*.sln" ]; then
     dotnet build
 else
-    echo "❌ Nenhum arquivo .sln encontrado"
+    echo "❌ No .sln file found"
     exit 1
 fi
 
-echo "✅ Build concluído"
+echo "✅ Build completed"
 EOF
 
 chmod +x workspace/shared/scripts/build.sh
 ```
 
-## 🔐 Segurança e Permissões
+## 🔐 Security and Permissions
 
-### Permissões Recomendadas:
+### Recommended Permissions:
 
 ```bash
-# Dono: usuário que executa o Docker
-# Grupo: docker
-# Permissões: 755 para diretórios, 644 para arquivos
+# Owner: user running Docker
+# Group: docker
+# Permissions: 755 for directories, 644 for files
 
 sudo chown -R $USER:docker workspace/
 find workspace -type d -exec chmod 755 {} \;
@@ -323,98 +323,98 @@ find workspace -type f -exec chmod 644 {} \;
 chmod +x workspace/shared/scripts/*.sh
 ```
 
-### Considerações de Segurança:
+### Security Considerations:
 
-1. **Isolamento**: Cada serviço tem acesso limitado ao necessário
-2. **Backup**: Implementar backup regular de projetos importantes
-3. **Limpeza**: Remover dados sensíveis do temp/ regularmente
-4. **Monitoramento**: Monitorar acesso não autorizado
+1. **Isolation**: Each service has limited access to what's needed
+2. **Backup**: Implement regular backup of important projects
+3. **Cleanup**: Remove sensitive data from temp/ regularly
+4. **Monitoring**: Monitor unauthorized access
 
 ## 📈 Performance
 
-### Otimizações:
+### Optimizations:
 
-1. **Estrutura Plana**: Evite diretórios muito profundos
-2. **Cache Local**: Use workspace/temp/cache para arquivos temporários
-3. **Limpeza Regular**: Remova arquivos não utilizados
-4. **Compactação**: Use compactação para backups
+1. **Flat Structure**: Avoid very deep directories
+2. **Local Cache**: Use workspace/temp/cache for temporary files
+3. **Regular Cleanup**: Remove unused files
+4. **Compression**: Use compression for backups
 
-### Métricas:
+### Metrics:
 
-- **Tamanho Máximo**: 10GB por projeto
-- **Profundidade Máxima**: 5 níveis de diretórios
-- **Arquivos por Projeto**: Máximo 10.000 arquivos
-- **Tamanho de Arquivo**: Máximo 100MB por arquivo
+- **Maximum Size**: 10GB per project
+- **Maximum Depth**: 5 directory levels
+- **Files per Project**: Maximum 10,000 files
+- **File Size**: Maximum 100MB per file
 
 ## 🔄 Best Practices
 
-### Para Desenvolvimento:
+### For Development:
 
-1. **Use a estrutura recomendada**: Siga o padrão de organização
-2. **Documente seus projetos**: Mantenha README.md atualizados
-3. **Versionamento**: Use .gitignore para arquivos temporários
-4. **Testes**: Mantenha testes no diretório apropriado
+1. **Use the recommended structure**: Follow the organization pattern
+2. **Document your projects**: Keep README.md updated
+3. **Versioning**: Use .gitignore for temporary files
+4. **Testing**: Keep tests in the appropriate directory
 
-### Para Colaboração:
+### For Collaboration:
 
-1. **Compartilhe apenas o necessário**: Não coloque arquivos sensíveis
-2. **Use nomes descritivos**: Facilite a identificação de arquivos
-3. **Limpe após o uso**: Remova arquivos temporários
-4. **Documente o processo**: Mantenha guias de uso atualizados
+1. **Share only what's necessary**: Don't put sensitive files
+2. **Use descriptive names**: Facilitate file identification
+3. **Clean up after use**: Remove temporary files
+4. **Document the process**: Keep usage guides updated
 
-## 📝 Exemplos Práticos
+## 📝 Practical Examples
 
-### Exemplo 1: Criar Projeto Web API
+### Example 1: Create Web API Project
 
 ```bash
-# Criar estrutura
-mkdir -p workspace/projects/minha-api/{src,tests,docs}
+# Create structure
+mkdir -p workspace/projects/my-api/{src,tests,docs}
 
-# Inicializar projeto
-cd workspace/projects/minha-api
-dotnet new webapi -n MinhaAPI
-dotnet new sln -n MinhaAPI
-dotnet sln add src/MinhaAPI
+# Initialize project
+cd workspace/projects/my-api
+dotnet new webapi -n MyAPI
+dotnet new sln -n MyAPI
+dotnet sln add src/MyAPI
 
-# Usar OpenHands para desenvolver
-# Acesse http://localhost:3000 e peça para desenvolver endpoints
+# Use OpenHands to develop
+# Access http://localhost:3000 and ask to develop endpoints
 ```
 
-### Exemplo 2: Análise de Código com OpenHands
+### Example 2: Code Analysis with OpenHands
 
 ```bash
-# Copiar código para análise
+# Copy code for analysis
 cp -r /path/to/existing/code workspace/projects/analysis/
 
-# Usar OpenHands para análise
-# Acesse http://localhost:3000 e peça para analisar o código em /workspace/projects/analysis/ e sugerir melhorias
+# Use OpenHands for analysis
+# Access http://localhost:3000 and ask to analyze the code in /workspace/projects/analysis/ and suggest improvements
 
-# Gerar documentação com OpenHands
-# Peça para criar documentação para o código em /workspace/projects/analysis/
+# Generate documentation with OpenHands
+# Ask to create documentation for the code in /workspace/projects/analysis/
 ```
 
-### Exemplo 3: Template Reutilizável
+### Example 3: Reusable Template
 
 ```bash
-# Criar template
+# Create template
 cp -r workspace/projects/sample-csharp workspace/templates/my-template
 
-# Personalizar template
-# Edite os arquivos em workspace/templates/my-template/
+# Customize template
+# Edit files in workspace/templates/my-template/
 
-# Usar template para novo projeto
-cp -r workspace/templates/my-template workspace/projects/novo-projeto
-cd workspace/projects/novo-projeto
-# Personalize conforme necessário
+# Use template for new project
+cp -r workspace/templates/my-template workspace/projects/new-project
+cd workspace/projects/new-project
+# Customize as needed
 ```
 
-## 📚 Documentação Adicional
+## 📚 Additional Documentation
 
-- [Guia do OpenHands](../README.md)
+- [OpenHands Guide](../README.md)
 - [WebUI Interface](../openhands/README.md)
 - [Docker Compose](../docker-compose.yml)
 - [GitHub Copilot Agents](../agents/AGENTS.md)
 
 ---
 
-**Importante**: O workspace é uma área compartilhada. Tenha cuidado com arquivos sensíveis e implemente políticas de backup e limpeza regulares.
+**Important**: The workspace is a shared area. Be careful with sensitive files and implement regular backup and cleanup policies.

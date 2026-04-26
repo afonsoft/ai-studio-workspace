@@ -1,129 +1,129 @@
-# 💻 VS Code / Windsurf - Configurações Otimimizadas
+# 💻 VS Code / Windsurf - Optimized Settings
 
-## 📋 Visão Geral
+## 📋 Overview
 
-Este diretório contém as configurações, extensões e personalizações do VS Code/Windsurf otimizadas para desenvolvimento moderno com C#/.NET, Angular, e integração com Gemini API.
+This directory contains VS Code/Windsurf configurations, extensions, and customizations optimized for modern development with C#/.NET, Angular, and Gemini API integration.
 
-## 🎯 Foco Principal
+## 🎯 Main Focus
 
-- **C#/.NET**: Development completo com Entity Framework, Blazor, e testes
-- **Angular**: Frontend moderno com TypeScript e Tailwind CSS
-- **Gemini API**: Integração com GitHub Copilot e AI avançada
-- **Productividade**: Ferramentas para desenvolvimento ágil e colaborativo
-- **Qualidade**: Code quality, formatação e análise estática
+- **C#/.NET**: Complete development with Entity Framework, Blazor, and tests
+- **Angular**: Modern frontend with TypeScript and Tailwind CSS
+- **Gemini API**: Integration with GitHub Copilot and advanced AI
+- **Productivity**: Tools for agile and collaborative development
+- **Quality**: Code quality, formatting, and static analysis
 
-## 📁 Estrutura do Diretório
+## 📁 Directory Structure
 
 ```
 vscode/
-├── README.md                    # Este arquivo - guia completo
-├── settings.json                # Configurações globais otimizadas
-├── extensions.json              # Extensões recomendadas por categoria
-├── keybindings.json             # Atalhos personalizados C#/.NET
-└── install-extensions.sh        # Script de instalação automática
+├── README.md                    # This file - complete guide
+├── settings.json                # Optimized global settings
+├── extensions.json              # Recommended extensions by category
+├── keybindings.json             # Custom C#/.NET shortcuts
+└── install-extensions.sh        # Automatic installation script
 ```
 
-## 🚀 Configurações Principais
+## 🚀 Main Settings
 
-### settings.json - Otimizações por Hardware
+### settings.json - Hardware Optimizations
 
-**Hardware Detectado**: 16 cores · 25.4 GB RAM  
+**Detected Hardware**: 16 cores · 25.4 GB RAM  
 **GPUs**: Intel Iris Xe; NVIDIA GeForce RTX 2050
 
 #### 🎨 Editor & Performance
-- **Formatação automática** ao salvar com C# formatter padrão
-- **Bracket pair colorization** para melhor leitura de código
-- **Cursor animations** suaves (GPU acceleration)
-- **Minimap** habilitado para navegação rápida
-- **Smooth scrolling** em listas e editor
-- **Large file optimizations** para arquivos >2MB
+- **Automatic formatting** on save with default C# formatter
+- **Bracket pair colorization** for better code readability
+- **Smooth cursor animations** (GPU acceleration)
+- **Minimap** enabled for quick navigation
+- **Smooth scrolling** in lists and editor
+- **Large file optimizations** for files >2MB
 
-#### 💾 Memória & Recursos
-- **Max memory for large files**: 3072MB (apropriado para 24GB RAM)
-- **Editor limit**: 20 abas simultâneas
-- **Tab limit**: 20 abas (balance para 24GB RAM)
-- **File watcher exclusions** para reduzir I/O
+#### 💾 Memory & Resources
+- **Max memory for large files**: 3072MB (appropriate for 24GB RAM)
+- **Editor limit**: 20 simultaneous tabs
+- **Tab limit**: 20 tabs (balance for 24GB RAM)
+- **File watcher exclusions** to reduce I/O
 
 #### 🔧 Terminal & Shell
 - **Default profile**: PowerShell (Windows)
-- **GPU acceleration**: ON (melhor performance visual)
-- **Scrollback**: 5000 linhas (2MB por terminal)
-- **WSL integration** para desenvolvimento Linux
+- **GPU acceleration**: ON (better visual performance)
+- **Scrollback**: 5000 lines (2MB per terminal)
+- **WSL integration** for Linux development
 
-#### 🌐 Rede & Timeout
+#### 🌐 Network & Timeout
 - **System certificates V2**: SSL/HTTPS fix
-- **HTTP timeout**: 120s (2 minutos)
-- **Auto-update extensions**: habilitado
+- **HTTP timeout**: 120s (2 minutes)
+- **Auto-update extensions**: enabled
 
-## 📦 Extensões Organizadas por Categoria
+## 📦 Extensions Organized by Category
 
 ### 🚀 AI & Code Completion
-- **GitHub Copilot**: Code completion avançado
-- **GitHub Copilot Chat**: Assistente de IA conversacional
-- **Intellicode**: Sugestões baseadas em contexto
+- **GitHub Copilot**: Advanced code completion
+- **GitHub Copilot Chat**: Conversational AI assistant
+- **Intellicode**: Context-based suggestions
 
 ### 💻 C# / .NET Development
-- **C# Dev Kit**: Development completo .NET
-- **Blazor**: Framework web components
-- **Dotnet Runtime**: Runtime .NET integrado
-- **Dotnet Core Snippets**: Snippets para .NET
-- **Dotnet Pack**: Pacote de extensões .NET
-- **Test Explorer**: Testes unitários integrados
+- **C# Dev Kit**: Complete .NET development
+- **Blazor**: Web components framework
+- **Dotnet Runtime**: Integrated .NET runtime
+- **Dotnet Core Snippets**: .NET snippets
+- **Dotnet Pack**: .NET extension pack
+- **Test Explorer**: Integrated unit tests
 
 ### 🌐 Web Development (Angular & Frontend)
-- **Angular Extension**: Templates e snippets Angular
-- **John Papa Angular**: Best practices Angular
-- **TypeScript Next**: Suporte completo TS/JS
-- **Tailwind CSS**: Framework CSS utility-first
-- **HTML CSS Support**: Formatação e snippets
-- **Jest**: Framework de testes JavaScript
-- **Auto Rename Tag**: Renomear tags HTML em pares
-- **Auto Close Tag**: Fechar tags automaticamente
+- **Angular Extension**: Angular templates and snippets
+- **John Papa Angular**: Angular best practices
+- **TypeScript Next**: Complete TS/JS support
+- **Tailwind CSS**: Utility-first CSS framework
+- **HTML CSS Support**: Formatting and snippets
+- **Jest**: JavaScript testing framework
+- **Auto Rename Tag**: Rename HTML tags in pairs
+- **Auto Close Tag**: Close tags automatically
 
 ### 🐳 Docker & Containers
-- **Docker Extension**: Gerenciamento de containers
+- **Docker Extension**: Container management
 
 ### 🔧 Git & Version Control
-- **GitLens**: Superpowers para Git
-- **GitHub Pull Requests**: Integration com GitHub
-- **GitIgnore**: Gerenciamento de .gitignore
+- **GitLens**: Git superpowers
+- **GitHub Pull Requests**: GitHub integration
+- **GitIgnore**: .gitignore management
 
 ### 🗄️ Database & Data
-- **SQL Server**: Integration com Microsoft SQL
-- **REST Client**: Testes de API
+- **SQL Server**: Microsoft SQL integration
+- **REST Client**: API testing
 
 ### 🎨 Code Quality & Formatting
-- **Prettier**: Formatação de código
-- **EditorConfig**: Configurações consistentes
+- **Prettier**: Code formatting
+- **EditorConfig**: Consistent settings
 
 ### 📋 Productivity & Utilities
-- **Path Intellisense**: Autocomplete de caminhos
-- **NPM Intellisense**: Autocomplete de pacotes NPM
-- **Bracket Pair Colorizer**: Cores para pares de colchetes
+- **Path Intellisense**: Path autocomplete
+- **NPM Intellisense**: NPM package autocomplete
+- **Bracket Pair Colorizer**: Colors for bracket pairs
 
-## 🎨 Temas & Personalização
+## 🎨 Themes & Customization
 
-### Temas Recomendados
-- **Material Icon Theme**: Ícones modernos
-- **VSCode Icons**: Ícones oficiais VS Code
+### Recommended Themes
+- **Material Icon Theme**: Modern icons
+- **VSCode Icons**: Official VS Code icons
 
-### Temas de Editor
-O projeto inclui extensões de ícones para melhor visualização, mas temas de editor são opcionais e podem ser instalados conforme preferência pessoal.
+### Editor Themes
+The project includes icon extensions for better visualization, but editor themes are optional and can be installed according to personal preference.
 
-## 🔧 Atalhos Personalizados (keybindings.json)
+## 🔧 Custom Shortcuts (keybindings.json)
 
 ### C# Development
-- `Ctrl+Shift+C`: Gerar método async
-- `Ctrl+Shift+T`: Rodar testes no contexto
-- `Ctrl+Shift+D`: Debug testes no contexto
-- `Ctrl+Shift+F`: Formatar documento
+- `Ctrl+Shift+C`: Generate async method
+- `Ctrl+Shift+T`: Run tests in context
+- `Ctrl+Shift+D`: Debug tests in context
+- `Ctrl+Shift+F`: Format document
 
 ### GitHub Copilot
 - `Ctrl+L`: Quick chat
-- `Ctrl+I`: Editar com input
-- `Ctrl+Shift+\`: Focar input do Copilot
+- `Ctrl+I`: Edit with input
+- `Ctrl+Shift+\`: Focus Copilot input
 
-### Terminal & Navegação
+### Terminal & Navigation
 - `Ctrl+``: Toggle terminal
 - `Ctrl+Shift+``: Split terminal
 - `Ctrl+Shift+E`: Explorer
@@ -131,16 +131,16 @@ O projeto inclui extensões de ícones para melhor visualização, mas temas de 
 
 ## 🧪 Testing & Debug
 
-### Configurações de Teste
-- **xUnit Integration**: Testes unitários .NET
-- **Test Explorer**: Interface visual de testes
-- **Code Coverage**: Análise de cobertura
-- **Test Adapters**: Integração com frameworks
+### Test Settings
+- **xUnit Integration**: .NET unit tests
+- **Test Explorer**: Visual test interface
+- **Code Coverage**: Coverage analysis
+- **Test Adapters**: Framework integration
 
 ### Debug Configuration
-- **.NET Launch**: Debug de aplicações web
-- **Docker Debug**: Debug em containers
-- **Attach**: Anexar a processos existentes
+- **.NET Launch**: Web application debugging
+- **Docker Debug**: Container debugging
+- **Attach**: Attach to existing processes
 
 ## 🌐 Web Development Setup
 
@@ -171,12 +171,12 @@ O projeto inclui extensões de ícones para melhor visualização, mas temas de 
 ## 🐳 Docker Integration
 
 ### Docker Compose
-- **Syntax highlighting** para docker-compose.yml
-- **IntelliSense** para Dockerfiles
-- **Container management** integrado
-- **Remote development** em containers
+- **Syntax highlighting** for docker-compose.yml
+- **IntelliSense** for Dockerfiles
+- **Integrated container management**
+- **Remote development** in containers
 
-### Configurações
+### Settings
 ```json
 {
   "docker.extension.enableComposeLanguageServer": true,
@@ -184,61 +184,61 @@ O projeto inclui extensões de ícones para melhor visualização, mas temas de 
 }
 ```
 
-## 🔧 Git Integration Avançada
+## 🔧 Advanced Git Integration
 
 ### GitLens Features
-- **Code Lens**: Informações de commit inline
-- **File History**: Histórico de alterações
-- **Repository Graph**: Visualização de branches
-- **Blame Annotations**: Autoria de código
+- **Code Lens**: Inline commit information
+- **File History**: Change history
+- **Repository Graph**: Branch visualization
+- **Blame Annotations**: Code authorship
 
 ### GitHub Integration
-- **Pull Requests**: Criação e review de PRs
+- **Pull Requests**: PR creation and review
 - **GitHub Actions**: Workflow integration
-- **Issues**: Gerenciamento de issues
+- **Issues**: Issue management
 
 ## 🎯 Productivity Tips
 
-### Snippets Personalizados
-- **Controller ASP.NET Core**: `controller`
+### Custom Snippets
+- **ASP.NET Core Controller**: `controller`
 - **Repository Pattern**: `repository`
-- **Unit Test xUnit**: `test`
+- **xUnit Unit Test**: `test`
 - **Angular Component**: `component`
 
 ### Workspace Management
-- **Multi-root workspaces**: Projetos relacionados
-- **Folder nesting**: Agrupamento de arquivos
-- **File exclusions**: Foco em código relevante
+- **Multi-root workspaces**: Related projects
+- **Folder nesting**: File grouping
+- **File exclusions**: Focus on relevant code
 
 ## 🚀 Performance Optimization
 
-### Para 24GB RAM
-- **Editor limit**: 20 arquivos abertos
+### For 24GB RAM
+- **Editor limit**: 20 open files
 - **Large files**: 3GB memory allocation
-- **Terminal history**: 5000 linhas
-- **Search results**: 15000 itens
+- **Terminal history**: 5000 lines
+- **Search results**: 15000 items
 
-### Para 16 Cores CPU
-- **Background analysis**: 3 projetos .NET
+### For 16 Cores CPU
+- **Background analysis**: 3 .NET projects
 - **Type checking**: Basic mode
-- **Auto-imports**: Enabled (com CPU sobrando)
+- **Auto-imports**: Enabled (with spare CPU)
 
 ## 🔒 Security & Privacy
 
-### Configurações
-- **Workspace trust**: Habilitado com cuidado
-- **Telemetry**: Desabilitada (opcional)
+### Settings
+- **Workspace trust**: Enabled with caution
+- **Telemetry**: Disabled (optional)
 - **Certificate validation**: System certificates V2
-- **Secure connections**: HTTPS por padrão
+- **Secure connections**: HTTPS by default
 
-## 📚 Documentação Adicional
+## 📚 Additional Documentation
 
 - [.NET Setup Guide](https://docs.microsoft.com/en-us/dotnet/core/)
 - [Angular Documentation](https://angular.io/docs)
 - [Docker Best Practices](https://docs.docker.com/develop/dev-best-practices/)
 - [Git Workflow](https://github.com/features/codespaces)
 
-## 🔄 Instalação Automática
+## 🔄 Automatic Installation
 
 ```bash
 # Windows
@@ -248,18 +248,18 @@ O projeto inclui extensões de ícones para melhor visualização, mas temas de 
 ./install-extensions.sh
 ```
 
-## 🎉 Benefícios
+## 🎉 Benefits
 
-✅ **Development focado** C#/.NET + Angular  
-✅ **AI integration** com GitHub Copilot  
-✅ **Extensões otimizadas** para desenvolvimento rápido  
-✅ **Quality tools** para código limpo  
-✅ **Docker integration** para containerização  
-✅ **Git avançado** para colaboração  
-✅ **Setup enxuto** com apenas extensões essenciais  
+✅ **Focused development** C#/.NET + Angular  
+✅ **AI integration** with GitHub Copilot  
+✅ **Optimized extensions** for quick development  
+✅ **Quality tools** for clean code  
+✅ **Docker integration** for containerization  
+✅ **Advanced Git** for collaboration  
+✅ **Lean setup** with only essential extensions  
 
 ---
 
-**Setup completo para desenvolvimento moderno!** 🚀
+**Complete setup for modern development!** 🚀
 
-Configurado para extrair o máximo do seu hardware com ferramentas profissionais.
+Configured to extract the maximum from your hardware with professional tools.

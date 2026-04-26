@@ -1,4 +1,4 @@
-# 🤖 GEMINI.md - Comprehensive Guide for .NET Development with GitHub Copilot
+# 🤖 AGENTS.md - Comprehensive Guide for .NET Development with GitHub Copilot
 
 ## 🎯 Overview
 
@@ -8,7 +8,7 @@ This document serves as the central hub for all GitHub Copilot customizations, a
 
 ```
 agents/
-├── GEMINI.md                    # This master guide
+├── AGENTS.md                    # This master guide
 ├── skills/                      # Reusable skill packages
 │   ├── dotnet-best-practices/
 │   ├── csharp-async-patterns/
