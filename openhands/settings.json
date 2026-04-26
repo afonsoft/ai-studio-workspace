@@ -18,7 +18,7 @@
     "enable_solvability_analysis": true,
     "user_consents_to_analytics": true,
     "sandbox_base_container_image": null,
-    "sandbox_runtime_container_image": null,
+    "sandbox_runtime_container_image": "openhands-runtime",
     "mcp_config": {
         "sse_servers": [
             {
